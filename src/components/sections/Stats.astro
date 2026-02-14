@@ -1,0 +1,29 @@
+---
+const stats = [
+  { number: 1500, suffix: '+', label: 'Happy Customers' },
+  { number: 4.9, suffix: '/5', label: 'Average Rating', isDecimal: true },
+  { number: 3, suffix: ' Storeys', label: 'Maximum Reach' },
+  { number: 100, suffix: '%', label: 'Satisfaction' },
+];
+---
+
+<section class="stats-section py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
+  <div class="container">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+      {stats.map(stat => (
+        <div class="reveal opacity-0 translate-y-8">
+          <div class="flex items-baseline justify-center gap-1">
+            <span 
+              class="stat-number font-display text-5xl md:text-6xl font-extrabold"
+              data-count={stat.number}
+            >
+              0
+            </span>
+            <span class="text-xl md:text-2xl font-semibold">{stat.suffix}</span>
+          </div>
+          <p class="mt-2 text-lg opacity-90">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

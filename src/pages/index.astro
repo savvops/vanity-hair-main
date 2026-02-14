@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/sections/Navbar.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import Services from '../components/sections/Services.astro';
+import WhyUs from '../components/sections/WhyUs.astro';
+import Stats from '../components/sections/Stats.astro';
+import Process from '../components/sections/Process.astro';
+import Reviews from '../components/sections/Reviews.astro';
+import Equipment from '../components/sections/Equipment.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import CTA from '../components/sections/CTA.astro';
+import Footer from '../components/sections/Footer.astro';
+
+const title = "Window Guys | Professional Pure Water Window Cleaning in Winnipeg";
+const description = "Crystal-clear windows reached safely up to 3 storeys. Professional window cleaning using purified water-fed pole systems. Licensed, insured, and 5-star rated on Google.";
+---
+
+<Layout title={title} description={description}>
+  <Navbar />
+  <Hero />
+  <TrustBar />
+  <Services />
+  <WhyUs />
+  <Stats />
+  <Process />
+  <Reviews />
+  <Equipment />
+  <FAQ />
+  <CTA />
+  <Footer />
+</Layout>

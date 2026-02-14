@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/ui/Icon.astro';
+import Button from '../components/ui/Button.astro';
+
+const title = "Thank You | Window Guys";
+---
+
+<Layout title={title}>
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-light to-white px-4">
+    <div class="max-w-md w-full text-center">
+      <div class="w-20 h-20 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
+        <Icon name="check" class="w-10 h-10 text-success" />
+      </div>
+      
+      <h1 class="font-display text-3xl font-bold text-dark mb-4">Thank You!</h1>
+      <p class="text-gray-600 mb-8">
+        We've received your quote request. Our team will review your information and contact you within 24 hours.
+      </p>
+      
+      <div class="space-y-3">
+        <Button href="/" variant="primary" class="w-full">
+          Back to Home
+        </Button>
+        <Button href="tel:+15551234567" variant="outline" class="w-full">
+          <Icon name="phone" class="w-5 h-5" />
+          Call Us Now
+        </Button>
+      </div>
+    </div>
+  </div>
+</Layout>

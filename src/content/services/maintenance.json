@@ -1,0 +1,8 @@
+{
+  "title": "Maintenance Plans",
+  "description": "Choose monthly, bi-monthly, or seasonal cleanings to keep your property bright year-round. Save money with regular service and always enjoy crystal-clear views.",
+  "icon": "calendar",
+  "features": ["Customized schedules", "Discounted rates", "Priority booking"],
+  "featured": false,
+  "order": 4
+}

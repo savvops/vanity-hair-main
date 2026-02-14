@@ -1,0 +1,70 @@
+---
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#why-us', label: 'Why Us' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#process', label: 'Process' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-shadow duration-300">
+  <div class="container">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white">
+          <Icon name="tint" class="w-6 h-6" />
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display text-xl font-bold text-dark leading-tight">Window Guys</span>
+          <span class="text-xs text-gray-500 uppercase tracking-wider">Pure Water Cleaning</span>
+        </div>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-2">
+        {navLinks.map(link => (
+          <a 
+            href={link.href} 
+            class="nav-link px-4 py-2 font-medium text-gray-600 hover:text-primary hover:bg-primary-light rounded-lg transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+        <Button href="#contact" variant="primary" size="sm" class="ml-4">
+          Get a Free Quote
+        </Button>
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button 
+        id="navToggle" 
+        class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        aria-label="Toggle navigation"
+      >
+        <Icon name="menu" class="w-6 h-6" />
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <div id="navMenu" class="hidden lg:hidden flex-col bg-white border-t border-gray-200 py-4">
+    <div class="container flex flex-col gap-2">
+      {navLinks.map(link => (
+        <a 
+          href={link.href} 
+          class="nav-link px-4 py-3 font-medium text-gray-600 hover:text-primary hover:bg-primary-light rounded-lg transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+      <Button href="#contact" variant="primary" class="mt-2">
+        Get a Free Quote
+      </Button>
+    </div>
+  </div>
+</nav>

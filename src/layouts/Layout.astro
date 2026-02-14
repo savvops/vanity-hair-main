@@ -1,0 +1,239 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Professional window cleaning services using purified water technology. Safe, effective, and eco-friendly. Serving Winnipeg with crystal-clear results up to 3 storeys."
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Window Guys",
+  "description": "Professional pure water window cleaning services in Winnipeg",
+  "image": "https://windowguys.pages.dev/images/og-image.jpg",
+  "url": "https://windowguys.pages.dev",
+  "telephone": "+1-555-123-4567",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Winnipeg",
+    "addressRegion": "MB",
+    "addressCountry": "CA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.8951,
+    "longitude": -97.1384
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "16:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "150"
+  },
+  "priceRange": "$$"
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#0066cc">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://windowguys.pages.dev">
+  <meta property="og:image" content="https://windowguys.pages.dev/images/og-image.jpg">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content="https://windowguys.pages.dev/images/og-image.jpg">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <title>{title}</title>
+  
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_CF_ANALYTICS_TOKEN"}'></script>
+</head>
+<body class="min-h-screen">
+  <slot />
+  
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    navToggle?.addEventListener('click', () => {
+      navMenu?.classList.toggle('hidden');
+      navMenu?.classList.toggle('flex');
+    });
+    
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu?.classList.add('hidden');
+        navMenu?.classList.remove('flex');
+      });
+    });
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar?.classList.add('shadow-md');
+      } else {
+        navbar?.classList.remove('shadow-md');
+      }
+    });
+    
+    // Stats counter animation
+    const statsSection = document.querySelector('.stats-section');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let statsAnimated = false;
+    
+    function animateStats() {
+      statNumbers.forEach(stat => {
+        const target = parseFloat(stat.getAttribute('data-count') || '0');
+        const isDecimal = target % 1 !== 0;
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        
+        const updateCount = () => {
+          current += step;
+          if (current < target) {
+            stat.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toString();
+            requestAnimationFrame(updateCount);
+          } else {
+            stat.textContent = target.toString();
+          }
+        };
+        
+        updateCount();
+      });
+    }
+    
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !statsAnimated) {
+            animateStats();
+            statsAnimated = true;
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(statsSection);
+    }
+    
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slide-up');
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+    
+    // FAQ Accordion
+    (window as any).toggleFaq = function(button: HTMLButtonElement) {
+      const faqItem = button.parentElement;
+      const isActive = faqItem?.classList.contains('active');
+      
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        const answer = item.querySelector('.faq-answer');
+        answer?.classList.add('hidden');
+        const icon = item.querySelector('.faq-icon');
+        icon?.classList.remove('rotate-180');
+      });
+      
+      if (!isActive) {
+        faqItem?.classList.add('active');
+        const answer = faqItem?.querySelector('.faq-answer');
+        answer?.classList.remove('hidden');
+        const icon = faqItem?.querySelector('.faq-icon');
+        icon?.classList.add('rotate-180');
+      }
+    };
+    
+    // Form submission
+    const quoteForm = document.getElementById('quoteForm') as HTMLFormElement;
+    const formSuccess = document.getElementById('formSuccess');
+    
+    quoteForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = quoteForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const btnText = submitBtn?.querySelector('.btn-text');
+      const btnLoading = submitBtn?.querySelector('.btn-loading');
+      
+      if (btnText && btnLoading) {
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+      }
+      submitBtn.disabled = true;
+      
+      try {
+        const formData = new FormData(quoteForm);
+        const response = await fetch('/api/quote', {
+          method: 'POST',
+          body: JSON.stringify(Object.fromEntries(formData)),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        if (response.ok) {
+          quoteForm.style.display = 'none';
+          formSuccess?.classList.remove('hidden');
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        if (btnText && btnLoading) {
+          btnText.classList.remove('hidden');
+          btnLoading.classList.add('hidden');
+        }
+        submitBtn.disabled = false;
+      }
+    });
+    
+    // Set current year
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear().toString();
+    }
+  </script>
+</body>
+</html>

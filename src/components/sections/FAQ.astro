@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+
+const faqs = await getCollection('faq');
+const sortedFaqs = faqs.sort((a, b) => a.data.order - b.data.order);
+const leftFaqs = sortedFaqs.filter((_, i) => i % 2 === 0);
+const rightFaqs = sortedFaqs.filter((_, i) => i % 2 === 1);
+---
+
+<section id="faq" class="py-20 md:py-24 bg-gray-50">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">FAQ</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know about our pure water window cleaning</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <!-- Left Column -->
+      <div class="space-y-4">
+        {leftFaqs.map((faq, index) => (
+          <div 
+            class="reveal opacity-0 translate-y-8 faq-item bg-white rounded-xl shadow-sm overflow-hidden"
+            style={`transition-delay: ${index * 100}ms`}
+          >
+            <button 
+              class="w-full flex items-center justify-between p-5 text-left font-semibold text-dark hover:text-primary transition-colors"
+              onclick="toggleFaq(this)"
+            >
+              <span class="pr-4">{faq.data.question}</span>
+              <Icon name="chevron-down" class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" />
+            </button>
+            <div class="faq-answer hidden px-5 pb-5">
+              <p class="text-gray-600" set:html={faq.data.answer} />
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Right Column -->
+      <div class="space-y-4">
+        {rightFaqs.map((faq, index) => (
+          <div 
+            class="reveal opacity-0 translate-y-8 faq-item bg-white rounded-xl shadow-sm overflow-hidden"
+            style={`transition-delay: ${(leftFaqs.length + index) * 100}ms`}
+          >
+            <button 
+              class="w-full flex items-center justify-between p-5 text-left font-semibold text-dark hover:text-primary transition-colors"
+              onclick="toggleFaq(this)"
+            >
+              <span class="pr-4">{faq.data.question}</span>
+              <Icon name="chevron-down" class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform" />
+            </button>
+            <div class="faq-answer hidden px-5 pb-5">
+              <p class="text-gray-600" set:html={faq.data.answer} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- CTA -->
+    <div class="text-center mt-12">
+      <p class="text-gray-600 mb-4">Still have questions?</p>
+      <Button href="tel:+15551234567" variant="primary">
+        <Icon name="phone" class="w-5 h-5" />
+        Call Us - We're Happy to Help
+      </Button>
+    </div>
+  </div>
+</section>
