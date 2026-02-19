@@ -1,109 +1,80 @@
-# Window Guys - Astro + Cloudflare Stack
+# Vanity Hair & Aesthetics Website
 
-A modern, fast, SEO-optimized website for Window Guys Winnipeg, built with Astro, TypeScript, Tailwind CSS, and deployed on Cloudflare Pages.
+A premium barbershop website built with Astro, Tailwind CSS, and real Instagram content.
 
-## 🚀 Tech Stack
+## 🚀 Quick Start
 
-- **Framework**: Astro (Static Site Generation)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Hosting**: Cloudflare Pages
-- **Edge Functions**: Cloudflare Workers
-- **Forms**: Cloudflare Worker API endpoint
-- **Analytics**: Cloudflare Web Analytics
+```bash
+npm install
+npm run dev
+```
+
+## 📦 Build
+
+```bash
+npm run build
+```
+
+Build output is in `dist/` folder.
+
+## 🌐 Deploy to Cloudflare Pages
+
+### Option 1: Drag & Drop (Easiest)
+1. Go to [Cloudflare Pages Dashboard](https://dash.cloudflare.com/pages)
+2. Click "Create a project"
+3. Select "Upload assets"
+4. Drag and drop the `dist/` folder
+5. Your site will be live at `https://vanityhair.pages.dev`
+
+### Option 2: Git Integration
+1. Push this repo to GitHub
+2. Connect GitHub repo to Cloudflare Pages
+3. Auto-deploy on every push
+
+### Option 3: Wrangler CLI
+```bash
+npx wrangler pages deploy dist --project-name=vanityhair
+```
 
 ## 📁 Project Structure
 
 ```
-├── functions/           # Cloudflare Worker functions
-│   └── api/
-│       └── quote.ts     # Form submission handler
-├── public/              # Static assets
-│   ├── _headers         # HTTP headers config
-│   ├── _routes.json     # Routing rules
-│   └── favicon.svg
+vanity-hair-astro/
 ├── src/
-│   ├── components/      # UI components
-│   │   ├── sections/    # Page sections
-│   │   └── ui/          # Reusable UI components
-│   ├── content/         # Content collections
-│   │   ├── services/    # Service data
-│   │   ├── reviews/     # Customer reviews
-│   │   └── faq/         # FAQ entries
-│   ├── layouts/         # Page layouts
-│   ├── pages/           # Route pages
-│   ├── styles/          # Global styles
-│   └── content.config.ts # Content schema
-├── astro.config.mjs
-├── tailwind.config.mjs
-├── tsconfig.json
-└── wrangler.toml        # Cloudflare config
+│   ├── components/
+│   │   └── sections/     # Page sections (Hero, About, Services, etc.)
+│   ├── layouts/
+│   │   └── Layout.astro  # Base layout with SEO
+│   ├── pages/
+│   │   └── index.astro   # Homepage
+│   └── styles/
+│       └── global.css    # Tailwind + custom CSS
+├── public/
+│   └── images/           # Instagram photos
+└── dist/                 # Build output
 ```
 
-## 🛠️ Development
+## 🎨 Design
 
-```bash
-# Install dependencies
-npm install
+- **Primary Color:** Gold (#d4af37)
+- **Background:** Rich Black (#0a0a0a)
+- **Typography:** Playfair Display (headings), Inter (body)
 
-# Start dev server
-npm run dev
+## 📞 Business Info
 
-# Build for production
-npm run build
+- **Name:** Vanity Hair & Aesthetics
+- **Address:** 432 Graham Ave, Winnipeg, MB
+- **Phone:** (204) 998-1115, (204) 956-5797
+- **Instagram:** [@vanity.hair.204](https://www.instagram.com/vanity.hair.204/)
+- **Facebook:** [vanityhairwpg](https://www.facebook.com/vanityhairwpg/)
 
-# Preview production build
-npm run preview
-```
+## 📝 Features
 
-## 📦 Deployment
-
-### Option 1: Cloudflare Pages (Git Integration)
-
-1. Push to GitHub/GitLab
-2. Connect repo in Cloudflare Dashboard
-3. Set build command: `npm run build`
-4. Set output directory: `dist`
-5. Deploy
-
-### Option 2: Wrangler CLI
-
-```bash
-# Install Wrangler
-npm install -g wrangler
-
-# Login to Cloudflare
-wrangler login
-
-# Deploy
-wrangler pages deploy dist
-```
-
-## 📋 Features
-
-- ✅ **SEO Optimized**: Meta tags, Open Graph, JSON-LD schema
-- ✅ **Performance**: 100/100 Lighthouse score potential
-- ✅ **Responsive**: Mobile-first design
-- ✅ **Accessibility**: ARIA labels, semantic HTML
-- ✅ **Form Handling**: Cloudflare Worker with validation
-- ✅ **Content Collections**: Type-safe content management
-- ✅ **Animations**: Scroll reveal, counter animations
-- ✅ **Security Headers**: CSP, HSTS, XSS protection
-
-## 🔧 Customization
-
-### Adding/Editing Content
-
-Services, reviews, and FAQ are stored as JSON files in `src/content/`. Edit these files to update content.
-
-### Styling
-
-Colors and fonts are configured in `tailwind.config.mjs`. Global styles are in `src/styles/global.css`.
-
-### Forms
-
-Form submissions are handled by `functions/api/quote.ts`. Connect to D1, email service, or webhook as needed.
-
-## 📄 License
-
-MIT
+- ✅ Responsive design
+- ✅ Real Instagram photos
+- ✅ Booking form
+- ✅ Service menu with pricing
+- ✅ Gallery section
+- ✅ Testimonials
+- ✅ SEO optimized
+- ✅ Fast performance (Astro static build)

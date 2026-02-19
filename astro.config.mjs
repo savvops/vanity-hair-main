@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://windowguys.pages.dev',
+  site: 'https://vanityhair.pages.dev',
   output: 'static',
   integrations: [
     tailwind({

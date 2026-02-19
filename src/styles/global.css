@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,34 +10,74 @@
   }
   
   body {
-    @apply font-sans text-gray-800 antialiased;
+    @apply bg-rich-black text-white antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
   }
 }
 
 @layer components {
-  .container {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   
-  .section-header {
-    @apply mx-auto max-w-2xl text-center mb-12;
+  .barber-pole {
+    background: repeating-linear-gradient(
+      45deg,
+      #d4af37,
+      #d4af37 10px,
+      #0a0a0a 10px,
+      #0a0a0a 20px,
+      #ffffff 20px,
+      #ffffff 30px,
+      #0a0a0a 30px,
+      #0a0a0a 40px
+    );
   }
   
-  .section-badge {
-    @apply inline-block px-4 py-1.5 rounded-full text-sm font-semibold bg-primary-light text-primary mb-4;
+  .gold-gradient {
+    background: linear-gradient(135deg, #d4af37 0%, #e5c158 50%, #b8962e 100%);
   }
   
-  .section-title {
-    @apply font-display text-3xl md:text-4xl font-bold text-dark mb-4;
-  }
-  
-  .section-subtitle {
-    @apply text-lg text-gray-600;
+  .calendar-dark::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
   }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e5c158;
+}
+
+/* Selection */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: white;
 }

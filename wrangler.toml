@@ -1,21 +1,5 @@
-name = "window-guys"
-compatibility_date = "2026-02-13"
+name = "vanityhair"
+compatibility_date = "2024-01-01"
 
-# Build command
-[build]
-command = "npm run build"
-
-# Output directory
 [site]
 bucket = "./dist"
-
-# Uncomment to add D1 database
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "window-guys-db"
-# database_id = "your-database-id"
-
-# Uncomment to add KV namespace
-# [[kv_namespaces]]
-# binding = "CACHE"
-# id = "your-kv-namespace-id"

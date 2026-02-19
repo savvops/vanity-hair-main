@@ -1,70 +1,114 @@
 ---
-import Button from '../ui/Button.astro';
-import Icon from '../ui/Icon.astro';
-
 const navLinks = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
   { href: '#services', label: 'Services' },
-  { href: '#why-us', label: 'Why Us' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#process', label: 'Process' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '#gallery', label: 'Gallery' },
+  { href: '#contact', label: 'Contact' },
 ];
 ---
 
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-shadow duration-300">
-  <div class="container">
+<nav class="fixed w-full z-50 bg-rich-black/95 border-b border-gold/30 backdrop-blur-sm transition-all duration-300" id="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-3">
-        <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white">
-          <Icon name="tint" class="w-6 h-6" />
-        </div>
-        <div class="flex flex-col">
-          <span class="font-display text-xl font-bold text-dark leading-tight">Window Guys</span>
-          <span class="text-xs text-gray-500 uppercase tracking-wider">Pure Water Cleaning</span>
-        </div>
+      <a href="#home" class="flex-shrink-0 flex items-center space-x-2 group">
+        <i data-lucide="scissors" class="w-6 h-6 text-gold group-hover:rotate-12 transition-transform"></i>
+        <span class="font-serif text-base md:text-lg font-bold tracking-wider text-white">
+          VANITY <span class="text-gold">HAIR</span> & ESTHETICS
+        </span>
       </a>
-      
-      <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-2">
-        {navLinks.map(link => (
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-8">
+          {navLinks.map((link) => (
+            <a 
+              href={link.href} 
+              class="text-gray-300 hover:text-gold transition-colors duration-300 text-sm uppercase tracking-widest"
+            >
+              {link.label}
+            </a>
+          ))}
           <a 
-            href={link.href} 
-            class="nav-link px-4 py-2 font-medium text-gray-600 hover:text-primary hover:bg-primary-light rounded-lg transition-colors"
+            href="#book" 
+            class="bg-gold hover:bg-gold-light text-rich-black px-5 py-2 rounded-sm font-bold uppercase tracking-wider transition-all transform hover:scale-105"
           >
-            {link.label}
+            Book Now
           </a>
-        ))}
-        <Button href="#contact" variant="primary" size="sm" class="ml-4">
-          Get a Free Quote
-        </Button>
+        </div>
       </div>
-      
-      <!-- Mobile Menu Toggle -->
-      <button 
-        id="navToggle" 
-        class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-        aria-label="Toggle navigation"
-      >
-        <Icon name="menu" class="w-6 h-6" />
-      </button>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="text-gold hover:text-white focus:outline-none p-2">
+          <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+        </button>
+      </div>
     </div>
   </div>
-  
-  <!-- Mobile Navigation -->
-  <div id="navMenu" class="hidden lg:hidden flex-col bg-white border-t border-gray-200 py-4">
-    <div class="container flex flex-col gap-2">
-      {navLinks.map(link => (
+
+  <!-- Mobile Menu Panel -->
+  <div id="mobile-menu" class="hidden md:hidden bg-charcoal border-b border-gold/20">
+    <div class="px-4 pt-2 pb-4 space-y-1 text-center">
+      {navLinks.map((link) => (
         <a 
           href={link.href} 
-          class="nav-link px-4 py-3 font-medium text-gray-600 hover:text-primary hover:bg-primary-light rounded-lg transition-colors"
+          class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold transition-colors"
         >
           {link.label}
         </a>
       ))}
-      <Button href="#contact" variant="primary" class="mt-2">
-        Get a Free Quote
-      </Button>
+      <a 
+        href="#book" 
+        class="block px-3 py-3 bg-gold text-rich-black font-bold mt-4 uppercase tracking-wider"
+      >
+        Book Now
+      </a>
     </div>
   </div>
 </nav>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  let isMenuOpen = false;
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    mobileMenu?.classList.toggle('hidden');
+    
+    // Toggle icon between menu and X
+    if (menuIcon) {
+      if (isMenuOpen) {
+        menuIcon.setAttribute('data-lucide', 'x');
+      } else {
+        menuIcon.setAttribute('data-lucide', 'menu');
+      }
+      window.lucide?.createIcons();
+    }
+  });
+
+  // Close mobile menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      isMenuOpen = false;
+      if (menuIcon) {
+        menuIcon.setAttribute('data-lucide', 'menu');
+        window.lucide?.createIcons();
+      }
+    });
+  });
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('shadow-lg', 'shadow-gold/5');
+    } else {
+      navbar?.classList.remove('shadow-lg', 'shadow-gold/5');
+    }
+  });
+</script>

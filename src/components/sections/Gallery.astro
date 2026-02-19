@@ -1,0 +1,48 @@
+---
+const galleryImages = [
+  '/images/2026-01-23_21-27-27_UTC.jpg',
+  '/images/2026-01-23_21-23-15_UTC.jpg',
+  '/images/2026-01-23_20-39-36_UTC.jpg',
+  '/images/2026-01-12_20-09-34_UTC.jpg',
+  '/images/2026-01-03_01-24-10_UTC.jpg',
+  '/images/2026-01-01_23-42-13_UTC.jpg',
+  '/images/2025-12-31_02-44-31_UTC.jpg',
+  '/images/2025-12-24_02-44-55_UTC.jpg',
+];
+---
+
+<section id="gallery" class="py-24 bg-rich-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h4 class="text-gold uppercase tracking-widest font-bold mb-2">Our Work</h4>
+      <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Fresh Cuts Gallery</h2>
+      <div class="h-1 w-20 bg-gold mx-auto"></div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {galleryImages.map((image, index) => (
+        <div class={`relative overflow-hidden group ${index === 0 || index === 5 ? 'md:col-span-2 md:row-span-2' : ''}`}>
+          <img 
+            src={image} 
+            alt={`Vanity Hair Cut ${index + 1}`}
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gold/0 group-hover:bg-gold/20 transition-colors duration-300"></div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a 
+        href="https://www.instagram.com/vanity.hair.204/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center space-x-2 px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-rich-black transition-all duration-300 uppercase tracking-widest text-sm font-bold"
+      >
+        <i data-lucide="instagram" class="w-5 h-5"></i>
+        <span>View More on Instagram</span>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,142 @@
+---
+---
+
+<section id="book" class="py-24 bg-rich-black">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <!-- Booking Form -->
+      <div id="contact" class="bg-charcoal p-8 md:p-12 border-t-4 border-gold">
+        <h3 class="text-3xl font-serif font-bold text-white mb-2">Book Your Visit</h3>
+        <p class="text-gray-400 mb-8">Walk-ins welcome, but appointments are prioritized.</p>
+
+        <form class="space-y-6" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">Name</label>
+              <input 
+                type="text" 
+                name="name"
+                required
+                class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">Phone</label>
+              <input 
+                type="tel" 
+                name="phone"
+                required
+                class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
+                placeholder="(204) 956-5797"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">Service</label>
+            <select 
+              name="service"
+              class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors"
+            >
+              <option>The Signature Cut</option>
+              <option>Precision Fade</option>
+              <option>Hot Towel Shave</option>
+              <option>Beard Sculpt & Trim</option>
+              <option>The Full Service</option>
+              <option>Father & Son</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">Preferred Date</label>
+            <input 
+              type="date" 
+              name="date"
+              class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
+            />
+          </div>
+          <div>
+            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">Preferred Time</label>
+            <select 
+              name="time"
+              class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors"
+            >
+              <option>9:00 AM</option>
+              <option>10:00 AM</option>
+              <option>11:00 AM</option>
+              <option>12:00 PM</option>
+              <option>1:00 PM</option>
+              <option>2:00 PM</option>
+              <option>3:00 PM</option>
+              <option>4:00 PM</option>
+              <option>5:00 PM</option>
+              <option>6:00 PM</option>
+              <option>7:00 PM</option>
+              <option>8:00 PM</option>
+            </select>
+          </div>
+          <button 
+            type="submit" 
+            class="w-full bg-gold text-rich-black font-bold py-4 uppercase tracking-widest hover:bg-white transition-colors duration-300"
+          >
+            Confirm Booking
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="flex flex-col justify-center space-y-8">
+        <div>
+          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">Find Us</h3>
+          <p class="text-2xl text-white font-serif mb-2">Vanity Hair & Esthetics</p>
+          <p class="text-gray-400">
+            432 Graham Avenue<br />
+            Winnipeg, MB R3C 0L8
+          </p>
+          <a 
+            href="https://maps.google.com/?q=432+Graham+Ave+Winnipeg+MB+R3C+0L8"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center space-x-2 text-gold hover:text-white transition-colors mt-4"
+          >
+            <i data-lucide="map-pin" class="w-4 h-4"></i>
+            <span>Get Directions</span>
+          </a>
+        </div>
+
+        <div>
+          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">Opening Hours</h3>
+          <div class="grid grid-cols-2 gap-4 text-gray-400 max-w-sm">
+            <span>Monday</span> <span>9:00 AM - 8:30 PM</span>
+            <span>Tuesday</span> <span>9:00 AM - 8:30 PM</span>
+            <span>Wednesday</span> <span>9:00 AM - 8:30 PM</span>
+            <span>Thursday</span> <span>9:00 AM - 8:30 PM</span>
+            <span>Friday</span> <span>9:00 AM - 8:30 PM</span>
+            <span>Saturday</span> <span>9:00 AM - 8:30 PM</span>
+            <span>Sunday</span> <span class="text-gold">Closed</span>
+          </div>
+          <p class="text-gray-500 text-sm mt-3 italic">* Holiday hours may vary</p>
+        </div>
+
+        <div>
+          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">Contact</h3>
+          <a 
+            href="tel:2049565797" 
+            class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3"
+          >
+            <i data-lucide="phone" class="w-5 h-5"></i>
+            <span>(204) 956-5797</span>
+          </a>
+          <a 
+            href="https://www.instagram.com/vanity.hair.204/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-4"
+          >
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+            <span>@vanity.hair.204</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,120 +1,52 @@
 ---
-import Icon from '../ui/Icon.astro';
-
-const serviceLinks = [
-  { href: '#services', label: 'Residential Cleaning' },
-  { href: '#services', label: 'Commercial Cleaning' },
-  { href: '#services', label: '3-Storey Reach' },
-  { href: '#services', label: 'Maintenance Plans' },
-  { href: '#services', label: 'Solar Panel Cleaning' },
-];
-
-const companyLinks = [
-  { href: '#why-us', label: 'About Us' },
-  { href: '#reviews', label: 'Reviews' },
-  { href: '#process', label: 'Our Process' },
-  { href: '#contact', label: 'Contact' },
-];
-
-const socialLinks = [
-  { href: '#', icon: 'facebook', label: 'Facebook' },
-  { href: '#', icon: 'google', label: 'Google' },
-  { href: '#', icon: 'yelp', label: 'Yelp' },
-  { href: '#', icon: 'youtube', label: 'YouTube' },
-];
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-dark text-white pt-16 pb-8">
-  <div class="container">
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-      <!-- Brand -->
-      <div>
-        <a href="#" class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
-            <Icon name="tint" class="w-6 h-6 text-white" />
-          </div>
-          <div class="flex flex-col">
-            <span class="font-display text-xl font-bold leading-tight">Window Guys</span>
-            <span class="text-xs text-gray-400 uppercase tracking-wider">Pure Water Cleaning</span>
-          </div>
-        </a>
-        <p class="text-gray-400 text-sm mb-6">
-          Professional window cleaning services using purified water technology. Safe, effective, and eco-friendly.
+<footer class="bg-black py-12 border-t border-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <!-- Logo -->
+      <div class="mb-6 md:mb-0 text-center md:text-left">
+        <span class="font-serif text-lg font-bold tracking-wider text-white">
+          VANITY <span class="text-gold">HAIR</span> & ESTHETICS
+        </span>
+        <p class="text-gray-600 text-sm mt-2">
+          432 Graham Ave, Winnipeg, MB R3C 0L8<br />
+          © {currentYear} Vanity Hair & Esthetics. All rights reserved.
         </p>
-        <div class="flex gap-3">
-          {socialLinks.map(social => (
-            <a 
-              href={social.href} 
-              class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-              aria-label={social.label}
-            >
-              <Icon name={social.icon} class="w-5 h-5" />
-            </a>
-          ))}
-        </div>
       </div>
-      
-      <!-- Services -->
-      <div>
-        <h4 class="font-display font-semibold text-lg mb-4">Services</h4>
-        <ul class="space-y-3">
-          {serviceLinks.map(link => (
-            <li>
-              <a href={link.href} class="text-gray-400 hover:text-white transition-colors text-sm">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      <!-- Company -->
-      <div>
-        <h4 class="font-display font-semibold text-lg mb-4">Company</h4>
-        <ul class="space-y-3">
-          {companyLinks.map(link => (
-            <li>
-              <a href={link.href} class="text-gray-400 hover:text-white transition-colors text-sm">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      <!-- Contact -->
-      <div>
-        <h4 class="font-display font-semibold text-lg mb-4">Contact Us</h4>
-        <ul class="space-y-4">
-          <li>
-            <a href="tel:+15551234567" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
-              <Icon name="phone" class="w-5 h-5 text-primary" />
-              <span>(555) 123-4567</span>
-            </a>
-          </li>
-          <li>
-            <a href="mailto:info@windowguys.com" class="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
-              <Icon name="mail" class="w-5 h-5 text-primary" />
-              <span>info@windowguys.com</span>
-            </a>
-          </li>
-          <li class="flex items-start gap-3 text-gray-400">
-            <Icon name="clock" class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span>Mon - Sat: 8am - 6pm</span>
-          </li>
-        </ul>
+
+      <!-- Social Links -->
+      <div class="flex space-x-6">
+        <a 
+          href="https://www.facebook.com/vanityhairwpg/" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-500 hover:text-gold transition-colors"
+          aria-label="Facebook"
+        >
+          <i data-lucide="facebook" class="w-6 h-6"></i>
+        </a>
+        <a 
+          href="https://www.instagram.com/vanity.hair.204/" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-500 hover:text-gold transition-colors"
+          aria-label="Instagram"
+        >
+          <i data-lucide="instagram" class="w-6 h-6"></i>
+        </a>
       </div>
     </div>
     
-    <!-- Bottom Bar -->
-    <div class="border-t border-white/10 pt-8">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-gray-400 text-sm">
-          © <span id="year">2026</span> Window Guys. All rights reserved.
-        </p>
-        <p class="text-gray-500 text-xs">
-          Pure water window cleaning up to 3 storeys. Licensed & Insured.
-        </p>
+    <!-- Quick Links -->
+    <div class="mt-8 pt-8 border-t border-gray-900">
+      <div class="flex flex-wrap justify-center gap-6 text-sm">
+        <a href="#home" class="text-gray-500 hover:text-gold transition-colors">Home</a>
+        <a href="#about" class="text-gray-500 hover:text-gold transition-colors">About</a>
+        <a href="#services" class="text-gray-500 hover:text-gold transition-colors">Services</a>
+        <a href="#gallery" class="text-gray-500 hover:text-gold transition-colors">Gallery</a>
+        <a href="#book" class="text-gray-500 hover:text-gold transition-colors">Book Now</a>
       </div>
     </div>
   </div>

@@ -4,18 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#0066cc',
-          dark: '#0052a3',
-          light: '#e6f2ff',
+        gold: {
+          DEFAULT: '#d4af37',
+          light: '#e5c158',
+          dark: '#b8962e',
         },
-        accent: '#00a8e8',
-        success: '#28a745',
-        warning: '#ffc107',
-        dark: '#1a1a2e',
+        'rich-black': '#0a0a0a',
+        charcoal: '#1a1a1a',
+        primary: {
+          DEFAULT: '#d4af37',
+          dark: '#b8962e',
+          light: '#e5c158',
+        },
+        accent: '#d4af37',
+        dark: '#0a0a0a',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
         display: ['Poppins', 'system-ui', 'sans-serif'],
       },
       animation: {
