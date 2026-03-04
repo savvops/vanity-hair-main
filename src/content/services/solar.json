@@ -1,8 +1,0 @@
-{
-  "title": "Solar Panel Cleaning",
-  "description": "Solar panels need annual cleaning. Metal frames housing photovoltaic cells can rust from mold & mildew. Regular treatments maximize your energy investment.",
-  "icon": "solar-panel",
-  "features": ["Increase efficiency", "Extend panel life", "Safe cleaning methods"],
-  "featured": false,
-  "order": 5
-}

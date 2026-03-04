@@ -1,8 +1,0 @@
-{
-  "title": "Commercial Window Cleaning",
-  "description": "In business, appearances matter. Your customers NOTICE clean windows. Our pure water method removes fingerprints, smears, and built-up debris that looks horrible in sunlight.",
-  "icon": "building",
-  "features": ["Storefronts", "Office buildings", "Flexible scheduling"],
-  "featured": false,
-  "order": 2
-}
