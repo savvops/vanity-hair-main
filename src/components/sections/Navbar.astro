@@ -1,11 +1,6 @@
 ---
-const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#contact', label: 'Contact' },
-];
+import siteData from '../../content/site.json';
+const { navbar } = siteData;
 ---
 
 <nav class="fixed w-full z-50 bg-rich-black/95 border-b border-gold/30 backdrop-blur-sm transition-all duration-300" id="navbar">
@@ -15,14 +10,14 @@ const navLinks = [
       <a href="#home" class="flex-shrink-0 flex items-center space-x-2 group">
         <i data-lucide="scissors" class="w-6 h-6 text-gold group-hover:rotate-12 transition-transform"></i>
         <span class="font-serif text-base md:text-lg font-bold tracking-wider text-white">
-          VANITY <span class="text-gold">HAIR</span> & ESTHETICS
+          {navbar.brand_name}
         </span>
       </a>
 
       <!-- Desktop Menu -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-8">
-          {navLinks.map((link) => (
+          {navbar.nav_links.map((link) => (
             <a 
               href={link.href} 
               class="text-gray-300 hover:text-gold transition-colors duration-300 text-sm uppercase tracking-widest"
@@ -34,7 +29,7 @@ const navLinks = [
             href="#book" 
             class="bg-gold hover:bg-gold-light text-rich-black px-5 py-2 rounded-sm font-bold uppercase tracking-wider transition-all transform hover:scale-105"
           >
-            Book Now
+            {navbar.cta_button}
           </a>
         </div>
       </div>
@@ -51,7 +46,7 @@ const navLinks = [
   <!-- Mobile Menu Panel -->
   <div id="mobile-menu" class="hidden md:hidden bg-charcoal border-b border-gold/20">
     <div class="px-4 pt-2 pb-4 space-y-1 text-center">
-      {navLinks.map((link) => (
+      {navbar.nav_links.map((link) => (
         <a 
           href={link.href} 
           class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold transition-colors"
@@ -63,7 +58,7 @@ const navLinks = [
         href="#book" 
         class="block px-3 py-3 bg-gold text-rich-black font-bold mt-4 uppercase tracking-wider"
       >
-        Book Now
+        {navbar.cta_button}
       </a>
     </div>
   </div>

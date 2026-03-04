@@ -1,0 +1,237 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Local development: uncomment to test without Netlify Identity
+# local_backend: true
+
+collections:
+  - name: "site"
+    label: "Site Content"
+    files:
+
+      - name: "homepage"
+        label: "🏠 Homepage Content"
+        file: "src/content/site.json"
+        fields:
+
+          # ── SEO ──────────────────────────────────────────
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Meta Description", name: "description", widget: "text" }
+
+          # ── NAVBAR ───────────────────────────────────────
+          - label: "Navigation Bar"
+            name: "navbar"
+            widget: "object"
+            fields:
+              - { label: "Brand Name", name: "brand_name", widget: "string" }
+              - label: "Navigation Links"
+                name: "nav_links"
+                widget: "list"
+                fields:
+                  - { label: "URL (href)", name: "href", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+              - { label: "CTA Button Text", name: "cta_button", widget: "string" }
+
+          # ── HERO ─────────────────────────────────────────
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badge", widget: "string" }
+              - { label: "Headline Line 1", name: "headline_line1", widget: "string" }
+              - { label: "Headline Accent", name: "headline_accent", widget: "string" }
+              - { label: "Subheadline", name: "subheadline", widget: "text" }
+              - { label: "Primary CTA Button", name: "cta_primary", widget: "string" }
+              - { label: "Secondary CTA Button", name: "cta_secondary", widget: "string" }
+              - { label: "Background Image", name: "background_image", widget: "image" }
+
+          # ── INFO BANNER ──────────────────────────────────
+          - label: "Info Banner"
+            name: "info_banner"
+            widget: "object"
+            fields:
+              - label: "Info Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Icon Name", name: "icon", widget: "string", hint: "Lucide icon name (map-pin, clock, phone, etc.)" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Content", name: "content", widget: "string" }
+
+          # ── ABOUT ────────────────────────────────────────
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Headline Part 1", name: "headline_part1", widget: "string" }
+              - { label: "Headline Accent Word", name: "headline_accent", widget: "string" }
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Paragraph", name: "text", widget: "text" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Feature", name: "feature", widget: "string" }
+              - { label: "Signature", name: "signature", widget: "string" }
+              - { label: "About Image", name: "image", widget: "image" }
+
+          # ── SERVICES ─────────────────────────────────────
+          - label: "Services Section"
+            name: "services"
+            widget: "object"
+            fields:
+              - { label: "Section Heading", name: "heading", widget: "string" }
+              - { label: "Icon Name", name: "icon", widget: "string", hint: "Lucide icon name" }
+              - label: "Service Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Service Title", name: "title", widget: "string" }
+                  - { label: "Price", name: "price", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+              - { label: "Note Text", name: "note", widget: "string" }
+              - { label: "CTA Button Text", name: "cta_button", widget: "string" }
+
+          # ── GALLERY ──────────────────────────────────────
+          - label: "Gallery Section"
+            name: "gallery"
+            widget: "object"
+            fields:
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Gallery Images"
+                name: "images"
+                widget: "list"
+                field: { label: "Image Path", name: "image", widget: "image" }
+              - { label: "Instagram Button Text", name: "instagram_button", widget: "string" }
+              - { label: "Instagram Link", name: "instagram_link", widget: "string" }
+
+          # ── TESTIMONIALS ─────────────────────────────────
+          - label: "Testimonials Section"
+            name: "testimonials"
+            widget: "object"
+            fields:
+              - { label: "Rating Score", name: "rating_score", widget: "string" }
+              - { label: "Rating Label", name: "rating_label", widget: "string" }
+              - { label: "Reviews Button Text", name: "reviews_button", widget: "string" }
+              - { label: "Reviews Button Link", name: "reviews_button_link", widget: "string" }
+              - label: "Testimonial Cards"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Review Text", name: "text", widget: "text" }
+                  - { label: "Author Name", name: "author", widget: "string" }
+                  - { label: "Star Rating", name: "rating", widget: "number", value_type: "int", min: 1, max: 5 }
+                  - { label: "Time Ago", name: "time", widget: "string" }
+              - { label: "Background Image", name: "background_image", widget: "image" }
+
+          # ── BOOKING ──────────────────────────────────────
+          - label: "Booking Section"
+            name: "booking"
+            widget: "object"
+            fields:
+              - { label: "Form Title", name: "form_title", widget: "string" }
+              - { label: "Form Subtitle", name: "form_subtitle", widget: "text" }
+              - { label: "Formspree Form ID", name: "formspree_id", widget: "string", hint: "Get your form ID from formspree.io" }
+              - label: "Form Fields"
+                name: "fields"
+                widget: "object"
+                fields:
+                  - { label: "Name Label", name: "name_label", widget: "string" }
+                  - { label: "Name Placeholder", name: "name_placeholder", widget: "string" }
+                  - { label: "Phone Label", name: "phone_label", widget: "string" }
+                  - { label: "Phone Placeholder", name: "phone_placeholder", widget: "string" }
+                  - { label: "Service Label", name: "service_label", widget: "string" }
+                  - label: "Service Options"
+                    name: "service_options"
+                    widget: "list"
+                    field: { label: "Service Name", name: "option", widget: "string" }
+                  - { label: "Date Label", name: "date_label", widget: "string" }
+                  - { label: "Time Label", name: "time_label", widget: "string" }
+                  - label: "Time Options"
+                    name: "time_options"
+                    widget: "list"
+                    field: { label: "Time Slot", name: "time", widget: "string" }
+                  - { label: "Submit Button Text", name: "submit_button", widget: "string" }
+              - label: "Contact Info"
+                name: "contact_info"
+                widget: "object"
+                fields:
+                  - { label: "Find Us Title", name: "find_us_title", widget: "string" }
+                  - { label: "Business Name", name: "business_name", widget: "string" }
+                  - { label: "Address Line 1", name: "address_line1", widget: "string" }
+                  - { label: "Address Line 2", name: "address_line2", widget: "string" }
+                  - { label: "Directions Link", name: "directions_link", widget: "string" }
+                  - { label: "Directions Label", name: "directions_label", widget: "string" }
+                  - { label: "Hours Title", name: "hours_title", widget: "string" }
+                  - label: "Opening Hours"
+                    name: "hours"
+                    widget: "list"
+                    fields:
+                      - { label: "Day", name: "day", widget: "string" }
+                      - { label: "Hours", name: "hours", widget: "string" }
+                      - { label: "Highlight (closed)", name: "highlight", widget: "boolean", default: false, required: false }
+                  - { label: "Hours Note", name: "hours_note", widget: "string" }
+                  - { label: "Contact Title", name: "contact_title", widget: "string" }
+                  - { label: "Phone Number", name: "phone", widget: "string" }
+                  - { label: "Phone Href (tel:...)", name: "phone_href", widget: "string" }
+                  - { label: "Instagram Handle", name: "instagram_handle", widget: "string" }
+                  - { label: "Instagram Link", name: "instagram_link", widget: "string" }
+
+          # ── FOOTER ───────────────────────────────────────
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Brand Name", name: "brand_name", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Copyright Text", name: "copyright", widget: "string" }
+              - label: "Social Links"
+                name: "social_links"
+                widget: "list"
+                fields:
+                  - { label: "Platform", name: "platform", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+              - label: "Quick Links"
+                name: "quick_links"
+                widget: "list"
+                fields:
+                  - { label: "URL (href)", name: "href", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+
+  # ── REVIEWS COLLECTION ───────────────────────────────
+  - name: "reviews"
+    label: "⭐ Reviews"
+    folder: "src/content/reviews"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Initials", name: "initials", widget: "string" }
+      - { label: "Rating", name: "rating", widget: "number", value_type: "int", min: 1, max: 5 }
+      - { label: "Review Text", name: "text", widget: "text" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+
+  # ── FAQ COLLECTION ───────────────────────────────────
+  - name: "faq"
+    label: "❓ FAQ"
+    folder: "src/content/faq"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - { label: "Answer", name: "answer", widget: "text" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", min: 0, required: false }

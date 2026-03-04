@@ -1,0 +1,236 @@
+{
+  "seo": {
+    "title": "Vanity Hair & Esthetics | Winnipeg Barber Shop",
+    "description": "Winnipeg's premier barbershop. Precision fades, classic cuts, hot towel shaves. Book your appointment today."
+  },
+  "navbar": {
+    "brand_name": "VANITY HAIR & ESTHETICS",
+    "nav_links": [
+      { "href": "#home", "label": "Home" },
+      { "href": "#about", "label": "About" },
+      { "href": "#services", "label": "Services" },
+      { "href": "#gallery", "label": "Gallery" },
+      { "href": "#contact", "label": "Contact" }
+    ],
+    "cta_button": "Book Now"
+  },
+  "hero": {
+    "badge": "💈 Est. 2016 💈",
+    "headline_line1": "Sharp Cuts.",
+    "headline_accent": "Timeless Style.",
+    "subheadline": "Vanity Hair & Esthetics - Winnipeg's premier destination for precision fades, classic cuts, and hot towel shaves. Where craftsmanship meets confidence.",
+    "cta_primary": "Book Appointment",
+    "cta_secondary": "View Services",
+    "background_image": "/images/vanity hair exterior.webp"
+  },
+  "info_banner": {
+    "items": [
+      {
+        "icon": "map-pin",
+        "title": "Location",
+        "content": "432 Graham Ave, Winnipeg, MB"
+      },
+      {
+        "icon": "clock",
+        "title": "Hours",
+        "content": "Tue - Sat: 9am - 8:30pm"
+      },
+      {
+        "icon": "phone",
+        "title": "Contact",
+        "content": "(204) 956-5797"
+      }
+    ]
+  },
+  "about": {
+    "subtitle": "Our Story",
+    "headline_part1": "More Than Just A",
+    "headline_accent": "Haircut.",
+    "paragraphs": [
+      "At Vanity Hair & Aesthetics, we believe that a haircut is a ritual. Founded in 2016, we've become Winnipeg's trusted destination for precision barbering services that blend old-school techniques with modern trends.",
+      "We specialize in all hair types - from tight fades and tapers to curly cuts and classic styles. Our master barbers take pride in creating looks that are uniquely yours. Whether you need a sharp fade, a hot towel shave, or beard sculpting, you'll leave looking sharper and feeling better."
+    ],
+    "features": [
+      "All Hair Types",
+      "Precision Fades",
+      "Hot Towel Shaves",
+      "Beard Sculpting"
+    ],
+    "signature": "Vanity Hair Team",
+    "image": "/images/2026-01-23_20-39-36_UTC.jpg"
+  },
+  "services": {
+    "heading": "Service Menu",
+    "icon": "scissors",
+    "items": [
+      {
+        "title": "The Signature Cut",
+        "price": "$35",
+        "description": "Includes consultation, precision cut, and style with premium products."
+      },
+      {
+        "title": "Hot Towel Shave",
+        "price": "$40",
+        "description": "Straight razor shave with pre-shave oil, hot towels, and post-shave balm."
+      },
+      {
+        "title": "Beard Sculpt & Trim",
+        "price": "$25",
+        "description": "Detailed shaping, trimming, and conditioning for your beard."
+      },
+      {
+        "title": "The Full Service",
+        "price": "$65",
+        "description": "Haircut + Beard Trim + Hot Towel treatment. The ultimate relaxer."
+      },
+      {
+        "title": "Precision Fade",
+        "price": "$30",
+        "description": "Skin fade, taper fade, or any variation. Clean, sharp edges guaranteed."
+      },
+      {
+        "title": "Father & Son",
+        "price": "$55",
+        "description": "Classic cuts for both. A tradition worth keeping."
+      }
+    ],
+    "note": "* Complimentary beverage with every service.",
+    "cta_button": "Book an Appointment"
+  },
+  "testimonials": {
+    "heading": "What Our Clients Say",
+    "rating_score": "4.7",
+    "rating_label": "Based on 53 Google Reviews",
+    "reviews_button": "Read All Google Reviews",
+    "reviews_button_link": "https://www.google.com/search?q=Vanity+Hair+%26+Esthetics+Reviews",
+    "items": [
+      {
+        "text": "Loved my experience at Vanity Hair & Esthetics! Dereje was fantastic—took time to understand my hair type and gave expert advice on styling. The salon is super clean and friendly. My new cut frames my face perfectly!",
+        "author": "Kibrom Berhe",
+        "rating": 5,
+        "time": "1 month ago"
+      },
+      {
+        "text": "Great barber and excellent service! Always professional, friendly, and pays attention to detail. The shop has a clean and welcoming atmosphere, making every visit a great experience. Highly recommend!",
+        "author": "Sunil Sapkota",
+        "rating": 5,
+        "time": "11 months ago"
+      },
+      {
+        "text": "Best barber acts like family and treats like family. Haircut was on point and very nice guy. I recommend coming here his prices are really affordable. Thanks so much!",
+        "author": "Gavy Gavy",
+        "rating": 5,
+        "time": "11 months ago"
+      },
+      {
+        "text": "The Barber deserves 10 stars! Very friendly and cares for his customers. Attention to details and gives amazing haircuts every time.",
+        "author": "Taohidul Islam Toha",
+        "rating": 5,
+        "time": "2 months ago"
+      }
+    ],
+    "background_image": "/images/2025-12-18_03-11-39_UTC.jpg"
+  },
+  "booking": {
+    "form_title": "Book Your Visit",
+    "form_subtitle": "Walk-ins welcome, but appointments are prioritized.",
+    "formspree_id": "YOUR_FORM_ID",
+    "fields": {
+      "name_label": "Name",
+      "name_placeholder": "Your name",
+      "phone_label": "Phone",
+      "phone_placeholder": "(204) 956-5797",
+      "service_label": "Service",
+      "service_options": [
+        "The Signature Cut",
+        "Precision Fade",
+        "Hot Towel Shave",
+        "Beard Sculpt & Trim",
+        "The Full Service",
+        "Father & Son"
+      ],
+      "date_label": "Preferred Date",
+      "time_label": "Preferred Time",
+      "time_options": [
+        "9:00 AM",
+        "10:00 AM",
+        "11:00 AM",
+        "12:00 PM",
+        "1:00 PM",
+        "2:00 PM",
+        "3:00 PM",
+        "4:00 PM",
+        "5:00 PM",
+        "6:00 PM",
+        "7:00 PM",
+        "8:00 PM"
+      ],
+      "submit_button": "Confirm Booking"
+    },
+    "contact_info": {
+      "find_us_title": "Find Us",
+      "business_name": "Vanity Hair & Esthetics",
+      "address_line1": "432 Graham Avenue",
+      "address_line2": "Winnipeg, MB R3C 0L8",
+      "directions_link": "https://maps.google.com/?q=432+Graham+Ave+Winnipeg+MB+R3C+0L8",
+      "directions_label": "Get Directions",
+      "hours_title": "Opening Hours",
+      "hours": [
+        { "day": "Monday", "hours": "9:00 AM - 8:30 PM" },
+        { "day": "Tuesday", "hours": "9:00 AM - 8:30 PM" },
+        { "day": "Wednesday", "hours": "9:00 AM - 8:30 PM" },
+        { "day": "Thursday", "hours": "9:00 AM - 8:30 PM" },
+        { "day": "Friday", "hours": "9:00 AM - 8:30 PM" },
+        { "day": "Saturday", "hours": "9:00 AM - 8:30 PM" },
+        { "day": "Sunday", "hours": "Closed", "highlight": true }
+      ],
+      "hours_note": "* Holiday hours may vary",
+      "contact_title": "Contact",
+      "phone": "(204) 956-5797",
+      "phone_href": "tel:2049565797",
+      "instagram_handle": "@vanity.hair.204",
+      "instagram_link": "https://www.instagram.com/vanity.hair.204/"
+    }
+  },
+  "gallery": {
+    "subtitle": "Our Work",
+    "heading": "Fresh Cuts Gallery",
+    "images": [
+      "/images/2026-01-23_21-27-27_UTC.jpg",
+      "/images/2026-01-23_21-23-15_UTC.jpg",
+      "/images/2026-01-23_20-39-36_UTC.jpg",
+      "/images/2026-01-12_20-09-34_UTC.jpg",
+      "/images/2026-01-03_01-24-10_UTC.jpg",
+      "/images/2026-01-01_23-42-13_UTC.jpg",
+      "/images/2025-12-31_02-44-31_UTC.jpg",
+      "/images/2025-12-24_02-44-55_UTC.jpg"
+    ],
+    "instagram_button": "View More on Instagram",
+    "instagram_link": "https://www.instagram.com/vanity.hair.204/"
+  },
+
+  "footer": {
+    "brand_name": "VANITY HAIR & ESTHETICS",
+    "address": "432 Graham Ave, Winnipeg, MB R3C 0L8",
+    "copyright": "All rights reserved.",
+    "social_links": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/vanityhairwpg/",
+        "label": "Facebook"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/vanity.hair.204/",
+        "label": "Instagram"
+      }
+    ],
+    "quick_links": [
+      { "href": "#home", "label": "Home" },
+      { "href": "#about", "label": "About" },
+      { "href": "#services", "label": "Services" },
+      { "href": "#gallery", "label": "Gallery" },
+      { "href": "#book", "label": "Book Now" }
+    ]
+  }
+}

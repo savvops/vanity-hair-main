@@ -1,12 +1,14 @@
 ---
+import siteData from '../content/site.json';
+
 interface Props {
   title?: string;
   description?: string;
 }
 
 const { 
-  title = "Vanity Hair & Esthetics | Premium Barbershop Winnipeg",
-  description = "Vanity Hair & Esthetics - Premium barbershop in Winnipeg. Sharp cuts, fades, beard trims & hot towel shaves. Located at 432 Graham Ave. Call (204) 956-5797"
+  title = siteData.seo.title,
+  description = siteData.seo.description
 } = Astro.props;
 
 const schema = {
