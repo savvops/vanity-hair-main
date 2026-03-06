@@ -1,544 +1,253 @@
-# PagesCMS Configuration for Vanity Hair & Esthetics
-# This file defines all content collections for the CMS
-# Visit https://app.pagescms.org to edit content
-
-media: 
+media:
   source: public/images
   publicPath: /images
 
 content:
-  # Site Settings
   - name: siteSettings
     label: Site Settings
     path: src/content/siteSettings
     type: collection
-    filename: '{{id}}.json'
+    filename: settings.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: settings
-      - name: siteName
-        label: Site Name
-        type: string
-        required: true
-      - name: description
-        label: Site Description
-        type: string
-        required: true
-      - name: logo
-        label: Logo
-        type: image
-      - name: favicon
-        label: Favicon
-        type: image
-      - name: phone
-        label: Phone Number
-        type: string
-      - name: email
-        label: Email
-        type: string
-      - name: address
-        label: Address
-        type: string
+      - { name: id, type: string, hidden: true, default: settings }
+      - { name: siteName, label: Site Name, type: string }
+      - { name: description, label: Description, type: string }
+      - { name: logo, label: Logo, type: image }
+      - { name: favicon, label: Favicon, type: image }
+      - { name: phone, label: Phone, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: address, label: Address, type: string }
 
-  # Navigation
   - name: navigation
-    label: Navigation Menu
+    label: Navigation
     path: src/content/navigation
     type: collection
-    filename: '{{id}}.json'
+    filename: main.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: main
-      - name: brandName
-        label: Brand Name
-        type: string
-        required: true
-      - name: ctaButton
-        label: CTA Button Text
-        type: string
-        default: Book Now
+      - { name: id, type: string, hidden: true, default: main }
+      - { name: brandName, label: Brand Name, type: string }
+      - { name: ctaButton, label: CTA Button, type: string }
       - name: navLinks
-        label: Navigation Links
+        label: Nav Links
         type: list
         fields:
-          - name: href
-            label: URL/Link
-            type: string
-            required: true
-          - name: label
-            label: Label
-            type: string
-            required: true
-          - name: order
-            label: Order
-            type: number
-          - name: enabled
-            label: Enabled
-            type: boolean
+          - { name: href, label: URL, type: string }
+          - { name: label, label: Label, type: string }
+          - { name: order, label: Order, type: number }
+          - { name: enabled, label: Enabled, type: boolean }
 
-  # Info Banner
   - name: infoBanner
     label: Info Banner
     path: src/content/infoBanner
     type: collection
-    filename: '{{id}}.json'
+    filename: items.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: items
+      - { name: id, type: string, hidden: true, default: items }
       - name: items
-        label: Info Items
+        label: Items
         type: list
         fields:
-          - name: icon
-            label: Icon Name
-            type: string
-          - name: title
-            label: Title
-            type: string
-            required: true
-          - name: content
-            label: Content
-            type: string
-            required: true
+          - { name: icon, label: Icon, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: content, label: Content, type: string }
 
-  # Hero Section
   - name: hero
     label: Hero Section
     path: src/content/hero
     type: collection
-    filename: '{{id}}.json'
+    filename: hero.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: hero
-      - name: badge
-        label: Badge Text
-        type: string
-      - name: headlineLine1
-        label: Headline Line 1
-        type: string
-        required: true
-      - name: headlineAccent
-        label: Headline Accent
-        type: string
-        required: true
-      - name: subheadline
-        label: Subheadline
-        type: string
-        required: true
-      - name: ctaPrimary
-        label: Primary CTA Text
-        type: string
-      - name: ctaSecondary
-        label: Secondary CTA Text
-        type: string
-      - name: backgroundImage
-        label: Background Image
-        type: image
+      - { name: id, type: string, hidden: true, default: hero }
+      - { name: badge, label: Badge, type: string }
+      - { name: headlineLine1, label: Headline Line 1, type: string }
+      - { name: headlineAccent, label: Headline Accent, type: string }
+      - { name: subheadline, label: Subheadline, type: string }
+      - { name: ctaPrimary, label: Primary CTA, type: string }
+      - { name: ctaSecondary, label: Secondary CTA, type: string }
+      - { name: backgroundImage, label: Background Image, type: image }
 
-  # About Section
   - name: about
     label: About Section
     path: src/content/about
     type: collection
-    filename: '{{id}}.json'
+    filename: about.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: about
-      - name: subtitle
-        label: Subtitle
-        type: string
-      - name: headlinePart1
-        label: Headline Part 1
-        type: string
-      - name: headlineAccent
-        label: Headline Accent
-        type: string
+      - { name: id, type: string, hidden: true, default: about }
+      - { name: subtitle, label: Subtitle, type: string }
+      - { name: headlinePart1, label: Headline Part 1, type: string }
+      - { name: headlineAccent, label: Headline Accent, type: string }
       - name: paragraphs
         label: Paragraphs
         type: list
         fields:
-          - name: text
-            label: Paragraph Text
-            type: string
+          - { name: text, label: Text, type: string }
       - name: features
-        label: Features List
+        label: Features
         type: list
         fields:
-          - name: feature
-            label: Feature
-            type: string
-      - name: signature
-        label: Signature Text
-        type: string
-      - name: image
-        label: About Image
-        type: image
+          - { name: feature, label: Feature, type: string }
+      - { name: signature, label: Signature, type: string }
+      - { name: image, label: Image, type: image }
 
-  # Services
   - name: services
     label: Services
     path: src/content/services
     type: collection
-    filename: '{{id}}.json'
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-      - name: title
-        label: Service Title
-        type: string
-        required: true
-      - name: price
-        label: Price
-        type: string
-        required: true
-      - name: description
-        label: Description
-        type: string
-        required: true
-      - name: icon
-        label: Icon
-        type: string
-      - name: order
-        label: Display Order
-        type: number
-      - name: featured
-        label: Featured Service
-        type: boolean
+      - { name: id, type: string, hidden: true }
+      - { name: title, label: Title, type: string }
+      - { name: price, label: Price, type: string }
+      - { name: description, label: Description, type: string }
+      - { name: icon, label: Icon, type: string }
+      - { name: order, label: Order, type: number }
+      - { name: featured, label: Featured, type: boolean }
 
-  # Services Settings
   - name: servicesSettings
-    label: Services Section Settings
+    label: Services Settings
     path: src/content/servicesSettings
     type: collection
-    filename: '{{id}}.json'
+    filename: settings.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: settings
-      - name: heading
-        label: Section Heading
-        type: string
-      - name: icon
-        label: Section Icon
-        type: string
-      - name: note
-        label: Footer Note
-        type: string
-      - name: ctaButton
-        label: CTA Button Text
-        type: string
+      - { name: id, type: string, hidden: true, default: settings }
+      - { name: heading, label: Heading, type: string }
+      - { name: icon, label: Icon, type: string }
+      - { name: note, label: Note, type: string }
+      - { name: ctaButton, label: CTA Button, type: string }
 
-  # Testimonials
   - name: testimonials
     label: Testimonials
     path: src/content/testimonials
     type: collection
-    filename: '{{id}}.json'
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-      - name: author
-        label: Author Name
-        type: string
-        required: true
-      - name: rating
-        label: Rating (1-5)
-        type: number
-        required: true
-      - name: time
-        label: Time Ago
-        type: string
-      - name: text
-        label: Testimonial Text
-        type: string
-        required: true
-      - name: order
-        label: Display Order
-        type: number
+      - { name: id, type: string, hidden: true }
+      - { name: author, label: Author, type: string }
+      - { name: rating, label: Rating, type: number }
+      - { name: time, label: Time, type: string }
+      - { name: text, label: Text, type: string }
+      - { name: order, label: Order, type: number }
 
-  # Testimonials Settings
   - name: testimonialsSettings
-    label: Testimonials Section Settings
+    label: Testimonials Settings
     path: src/content/testimonialsSettings
     type: collection
-    filename: '{{id}}.json'
+    filename: settings.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: settings
-      - name: heading
-        label: Section Heading
-        type: string
-      - name: ratingScore
-        label: Google Rating Score
-        type: string
-      - name: ratingLabel
-        label: Rating Label
-        type: string
-      - name: reviewsButton
-        label: Reviews Button Text
-        type: string
-      - name: reviewsButtonLink
-        label: Reviews Button Link
-        type: string
-      - name: backgroundImage
-        label: Background Image
-        type: image
+      - { name: id, type: string, hidden: true, default: settings }
+      - { name: heading, label: Heading, type: string }
+      - { name: ratingScore, label: Rating Score, type: string }
+      - { name: ratingLabel, label: Rating Label, type: string }
+      - { name: reviewsButton, label: Reviews Button, type: string }
+      - { name: reviewsButtonLink, label: Reviews Link, type: string }
+      - { name: backgroundImage, label: Background Image, type: image }
 
-  # Gallery
   - name: gallery
     label: Gallery
     path: src/content/gallery
     type: collection
-    filename: '{{id}}.json'
+    filename: settings.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: settings
-      - name: subtitle
-        label: Subtitle
-        type: string
-      - name: heading
-        label: Section Heading
-        type: string
-      - name: instagramButton
-        label: Instagram Button Text
-        type: string
-      - name: instagramLink
-        label: Instagram Link
-        type: string
+      - { name: id, type: string, hidden: true, default: settings }
+      - { name: subtitle, label: Subtitle, type: string }
+      - { name: heading, label: Heading, type: string }
+      - { name: instagramButton, label: Instagram Button, type: string }
+      - { name: instagramLink, label: Instagram Link, type: string }
       - name: images
-        label: Gallery Images
+        label: Images
         type: list
         fields:
-          - name: image
-            label: Image
-            type: image
-          - name: alt
-            label: Alt Text
-            type: string
-          - name: featured
-            label: Featured (Larger Size)
-            type: boolean
+          - { name: image, label: Image, type: image }
+          - { name: alt, label: Alt Text, type: string }
+          - { name: featured, label: Featured, type: boolean }
 
-  # Booking Section
   - name: booking
-    label: Booking Section
+    label: Booking
     path: src/content/booking
     type: collection
-    filename: '{{id}}.json'
+    filename: settings.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: settings
-      - name: formTitle
-        label: Form Title
-        type: string
-      - name: formSubtitle
-        label: Form Subtitle
-        type: string
-      - name: formspreeId
-        label: Formspree Form ID
-        type: string
-      - name: nameLabel
-        label: Name Field Label
-        type: string
-      - name: namePlaceholder
-        label: Name Placeholder
-        type: string
-      - name: phoneLabel
-        label: Phone Field Label
-        type: string
-      - name: phonePlaceholder
-        label: Phone Placeholder
-        type: string
-      - name: serviceLabel
-        label: Service Field Label
-        type: string
+      - { name: id, type: string, hidden: true, default: settings }
+      - { name: formTitle, label: Form Title, type: string }
+      - { name: formSubtitle, label: Form Subtitle, type: string }
+      - { name: formspreeId, label: Formspree ID, type: string }
+      - { name: nameLabel, label: Name Label, type: string }
+      - { name: namePlaceholder, label: Name Placeholder, type: string }
+      - { name: phoneLabel, label: Phone Label, type: string }
+      - { name: phonePlaceholder, label: Phone Placeholder, type: string }
+      - { name: serviceLabel, label: Service Label, type: string }
       - name: serviceOptions
         label: Service Options
         type: list
         fields:
-          - name: option
-            label: Option
-            type: string
-      - name: dateLabel
-        label: Date Field Label
-        type: string
-      - name: timeLabel
-        label: Time Field Label
-        type: string
+          - { name: option, label: Option, type: string }
+      - { name: dateLabel, label: Date Label, type: string }
+      - { name: timeLabel, label: Time Label, type: string }
       - name: timeOptions
         label: Time Options
         type: list
         fields:
-          - name: time
-            label: Time
-            type: string
-      - name: submitButton
-        label: Submit Button Text
-        type: string
+          - { name: time, label: Time, type: string }
+      - { name: submitButton, label: Submit Button, type: string }
 
-  # Contact Info
   - name: contactInfo
-    label: Contact Information
+    label: Contact Info
     path: src/content/contactInfo
     type: collection
-    filename: '{{id}}.json'
+    filename: info.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: info
-      - name: findUsTitle
-        label: Find Us Title
-        type: string
-      - name: businessName
-        label: Business Name
-        type: string
-      - name: addressLine1
-        label: Address Line 1
-        type: string
-      - name: addressLine2
-        label: Address Line 2
-        type: string
-      - name: directionsLink
-        label: Directions Link
-        type: string
-      - name: directionsLabel
-        label: Directions Label
-        type: string
-      - name: hoursTitle
-        label: Hours Title
-        type: string
+      - { name: id, type: string, hidden: true, default: info }
+      - { name: findUsTitle, label: Find Us Title, type: string }
+      - { name: businessName, label: Business Name, type: string }
+      - { name: addressLine1, label: Address Line 1, type: string }
+      - { name: addressLine2, label: Address Line 2, type: string }
+      - { name: directionsLink, label: Directions Link, type: string }
+      - { name: directionsLabel, label: Directions Label, type: string }
+      - { name: hoursTitle, label: Hours Title, type: string }
       - name: hours
-        label: Opening Hours
+        label: Hours
         type: list
         fields:
-          - name: day
-            label: Day
-            type: string
-          - name: hours
-            label: Hours
-            type: string
-          - name: highlight
-            label: Highlight (Closed)
-            type: boolean
-      - name: hoursNote
-        label: Hours Note
-        type: string
-      - name: contactTitle
-        label: Contact Title
-        type: string
-      - name: phone
-        label: Phone Number
-        type: string
-      - name: phoneHref
-        label: Phone Href (tel:)
-        type: string
-      - name: instagramHandle
-        label: Instagram Handle
-        type: string
-      - name: instagramLink
-        label: Instagram Link
-        type: string
+          - { name: day, label: Day, type: string }
+          - { name: hours, label: Hours, type: string }
+          - { name: highlight, label: Highlight, type: boolean }
+      - { name: hoursNote, label: Hours Note, type: string }
+      - { name: contactTitle, label: Contact Title, type: string }
+      - { name: phone, label: Phone, type: string }
+      - { name: phoneHref, label: Phone Href, type: string }
+      - { name: instagramHandle, label: Instagram Handle, type: string }
+      - { name: instagramLink, label: Instagram Link, type: string }
 
-  # Footer
   - name: footer
-    label: Footer Settings
+    label: Footer
     path: src/content/footer
     type: collection
-    filename: '{{id}}.json'
+    filename: settings.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: settings
-      - name: brandName
-        label: Brand Name
-        type: string
-      - name: address
-        label: Address
-        type: string
-      - name: copyright
-        label: Copyright Text
-        type: string
+      - { name: id, type: string, hidden: true, default: settings }
+      - { name: brandName, label: Brand Name, type: string }
+      - { name: address, label: Address, type: string }
+      - { name: copyright, label: Copyright, type: string }
       - name: socialLinks
         label: Social Links
         type: list
         fields:
-          - name: platform
-            label: Platform
-            type: string
-          - name: url
-            label: URL
-            type: string
-          - name: label
-            label: Label
-            type: string
+          - { name: platform, label: Platform, type: string }
+          - { name: url, label: URL, type: string }
+          - { name: label, label: Label, type: string }
       - name: quickLinks
         label: Quick Links
         type: list
         fields:
-          - name: href
-            label: URL
-            type: string
-          - name: label
-            label: Label
-            type: string
+          - { name: href, label: URL, type: string }
+          - { name: label, label: Label, type: string }
 
-  # SEO Settings
   - name: seo
-    label: SEO Settings
+    label: SEO
     path: src/content/seo
     type: collection
-    filename: '{{id}}.json'
+    filename: settings.json
     fields:
-      - name: id
-        type: string
-        required: true
-        hidden: true
-        default: settings
-      - name: title
-        label: Page Title
-        type: string
-        required: true
-      - name: description
-        label: Meta Description
-        type: string
-        required: true
-      - name: keywords
-        label: Keywords
-        type: string
-      - name: ogImage
-        label: Open Graph Image
-        type: image
+      - { name: id, type: string, hidden: true, default: settings }
+      - { name: title, label: Title, type: string }
+      - { name: description, label: Description, type: string }
+      - { name: keywords, label: Keywords, type: string }
+      - { name: ogImage, label: OG Image, type: image }
