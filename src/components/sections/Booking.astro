@@ -46,12 +46,10 @@ const contact = contactInfo?.data || {
         <p class="text-gray-400 mb-8">{booking.formSubtitle}</p>
 
         <form class="space-y-6" action="https://formsubmit.co/savvops.ai@gmail.com" method="POST">
-          <!-- Send to second email -->
-          <input type="hidden" name="_cc" value="vanityhair432@gmail.com">
           <!-- Disable captcha for better UX -->
           <input type="hidden" name="_captcha" value="false">
           <!-- Custom thank you page -->
-          <input type="hidden" name="_next" value="https://vanity-hair-main.pages.dev/">
+          <input type="hidden" name="_next" value="https://vanity-hair-main.pages.dev/?submitted=true">
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
