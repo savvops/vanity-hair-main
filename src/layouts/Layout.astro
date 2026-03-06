@@ -84,52 +84,53 @@ const schema = {
   <body class="bg-rich-black text-white">
     <slot />
     <script>
-      // Initialize Lucide icons
-      document.addEventListener('DOMContentLoaded', () => {
+      // Main initialization - runs when DOM is ready
+      function initApp() {
+        // Initialize Lucide icons
         if (window.lucide) {
           window.lucide.createIcons();
+        }
+        
+        // Handle anchor link clicks with offset for fixed navbar
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || !href) return;
+            
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              e.stopPropagation();
+              const navHeight = 80;
+              const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+
+        // Handle initial hash on page load
+        if (window.location.hash) {
+          setTimeout(() => {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+              const navHeight = 80;
+              const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'instant'
+              });
+            }
+          }, 100);
         }
         
         // Show success message if form was submitted
         if (window.location.search.includes('submitted=true')) {
           showSuccessMessage();
-          // Clean up URL
           window.history.replaceState({}, document.title, window.location.pathname);
         }
-      });
-
-      // Handle anchor link clicks with offset for fixed navbar
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (href === '#') return;
-          
-          const target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            const navHeight = 80;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-
-      // Handle initial hash on page load
-      if (window.location.hash) {
-        setTimeout(() => {
-          const target = document.querySelector(window.location.hash);
-          if (target) {
-            const navHeight = 80;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-            window.scrollTo({
-              top: targetPosition,
-              behavior: 'instant'
-            });
-          }
-        }, 300);
       }
       
       // Show success message
@@ -157,6 +158,13 @@ const schema = {
           div.style.transition = 'opacity 0.5s';
           setTimeout(() => div.remove(), 500);
         }, 3000);
+      }
+      
+      // Run initialization
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+      } else {
+        initApp();
       }
     </script>
   </body>
