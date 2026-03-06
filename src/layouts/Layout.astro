@@ -83,89 +83,66 @@ const schema = {
   </head>
   <body class="bg-rich-black text-white">
     <slot />
-    <script>
-      // Main initialization - runs when DOM is ready
-      function initApp() {
-        // Initialize Lucide icons
-        if (window.lucide) {
-          window.lucide.createIcons();
-        }
-        
-        // Handle anchor link clicks with offset for fixed navbar
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || !href) return;
-            
-            const target = document.querySelector(href);
-            if (target) {
-              e.preventDefault();
-              e.stopPropagation();
-              const navHeight = 80;
-              const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          });
+    <script is:inline>
+      // Immediate execution - no waiting for DOMContentLoaded
+      (function() {
+        // Use event delegation for all anchor clicks
+        document.addEventListener('click', function(e) {
+          // Find closest anchor with href starting with #
+          const anchor = e.target.closest('a[href^="#"]');
+          if (!anchor) return;
+          
+          const href = anchor.getAttribute('href');
+          if (href === '#' || !href) return;
+          
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            const navHeight = 80;
+            const targetPosition = target.offsetTop - navHeight;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
         });
 
         // Handle initial hash on page load
         if (window.location.hash) {
-          setTimeout(() => {
+          setTimeout(function() {
             const target = document.querySelector(window.location.hash);
             if (target) {
               const navHeight = 80;
-              const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+              const targetPosition = target.offsetTop - navHeight;
               window.scrollTo({
                 top: targetPosition,
                 behavior: 'instant'
               });
             }
-          }, 100);
+          }, 0);
+        }
+      })();
+      
+      // Initialize Lucide icons when ready
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.lucide) {
+          window.lucide.createIcons();
         }
         
         // Show success message if form was submitted
         if (window.location.search.includes('submitted=true')) {
-          showSuccessMessage();
+          var div = document.createElement('div');
+          div.textContent = 'Booking has been confirmed';
+          div.style.cssText = 'position:fixed;top:100px;left:50%;transform:translateX(-50%);background:#d4af37;color:#0a0a0a;padding:16px 32px;border-radius:4px;font-weight:bold;z-index:9999;';
+          document.body.appendChild(div);
+          setTimeout(function() {
+            div.style.opacity = '0';
+            div.style.transition = 'opacity 0.5s';
+            setTimeout(function() { div.remove(); }, 500);
+          }, 3000);
           window.history.replaceState({}, document.title, window.location.pathname);
         }
-      }
-      
-      // Show success message
-      function showSuccessMessage() {
-        const div = document.createElement('div');
-        div.innerHTML = 'Booking has been confirmed';
-        div.style.cssText = `
-          position: fixed;
-          top: 100px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #d4af37;
-          color: #0a0a0a;
-          padding: 16px 32px;
-          border-radius: 4px;
-          font-weight: bold;
-          z-index: 9999;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-          animation: slideDown 0.3s ease;
-        `;
-        document.body.appendChild(div);
-        
-        setTimeout(() => {
-          div.style.opacity = '0';
-          div.style.transition = 'opacity 0.5s';
-          setTimeout(() => div.remove(), 500);
-        }, 3000);
-      }
-      
-      // Run initialization
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initApp);
-      } else {
-        initApp();
-      }
+      });
     </script>
   </body>
 </html>
