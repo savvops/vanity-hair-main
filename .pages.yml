@@ -130,7 +130,7 @@ content:
   # Hero Section
   - name: hero
     label: Hero Section
-    path: src/content/homepage
+    path: src/content/hero
     type: collection
     filename: "{{id}}.json"
     fields:
@@ -173,7 +173,7 @@ content:
   # About Section
   - name: about
     label: About Section
-    path: src/content/homepage
+    path: src/content/about
     type: collection
     filename: "{{id}}.json"
     fields:
@@ -561,7 +561,7 @@ content:
             label: URL
             type: string
           - name: label
-            Label: Label
+            label: Label
             type: string
       - name: quickLinks
         label: Quick Links
