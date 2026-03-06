@@ -3,8 +3,8 @@
 # Visit https://app.pagescms.org to edit content
 
 media: 
-  source: "public/images"
-  publicPath: "/images"
+  source: public/images
+  publicPath: /images
 
 content:
   # Site Settings
@@ -30,15 +30,9 @@ content:
       - name: logo
         label: Logo
         type: image
-        options:
-          path: "public/images"
-          publicPath: "/images"
       - name: favicon
         label: Favicon
         type: image
-        options:
-          path: "public/images"
-          publicPath: "/images"
       - name: phone
         label: Phone Number
         type: string
@@ -84,11 +78,9 @@ content:
           - name: order
             label: Order
             type: number
-            default: 0
           - name: enabled
             label: Enabled
             type: boolean
-            default: true
 
   # Info Banner
   - name: infoBanner
@@ -108,16 +100,7 @@ content:
         fields:
           - name: icon
             label: Icon Name
-            type: select
-            options:
-              values:
-                - map-pin
-                - clock
-                - phone
-                - mail
-                - instagram
-                - facebook
-                - scissors
+            type: string
           - name: title
             label: Title
             type: string
@@ -157,18 +140,12 @@ content:
       - name: ctaPrimary
         label: Primary CTA Text
         type: string
-        default: Book Appointment
       - name: ctaSecondary
         label: Secondary CTA Text
         type: string
-        default: View Services
       - name: backgroundImage
         label: Background Image
         type: image
-        options:
-          path: "public/images"
-          publicPath: "/images"
-        required: true
 
   # About Section
   - name: about
@@ -185,7 +162,6 @@ content:
       - name: subtitle
         label: Subtitle
         type: string
-        default: Our Story
       - name: headlinePart1
         label: Headline Part 1
         type: string
@@ -212,9 +188,6 @@ content:
       - name: image
         label: About Image
         type: image
-        options:
-          path: "public/images"
-          publicPath: "/images"
 
   # Services
   - name: services
@@ -241,22 +214,13 @@ content:
         required: true
       - name: icon
         label: Icon
-        type: select
-        options:
-          values:
-            - scissors
-            - razor
-            - user
-            - crown
-            - sparkles
+        type: string
       - name: order
         label: Display Order
         type: number
-        default: 0
       - name: featured
         label: Featured Service
         type: boolean
-        default: false
 
   # Services Settings
   - name: servicesSettings
@@ -275,12 +239,7 @@ content:
         type: string
       - name: icon
         label: Section Icon
-        type: select
-        options:
-          values:
-            - scissors
-            - sparkles
-            - star
+        type: string
       - name: note
         label: Footer Note
         type: string
@@ -317,7 +276,6 @@ content:
       - name: order
         label: Display Order
         type: number
-        default: 0
 
   # Testimonials Settings
   - name: testimonialsSettings
@@ -349,9 +307,6 @@ content:
       - name: backgroundImage
         label: Background Image
         type: image
-        options:
-          path: "public/images"
-          publicPath: "/images"
 
   # Gallery
   - name: gallery
@@ -384,16 +339,12 @@ content:
           - name: image
             label: Image
             type: image
-            options:
-              path: "public/images"
-              publicPath: "/images"
           - name: alt
             label: Alt Text
             type: string
           - name: featured
             label: Featured (Larger Size)
             type: boolean
-            default: false
 
   # Booking Section
   - name: booking
@@ -416,7 +367,6 @@ content:
       - name: formspreeId
         label: Formspree Form ID
         type: string
-        description: Get this from formspree.io
       - name: nameLabel
         label: Name Field Label
         type: string
@@ -502,7 +452,6 @@ content:
           - name: highlight
             label: Highlight (Closed)
             type: boolean
-            default: false
       - name: hoursNote
         label: Hours Note
         type: string
@@ -549,14 +498,7 @@ content:
         fields:
           - name: platform
             label: Platform
-            type: select
-            options:
-              values:
-                - facebook
-                - instagram
-                - twitter
-                - youtube
-                - tiktok
+            type: string
           - name: url
             label: URL
             type: string
@@ -600,6 +542,3 @@ content:
       - name: ogImage
         label: Open Graph Image
         type: image
-        options:
-          path: "public/images"
-          publicPath: "/images"
