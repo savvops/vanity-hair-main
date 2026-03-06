@@ -1,7 +1,3 @@
-media:
-  source: public/images
-  publicPath: /images
-
 content:
   - name: siteSettings
     label: Site Settings
