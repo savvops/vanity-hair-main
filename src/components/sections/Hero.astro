@@ -1,13 +1,22 @@
 ---
-import siteData from '../../content/site.json';
-const { hero } = siteData;
+import { getEntry } from 'astro:content';
+const heroData = await getEntry('hero', 'hero');
+const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecondary, backgroundImage } = heroData?.data || {
+  badge: '💈 Est. 2016 💈',
+  headlineLine1: 'Sharp Cuts.',
+  headlineAccent: 'Timeless Style.',
+  subheadline: 'Winnipeg\'s premier barbershop',
+  ctaPrimary: 'Book Appointment',
+  ctaSecondary: 'View Services',
+  backgroundImage: '/images/vanity hair exterior.webp'
+};
 ---
 
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
   <!-- Background Image -->
   <div class="absolute inset-0 z-0">
     <img 
-      src={hero.background_image} 
+      src={backgroundImage} 
       alt="Vanity Hair & Esthetics Exterior"
       class="w-full h-full object-cover"
     />
@@ -20,16 +29,16 @@ const { hero } = siteData;
   <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
     <div class="inline-block mb-4 animate-fade-in">
       <div class="h-1 w-24 bg-gold mx-auto mb-6"></div>
-      <p class="text-gold uppercase tracking-[0.3em] text-sm md:text-base font-bold mb-2">{hero.badge}</p>
+      <p class="text-gold uppercase tracking-[0.3em] text-sm md:text-base font-bold mb-2">{badge}</p>
     </div>
     
     <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 text-shadow leading-tight animate-slide-up">
-      {hero.headline_line1}<br />
-      <span class="text-gold italic">{hero.headline_accent}</span>
+      {headlineLine1}<br />
+      <span class="text-gold italic">{headlineAccent}</span>
     </h1>
     
     <p class="text-gray-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light animate-fade-in drop-shadow-lg">
-      {hero.subheadline}
+      {subheadline}
     </p>
     
     <div class="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up">
@@ -37,13 +46,13 @@ const { hero } = siteData;
         href="#book" 
         class="px-8 py-4 bg-gold text-rich-black font-bold text-lg uppercase tracking-wider hover:bg-gold-light transition-colors rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.5)]"
       >
-        {hero.cta_primary}
+        {ctaPrimary}
       </a>
       <a 
         href="#services" 
         class="px-8 py-4 border-2 border-gold text-gold font-bold text-lg uppercase tracking-wider hover:bg-gold hover:text-rich-black transition-colors rounded-sm backdrop-blur-sm bg-black/20"
       >
-        {hero.cta_secondary}
+        {ctaSecondary}
       </a>
     </div>
   </div>

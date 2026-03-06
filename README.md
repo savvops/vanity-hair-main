@@ -1,125 +1,209 @@
-# Vanity Hair & Esthetics Website
+# Vanity Hair & Esthetics
 
-A premium barbershop website built with Astro, Tailwind CSS, and real Instagram content. Now with **Decap CMS** integration for easy content management!
+A stunning, editable website for Vanity Hair & Esthetics barbershop in Winnipeg. Built with Astro, Tailwind CSS, and PagesCMS for easy content management.
 
 ## 🚀 Quick Start
 
 ```bash
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
-```
 
-## 📦 Build
-
-```bash
+# Build for production
 npm run build
 ```
 
-Build output is in `dist/` folder.
+## 📋 Content Management with PagesCMS
 
-## 📝 Content Management (Decap CMS)
+This website is fully editable through **PagesCMS** - a Git-based CMS that allows you to manage all content through a visual interface.
 
-This site is configured with Decap CMS for easy content editing without touching code.
+### Access the Content Editor
 
-### Accessing the CMS
+1. **Admin Page**: Visit `/edit` on your live site for quick links
+2. **PagesCMS**: Go to [app.pagescms.org](https://app.pagescms.org) and connect your GitHub repository
 
-After deploying, go to: `https://your-site.com/admin`
+### Editable Content Sections
 
-### Setting up Decap CMS
+| Section | Description | File Location |
+|---------|-------------|---------------|
+| **Site Settings** | Site name, description, logo, contact info | `src/content/siteSettings/settings.json` |
+| **Navigation** | Menu items, brand name, CTA button | `src/content/navigation/main.json` |
+| **Hero Section** | Homepage headline, subtitle, background | `src/content/homepage/hero.json` |
+| **About Section** | About page content, features, image | `src/content/homepage/about.json` |
+| **Services** | Service menu items, prices, descriptions | `src/content/services/*.json` |
+| **Testimonials** | Customer reviews and ratings | `src/content/testimonials/*.json` |
+| **Gallery** | Photo gallery images | `src/content/gallery/settings.json` |
+| **Booking Form** | Form fields and options | `src/content/booking/settings.json` |
+| **Contact Info** | Address, hours, phone, social links | `src/content/contactInfo/info.json` |
+| **Footer** | Footer content and social links | `src/content/footer/settings.json` |
+| **SEO Settings** | Page titles, meta descriptions | `src/content/seo/settings.json` |
 
-1. **For Netlify:**
-   - Enable Identity service in your Netlify dashboard
-   - Add users to your Identity instance
-   - Enable Git Gateway
-   - The CMS will automatically commit changes to your Git repo
+## 🛠️ Setup Instructions
 
-2. **For Local Development:**
-   - Uncomment `local_backend: true` in `public/admin/config.yml`
-   - Run `npx decap-server` (install with `npm install -g decap-server`)
-   - Access the CMS at `http://localhost:4321/admin`
+### For Developers
 
-### Editable Content
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/savvops/vanity-hair-main.git
+   cd vanity-hair-main
+   ```
 
-All site content is managed through:
-- **`src/content/site.json`** - Main site content (Hero, About, Services, Testimonials, Booking, Footer)
-- **`src/content/faq/`** - FAQ items (add/edit via CMS)
-- **`src/content/reviews/`** - Additional reviews (add/edit via CMS)
-- **`public/images/uploads/`** - Uploaded images
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## 🌐 Deploy to Cloudflare Pages
+3. **Run locally**
+   ```bash
+   npm run dev
+   ```
+   The site will be available at `http://localhost:4321`
 
-### Option 1: Drag & Drop (Easiest)
-1. Go to [Cloudflare Pages Dashboard](https://dash.cloudflare.com/pages)
-2. Click "Create a project"
-3. Select "Upload assets"
-4. Drag and drop the `dist/` folder
-5. Your site will be live at `https://vanityhair.pages.dev`
+### For Content Editors (PagesCMS Setup)
 
-### Option 2: Git Integration
-1. Push this repo to GitHub
-2. Connect GitHub repo to Cloudflare Pages
-3. Auto-deploy on every push
+1. **Push to GitHub**
+   ```bash
+   git push origin main
+   ```
 
-### Option 3: Wrangler CLI
-```bash
-npx wrangler pages deploy dist --project-name=vanityhair
-```
+2. **Connect to PagesCMS**
+   - Go to [app.pagescms.org](https://app.pagescms.org)
+   - Sign in with GitHub
+   - Select the `vanity-hair-main` repository
+   - PagesCMS will automatically read the `.pages.yml` configuration
+
+3. **Start Editing**
+   - All content sections will appear in the sidebar
+   - Make changes and click "Save" - changes are committed to GitHub
+   - The site will automatically rebuild and deploy
 
 ## 📁 Project Structure
 
 ```
 vanity-hair-astro/
+├── .pages.yml                 # PagesCMS configuration
+├── astro.config.mjs           # Astro configuration
 ├── src/
 │   ├── components/
-│   │   └── sections/     # Page sections (Hero, About, Services, etc.)
-│   ├── content/
-│   │   ├── site.json     # 📝 Main site content (editable via CMS)
-│   │   ├── faq/          # 📝 FAQ items (editable via CMS)
-│   │   └── reviews/      # 📝 Review items (editable via CMS)
+│   │   ├── sections/         # Page sections (Hero, About, etc.)
+│   │   └── ui/               # UI components (Button, Icon, etc.)
+│   ├── content/              # Editable content (JSON files)
+│   │   ├── siteSettings/
+│   │   ├── navigation/
+│   │   ├── homepage/
+│   │   ├── services/
+│   │   ├── testimonials/
+│   │   ├── gallery/
+│   │   ├── booking/
+│   │   ├── contactInfo/
+│   │   ├── footer/
+│   │   └── seo/
 │   ├── layouts/
-│   │   └── Layout.astro  # Base layout with SEO
+│   │   └── Layout.astro      # Base HTML layout
 │   ├── pages/
-│   │   └── index.astro   # Homepage
+│   │   ├── index.astro       # Homepage
+│   │   └── edit.astro        # Admin/edit page
 │   └── styles/
-│       └── global.css    # Tailwind + custom CSS
+│       └── global.css        # Global styles & Tailwind
 ├── public/
-│   ├── admin/            # 📝 Decap CMS files
-│   │   ├── index.html
-│   │   └── config.yml
-│   └── images/           # Instagram photos
-└── dist/                 # Build output
+│   └── images/               # Static images
+└── dist/                     # Build output (auto-generated)
 ```
 
-## 🎨 Design
+## 🎨 Tech Stack
 
-- **Primary Color:** Gold (#d4af37)
-- **Background:** Rich Black (#0a0a0a)
-- **Typography:** Playfair Display (headings), Inter (body)
+- **[Astro](https://astro.build/)** v5+ - Static site generator
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[PagesCMS](https://pagescms.org/)** - Git-based content management
+- **[Cloudflare Pages](https://pages.cloudflare.com/)** - Hosting & deployment
+- **[Lucide Icons](https://lucide.dev/)** - Icon library
 
-## 📞 Business Info
+## 📝 Making Content Changes
 
-- **Name:** Vanity Hair & Esthetics
-- **Address:** 432 Graham Ave, Winnipeg, MB
-- **Phone:** (204) 998-1115, (204) 956-5797
-- **Instagram:** [@vanity.hair.204](https://www.instagram.com/vanity.hair.204/)
-- **Facebook:** [vanityhairwpg](https://www.facebook.com/vanityhairwpg/)
+### Method 1: PagesCMS (Recommended for non-developers)
 
-## 📝 Features
+1. Visit [app.pagescms.org](https://app.pagescms.org)
+2. Select your repository
+3. Click on any content section in the sidebar
+4. Edit the fields
+5. Click "Save" to commit changes
 
-- ✅ Responsive design
-- ✅ Real Instagram photos
-- ✅ Booking form
-- ✅ Service menu with pricing
-- ✅ Gallery section
-- ✅ Testimonials
-- ✅ SEO optimized
-- ✅ Fast performance (Astro static build)
-- ✅ **Decap CMS integration for easy content editing**
+Changes will be live in 1-2 minutes.
 
-## 🔧 CMS Configuration
+### Method 2: Direct GitHub Editing
 
-The CMS is configured in `public/admin/config.yml` with:
-- **Site Content Collection** - Edit all main site content from one place
-- **Reviews Collection** - Add/manage customer reviews
-- **FAQ Collection** - Add/manage FAQ items
-- **Media uploads** - Upload images to `public/images/uploads/`
+1. Navigate to the content file in GitHub (e.g., `src/content/homepage/hero.json`)
+2. Click the pencil icon to edit
+3. Make your changes
+4. Commit with a descriptive message
+
+### Method 3: Local Development
+
+1. Edit files in `src/content/` directory
+2. Test changes with `npm run dev`
+3. Commit and push: `git add . && git commit -m "Update content" && git push`
+
+## 🔧 Configuration Files
+
+### `.pages.yml`
+Defines all content collections for PagesCMS. Each collection specifies:
+- Fields and their types
+- File locations
+- Media upload settings
+
+### `src/content/config.ts`
+Astro content collection schemas with Zod validation.
+
+## 🚀 Deployment
+
+This site is configured for **Cloudflare Pages**:
+
+1. Connect your GitHub repository to Cloudflare Pages
+2. Build command: `npm run build`
+3. Build output: `dist`
+4. Automatic deployments on every push to main
+
+## 🖼️ Adding Images
+
+1. Upload images to `public/images/` directory
+2. Reference them in content files as `/images/filename.jpg`
+3. Supported formats: JPG, PNG, WebP
+
+## 📱 Features
+
+- ✅ Fully responsive design
+- ✅ Editable content via PagesCMS
+- ✅ SEO optimized with meta tags
+- ✅ Schema.org structured data
+- ✅ Fast static generation
+- ✅ Image optimization
+- ✅ Smooth animations
+- ✅ Contact form integration (Formspree)
+
+## 🐛 Troubleshooting
+
+### Changes not showing up?
+- Check if the JSON syntax is valid
+- Verify the file was saved in the correct location
+- Allow 1-2 minutes for deployment
+- Check Cloudflare Pages build logs
+
+### PagesCMS not loading?
+- Ensure `.pages.yml` is in the root directory
+- Check that the file is valid YAML
+- Verify repository permissions
+
+### Build errors?
+- Run `npm run build` locally to see errors
+- Check that all content JSON files have valid syntax
+- Ensure all referenced images exist
+
+## 📄 License
+
+Private - All rights reserved.
+
+---
+
+Built with ❤️ for Vanity Hair & Esthetics

@@ -1,0 +1,9 @@
+{
+  "id": "precision-fade",
+  "title": "Precision Fade",
+  "price": "$30",
+  "description": "Skin fade, taper fade, or any variation. Clean, sharp edges guaranteed.",
+  "icon": "sparkles",
+  "order": 5,
+  "featured": false
+}

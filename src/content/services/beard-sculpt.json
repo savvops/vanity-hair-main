@@ -1,0 +1,9 @@
+{
+  "id": "beard-sculpt",
+  "title": "Beard Sculpt & Trim",
+  "price": "$25",
+  "description": "Detailed shaping, trimming, and conditioning for your beard.",
+  "icon": "user",
+  "order": 3,
+  "featured": false
+}

@@ -1,7 +1,40 @@
 ---
-import siteData from '../../content/site.json';
-const { booking } = siteData;
-const { fields, contact_info } = booking;
+import { getEntry } from 'astro:content';
+const bookingData = await getEntry('booking', 'settings');
+const contactInfo = await getEntry('contactInfo', 'info');
+
+const booking = bookingData?.data || {
+  formTitle: 'Book Your Visit',
+  formSubtitle: 'Walk-ins welcome, but appointments are prioritized.',
+  formspreeId: 'YOUR_FORM_ID',
+  nameLabel: 'Name',
+  namePlaceholder: 'Your name',
+  phoneLabel: 'Phone',
+  phonePlaceholder: '(204) 956-5797',
+  serviceLabel: 'Service',
+  serviceOptions: [],
+  dateLabel: 'Preferred Date',
+  timeLabel: 'Preferred Time',
+  timeOptions: [],
+  submitButton: 'Confirm Booking'
+};
+
+const contact = contactInfo?.data || {
+  findUsTitle: 'Find Us',
+  businessName: 'Vanity Hair & Esthetics',
+  addressLine1: '432 Graham Avenue',
+  addressLine2: 'Winnipeg, MB R3C 0L8',
+  directionsLink: '#',
+  directionsLabel: 'Get Directions',
+  hoursTitle: 'Opening Hours',
+  hours: [],
+  hoursNote: '',
+  contactTitle: 'Contact',
+  phone: '(204) 956-5797',
+  phoneHref: 'tel:2049565797',
+  instagramHandle: '@vanity.hair.204',
+  instagramLink: 'https://www.instagram.com/vanity.hair.204/'
+};
 ---
 
 <section id="book" class="py-24 bg-rich-black">
@@ -9,45 +42,45 @@ const { fields, contact_info } = booking;
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
       <!-- Booking Form -->
       <div id="contact" class="bg-charcoal p-8 md:p-12 border-t-4 border-gold">
-        <h3 class="text-3xl font-serif font-bold text-white mb-2">{booking.form_title}</h3>
-        <p class="text-gray-400 mb-8">{booking.form_subtitle}</p>
+        <h3 class="text-3xl font-serif font-bold text-white mb-2">{booking.formTitle}</h3>
+        <p class="text-gray-400 mb-8">{booking.formSubtitle}</p>
 
-        <form class="space-y-6" action={`https://formspree.io/f/${booking.formspree_id}`} method="POST">
+        <form class="space-y-6" action={`https://formspree.io/f/${booking.formspreeId}`} method="POST">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{fields.name_label}</label>
+              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.nameLabel}</label>
               <input 
                 type="text" 
                 name="name"
                 required
                 class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
-                placeholder={fields.name_placeholder}
+                placeholder={booking.namePlaceholder}
               />
             </div>
             <div>
-              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{fields.phone_label}</label>
+              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.phoneLabel}</label>
               <input 
                 type="tel" 
                 name="phone"
                 required
                 class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
-                placeholder={fields.phone_placeholder}
+                placeholder={booking.phonePlaceholder}
               />
             </div>
           </div>
           <div>
-            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{fields.service_label}</label>
+            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.serviceLabel}</label>
             <select 
               name="service"
               class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors"
             >
-              {fields.service_options.map((option) => (
-                <option>{option}</option>
+              {booking.serviceOptions?.map((opt: any) => (
+                <option>{opt.option}</option>
               ))}
             </select>
           </div>
           <div>
-            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{fields.date_label}</label>
+            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.dateLabel}</label>
             <input 
               type="date" 
               name="date"
@@ -55,13 +88,13 @@ const { fields, contact_info } = booking;
             />
           </div>
           <div>
-            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{fields.time_label}</label>
+            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.timeLabel}</label>
             <select 
               name="time"
               class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors"
             >
-              {fields.time_options.map((time) => (
-                <option>{time}</option>
+              {booking.timeOptions?.map((opt: any) => (
+                <option>{opt.time}</option>
               ))}
             </select>
           </div>
@@ -69,7 +102,7 @@ const { fields, contact_info } = booking;
             type="submit" 
             class="w-full bg-gold text-rich-black font-bold py-4 uppercase tracking-widest hover:bg-white transition-colors duration-300"
           >
-            {fields.submit_button}
+            {booking.submitButton}
           </button>
         </form>
       </div>
@@ -77,53 +110,53 @@ const { fields, contact_info } = booking;
       <!-- Contact Info -->
       <div class="flex flex-col justify-center space-y-8">
         <div>
-          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact_info.find_us_title}</h3>
-          <p class="text-2xl text-white font-serif mb-2">{contact_info.business_name}</p>
+          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.findUsTitle}</h3>
+          <p class="text-2xl text-white font-serif mb-2">{contact.businessName}</p>
           <p class="text-gray-400">
-            {contact_info.address_line1}<br />
-            {contact_info.address_line2}
+            {contact.addressLine1}<br />
+            {contact.addressLine2}
           </p>
           <a 
-            href={contact_info.directions_link}
+            href={contact.directionsLink}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center space-x-2 text-gold hover:text-white transition-colors mt-4"
           >
             <i data-lucide="map-pin" class="w-4 h-4"></i>
-            <span>{contact_info.directions_label}</span>
+            <span>{contact.directionsLabel}</span>
           </a>
         </div>
 
         <div>
-          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact_info.hours_title}</h3>
+          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.hoursTitle}</h3>
           <div class="grid grid-cols-2 gap-4 text-gray-400 max-w-sm">
-            {contact_info.hours.map((item) => (
+            {contact.hours?.map((item: any) => (
               <>
                 <span>{item.day}</span> 
                 <span class={item.highlight ? "text-gold" : ""}>{item.hours}</span>
               </>
             ))}
           </div>
-          <p class="text-gray-500 text-sm mt-3 italic">{contact_info.hours_note}</p>
+          <p class="text-gray-500 text-sm mt-3 italic">{contact.hoursNote}</p>
         </div>
 
         <div>
-          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact_info.contact_title}</h3>
+          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.contactTitle}</h3>
           <a 
-            href={contact_info.phone_href}
+            href={contact.phoneHref}
             class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3"
           >
             <i data-lucide="phone" class="w-5 h-5"></i>
-            <span>{contact_info.phone}</span>
+            <span>{contact.phone}</span>
           </a>
           <a 
-            href={contact_info.instagram_link}
+            href={contact.instagramLink}
             target="_blank"
             rel="noopener noreferrer"
             class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-4"
           >
             <i data-lucide="instagram" class="w-5 h-5"></i>
-            <span>{contact_info.instagram_handle}</span>
+            <span>{contact.instagramHandle}</span>
           </a>
         </div>
       </div>

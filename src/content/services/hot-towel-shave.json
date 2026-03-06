@@ -1,0 +1,9 @@
+{
+  "id": "hot-towel-shave",
+  "title": "Hot Towel Shave",
+  "price": "$40",
+  "description": "Straight razor shave with pre-shave oil, hot towels, and post-shave balm.",
+  "icon": "razor",
+  "order": 2,
+  "featured": false
+}

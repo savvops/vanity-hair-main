@@ -1,0 +1,22 @@
+{
+  "id": "about",
+  "subtitle": "Our Story",
+  "headlinePart1": "More Than Just A",
+  "headlineAccent": "Haircut.",
+  "paragraphs": [
+    {
+      "text": "At Vanity Hair & Aesthetics, we believe that a haircut is a ritual. Founded in 2016, we've become Winnipeg's trusted destination for precision barbering services that blend old-school techniques with modern trends."
+    },
+    {
+      "text": "We specialize in all hair types - from tight fades and tapers to curly cuts and classic styles. Our master barbers take pride in creating looks that are uniquely yours. Whether you need a sharp fade, a hot towel shave, or beard sculpting, you'll leave looking sharper and feeling better."
+    }
+  ],
+  "features": [
+    { "feature": "All Hair Types" },
+    { "feature": "Precision Fades" },
+    { "feature": "Hot Towel Shaves" },
+    { "feature": "Beard Sculpting" }
+  ],
+  "signature": "Vanity Hair Team",
+  "image": "/images/2026-01-23_20-39-36_UTC.jpg"
+}

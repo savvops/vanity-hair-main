@@ -1,0 +1,25 @@
+{
+  "id": "settings",
+  "brandName": "VANITY HAIR & ESTHETICS",
+  "address": "432 Graham Ave, Winnipeg, MB R3C 0L8",
+  "copyright": "All rights reserved.",
+  "socialLinks": [
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/vanityhairwpg/",
+      "label": "Facebook"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/vanity.hair.204/",
+      "label": "Instagram"
+    }
+  ],
+  "quickLinks": [
+    { "href": "#home", "label": "Home" },
+    { "href": "#about", "label": "About" },
+    { "href": "#services", "label": "Services" },
+    { "href": "#gallery", "label": "Gallery" },
+    { "href": "#book", "label": "Book Now" }
+  ]
+}

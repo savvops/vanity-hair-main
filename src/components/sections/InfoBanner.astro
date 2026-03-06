@@ -1,11 +1,12 @@
 ---
-import siteData from '../../content/site.json';
-const { info_banner } = siteData;
+import { getEntry } from 'astro:content';
+const infoData = await getEntry('infoBanner', 'items');
+const items = infoData?.data?.items || [];
 ---
 
 <div id="info" class="bg-charcoal border-y border-gold/20 py-8 relative z-20">
   <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
-    {info_banner.items.map((item) => (
+    {items.map((item: any) => (
       <div class="p-2">
         <i data-lucide={item.icon} class="w-8 h-8 text-gold mx-auto mb-3"></i>
         <h3 class="text-white font-serif text-xl mb-1">{item.title}</h3>

@@ -1,0 +1,9 @@
+{
+  "id": "full-service",
+  "title": "The Full Service",
+  "price": "$65",
+  "description": "Haircut + Beard Trim + Hot Towel treatment. The ultimate relaxer.",
+  "icon": "crown",
+  "order": 4,
+  "featured": true
+}

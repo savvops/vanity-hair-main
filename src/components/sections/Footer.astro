@@ -1,6 +1,13 @@
 ---
-import siteData from '../../content/site.json';
-const { footer } = siteData;
+import { getEntry } from 'astro:content';
+const footerData = await getEntry('footer', 'settings');
+const { brandName, address, copyright, socialLinks, quickLinks } = footerData?.data || {
+  brandName: 'VANITY HAIR & ESTHETICS',
+  address: '432 Graham Ave, Winnipeg, MB R3C 0L8',
+  copyright: 'All rights reserved.',
+  socialLinks: [],
+  quickLinks: []
+};
 const currentYear = new Date().getFullYear();
 ---
 
@@ -10,17 +17,17 @@ const currentYear = new Date().getFullYear();
       <!-- Logo -->
       <div class="mb-6 md:mb-0 text-center md:text-left">
         <span class="font-serif text-lg font-bold tracking-wider text-white">
-          {footer.brand_name}
+          {brandName}
         </span>
         <p class="text-gray-600 text-sm mt-2">
-          {footer.address}<br />
-          © {currentYear} {footer.brand_name}. {footer.copyright}
+          {address}<br />
+          © {currentYear} {brandName}. {copyright}
         </p>
       </div>
 
       <!-- Social Links -->
       <div class="flex space-x-6">
-        {footer.social_links.map((link) => (
+        {socialLinks?.map((link: any) => (
           <a 
             href={link.url}
             target="_blank"
@@ -37,7 +44,7 @@ const currentYear = new Date().getFullYear();
     <!-- Quick Links -->
     <div class="mt-8 pt-8 border-t border-gray-900">
       <div class="flex flex-wrap justify-center gap-6 text-sm">
-        {footer.quick_links.map((link) => (
+        {quickLinks?.map((link: any) => (
           <a href={link.href} class="text-gray-500 hover:text-gold transition-colors">{link.label}</a>
         ))}
       </div>

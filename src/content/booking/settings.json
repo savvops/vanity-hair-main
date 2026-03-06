@@ -1,0 +1,36 @@
+{
+  "id": "settings",
+  "formTitle": "Book Your Visit",
+  "formSubtitle": "Walk-ins welcome, but appointments are prioritized.",
+  "formspreeId": "YOUR_FORM_ID",
+  "nameLabel": "Name",
+  "namePlaceholder": "Your name",
+  "phoneLabel": "Phone",
+  "phonePlaceholder": "(204) 956-5797",
+  "serviceLabel": "Service",
+  "serviceOptions": [
+    { "option": "The Signature Cut" },
+    { "option": "Precision Fade" },
+    { "option": "Hot Towel Shave" },
+    { "option": "Beard Sculpt & Trim" },
+    { "option": "The Full Service" },
+    { "option": "Father & Son" }
+  ],
+  "dateLabel": "Preferred Date",
+  "timeLabel": "Preferred Time",
+  "timeOptions": [
+    { "time": "9:00 AM" },
+    { "time": "10:00 AM" },
+    { "time": "11:00 AM" },
+    { "time": "12:00 PM" },
+    { "time": "1:00 PM" },
+    { "time": "2:00 PM" },
+    { "time": "3:00 PM" },
+    { "time": "4:00 PM" },
+    { "time": "5:00 PM" },
+    { "time": "6:00 PM" },
+    { "time": "7:00 PM" },
+    { "time": "8:00 PM" }
+  ],
+  "submitButton": "Confirm Booking"
+}

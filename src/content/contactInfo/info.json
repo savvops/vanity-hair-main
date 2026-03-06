@@ -1,0 +1,25 @@
+{
+  "id": "info",
+  "findUsTitle": "Find Us",
+  "businessName": "Vanity Hair & Esthetics",
+  "addressLine1": "432 Graham Avenue",
+  "addressLine2": "Winnipeg, MB R3C 0L8",
+  "directionsLink": "https://maps.google.com/?q=432+Graham+Ave+Winnipeg+MB+R3C+0L8",
+  "directionsLabel": "Get Directions",
+  "hoursTitle": "Opening Hours",
+  "hours": [
+    { "day": "Monday", "hours": "9:00 AM - 8:30 PM", "highlight": false },
+    { "day": "Tuesday", "hours": "9:00 AM - 8:30 PM", "highlight": false },
+    { "day": "Wednesday", "hours": "9:00 AM - 8:30 PM", "highlight": false },
+    { "day": "Thursday", "hours": "9:00 AM - 8:30 PM", "highlight": false },
+    { "day": "Friday", "hours": "9:00 AM - 8:30 PM", "highlight": false },
+    { "day": "Saturday", "hours": "9:00 AM - 8:30 PM", "highlight": false },
+    { "day": "Sunday", "hours": "Closed", "highlight": true }
+  ],
+  "hoursNote": "* Holiday hours may vary",
+  "contactTitle": "Contact",
+  "phone": "(204) 956-5797",
+  "phoneHref": "tel:2049565797",
+  "instagramHandle": "@vanity.hair.204",
+  "instagramLink": "https://www.instagram.com/vanity.hair.204/"
+}

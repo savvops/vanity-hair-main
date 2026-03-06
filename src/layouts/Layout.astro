@@ -1,21 +1,30 @@
 ---
-import siteData from '../content/site.json';
+import { getEntry } from 'astro:content';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
+const seoData = await getEntry('seo', 'settings');
+const siteSettings = await getEntry('siteSettings', 'settings');
+
+const defaultTitle = seoData?.data?.title || 'Vanity Hair & Esthetics | Winnipeg Barber Shop';
+const defaultDescription = seoData?.data?.description || 'Winnipeg\'s premier barbershop. Precision fades, classic cuts, hot towel shaves.';
+const ogImage = seoData?.data?.ogImage || '/images/vanity hair exterior.webp';
+
 const { 
-  title = siteData.seo.title,
-  description = siteData.seo.description
+  title = defaultTitle,
+  description = defaultDescription
 } = Astro.props;
+
+const siteUrl = 'https://vanityhair.pages.dev';
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "HairSalon",
-  "name": "Vanity Hair & Esthetics",
-  "image": "https://vanityhair.pages.dev/images/2026-01-23_21-27-27_UTC.jpg",
+  "name": siteSettings?.data?.siteName || "Vanity Hair & Esthetics",
+  "image": `${siteUrl}${ogImage}`,
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "432 Graham Ave",
@@ -49,17 +58,17 @@ const schema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="business.business" />
-    <meta property="og:url" content="https://vanityhair.pages.dev" />
-    <meta property="og:image" content="https://vanityhair.pages.dev/images/2026-01-23_21-27-27_UTC.jpg" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://vanityhair.pages.dev/images/2026-01-23_21-27-27_UTC.jpg" />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
     
     <!-- Canonical -->
-    <link rel="canonical" href="https://vanityhair.pages.dev" />
+    <link rel="canonical" href={siteUrl} />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

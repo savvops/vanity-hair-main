@@ -1,0 +1,9 @@
+{
+  "id": "father-son",
+  "title": "Father & Son",
+  "price": "$55",
+  "description": "Classic cuts for both. A tradition worth keeping.",
+  "icon": "user",
+  "order": 6,
+  "featured": false
+}

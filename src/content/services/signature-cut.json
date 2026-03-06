@@ -1,0 +1,9 @@
+{
+  "id": "signature-cut",
+  "title": "The Signature Cut",
+  "price": "$35",
+  "description": "Includes consultation, precision cut, and style with premium products.",
+  "icon": "scissors",
+  "order": 1,
+  "featured": true
+}

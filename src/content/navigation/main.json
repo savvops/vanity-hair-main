@@ -1,0 +1,37 @@
+{
+  "id": "main",
+  "brandName": "VANITY HAIR & ESTHETICS",
+  "ctaButton": "Book Now",
+  "navLinks": [
+    {
+      "href": "#home",
+      "label": "Home",
+      "order": 1,
+      "enabled": true
+    },
+    {
+      "href": "#about",
+      "label": "About",
+      "order": 2,
+      "enabled": true
+    },
+    {
+      "href": "#services",
+      "label": "Services",
+      "order": 3,
+      "enabled": true
+    },
+    {
+      "href": "#gallery",
+      "label": "Gallery",
+      "order": 4,
+      "enabled": true
+    },
+    {
+      "href": "#contact",
+      "label": "Contact",
+      "order": 5,
+      "enabled": true
+    }
+  ]
+}

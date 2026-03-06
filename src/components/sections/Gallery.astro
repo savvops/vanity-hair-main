@@ -1,22 +1,29 @@
 ---
-import siteData from '../../content/site.json';
-const { gallery } = siteData;
+import { getEntry } from 'astro:content';
+const galleryData = await getEntry('gallery', 'settings');
+const { subtitle, heading, instagramButton, instagramLink, images } = galleryData?.data || {
+  subtitle: 'Our Work',
+  heading: 'Fresh Cuts Gallery',
+  instagramButton: 'View More on Instagram',
+  instagramLink: 'https://www.instagram.com/vanity.hair.204/',
+  images: []
+};
 ---
 
 <section id="gallery" class="py-24 bg-rich-black">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h4 class="text-gold uppercase tracking-widest font-bold mb-2">{gallery.subtitle}</h4>
-      <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">{gallery.heading}</h2>
+      <h4 class="text-gold uppercase tracking-widest font-bold mb-2">{subtitle}</h4>
+      <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">{heading}</h2>
       <div class="h-1 w-20 bg-gold mx-auto"></div>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {gallery.images.map((image, index) => (
-        <div class={`relative overflow-hidden group ${index === 0 || index === 5 ? 'md:col-span-2 md:row-span-2' : ''}`}>
+      {images?.map((img: any, index: number) => (
+        <div class={`relative overflow-hidden group ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}>
           <img 
-            src={image} 
-            alt={`Vanity Hair Cut ${index + 1}`}
+            src={img.image} 
+            alt={img.alt || `Vanity Hair Cut ${index + 1}`}
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
           />
@@ -27,13 +34,13 @@ const { gallery } = siteData;
 
     <div class="text-center mt-12">
       <a 
-        href={gallery.instagram_link}
+        href={instagramLink}
         target="_blank" 
         rel="noopener noreferrer"
         class="inline-flex items-center space-x-2 px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-rich-black transition-all duration-300 uppercase tracking-widest text-sm font-bold"
       >
         <i data-lucide="instagram" class="w-5 h-5"></i>
-        <span>{gallery.instagram_button}</span>
+        <span>{instagramButton}</span>
       </a>
     </div>
   </div>

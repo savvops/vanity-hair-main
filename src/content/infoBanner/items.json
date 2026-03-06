@@ -1,0 +1,20 @@
+{
+  "id": "items",
+  "items": [
+    {
+      "icon": "map-pin",
+      "title": "Location",
+      "content": "432 Graham Ave, Winnipeg, MB"
+    },
+    {
+      "icon": "clock",
+      "title": "Hours",
+      "content": "Tue - Sat: 9am - 8:30pm"
+    },
+    {
+      "icon": "phone",
+      "title": "Contact",
+      "content": "(204) 956-5797"
+    }
+  ]
+}
