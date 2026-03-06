@@ -4,7 +4,7 @@ const infoData = await getEntry('infoBanner', 'items');
 const items = infoData?.data?.items || [];
 ---
 
-<div id="info" class="bg-charcoal border-y border-gold/20 py-8 relative z-20">
+<div id="info" class="bg-charcoal border-y border-gold/20 py-8 relative z-20 scroll-mt-24">
   <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
     {items.map((item: any) => (
       <div class="p-2">
