@@ -12,7 +12,7 @@ content:
     label: Site Settings
     path: src/content/siteSettings
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -48,7 +48,7 @@ content:
     label: Navigation Menu
     path: src/content/navigation
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -87,7 +87,7 @@ content:
     label: Info Banner
     path: src/content/infoBanner
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -115,7 +115,7 @@ content:
     label: Hero Section
     path: src/content/hero
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -152,7 +152,7 @@ content:
     label: About Section
     path: src/content/about
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -194,7 +194,7 @@ content:
     label: Services
     path: src/content/services
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -227,7 +227,7 @@ content:
     label: Services Section Settings
     path: src/content/servicesSettings
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -252,7 +252,7 @@ content:
     label: Testimonials
     path: src/content/testimonials
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -282,7 +282,7 @@ content:
     label: Testimonials Section Settings
     path: src/content/testimonialsSettings
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -313,7 +313,7 @@ content:
     label: Gallery
     path: src/content/gallery
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -351,7 +351,7 @@ content:
     label: Booking Section
     path: src/content/booking
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -411,7 +411,7 @@ content:
     label: Contact Information
     path: src/content/contactInfo
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -476,7 +476,7 @@ content:
     label: Footer Settings
     path: src/content/footer
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
@@ -521,7 +521,7 @@ content:
     label: SEO Settings
     path: src/content/seo
     type: collection
-    filename: "{{id}}.json"
+    filename: '{{id}}.json'
     fields:
       - name: id
         type: string
