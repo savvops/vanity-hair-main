@@ -37,19 +37,19 @@ const contact = contactInfo?.data || {
 };
 ---
 
-<section id="book" class="py-24 bg-rich-black scroll-mt-24">
+<section id="book" class="py-24 bg-rich-black">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
       <!-- Booking Form -->
-      <div id="contact" class="bg-charcoal p-8 md:p-12 border-t-4 border-gold scroll-mt-24">
+      <div id="contact" class="bg-charcoal p-8 md:p-12 border-t-4 border-gold">
         <h3 class="text-3xl font-serif font-bold text-white mb-2">{booking.formTitle}</h3>
         <p class="text-gray-400 mb-8">{booking.formSubtitle}</p>
 
-        <form class="space-y-6" action="https://formsubmit.co/savvops.ai@gmail.com" method="POST">
+        <form class="space-y-6" action={`https://formsubmit.co/${booking.contactEmail || 'nardosfiker@yahoo.com'}`} method="POST">
           <!-- Disable captcha for better UX -->
           <input type="hidden" name="_captcha" value="false">
           <!-- Custom thank you page -->
-          <input type="hidden" name="_next" value="https://vanity-hair-main.pages.dev/success">
+          <input type="hidden" name="_next" value="https://vanityhairwpg.ca/success">
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
@@ -89,6 +89,8 @@ const contact = contactInfo?.data || {
             <input 
               type="date" 
               name="date"
+              id="booking-date"
+              required
               class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
             />
           </div>
@@ -96,8 +98,10 @@ const contact = contactInfo?.data || {
             <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.timeLabel}</label>
             <select 
               name="time"
+              required
               class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors"
             >
+              <option value="" disabled selected>Select a time</option>
               {booking.timeOptions?.map((opt: any) => (
                 <option>{opt.time}</option>
               ))}
@@ -110,6 +114,31 @@ const contact = contactInfo?.data || {
             {booking.submitButton}
           </button>
         </form>
+
+        <script>
+          // Set min and max dates for the booking form
+          const dateInput = document.getElementById('booking-date') as HTMLInputElement;
+          if (dateInput) {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            const mm = String(today.getMonth() + 1).padStart(2, '0');
+            const dd = String(today.getDate()).padStart(2, '0');
+            const minDate = `${yyyy}-${mm}-${dd}`;
+            
+            // Set min to today
+            dateInput.min = minDate;
+            
+            // Set max to 3 months from now
+            const maxDate = new Date();
+            maxDate.setMonth(maxDate.getMonth() + 3);
+            const max_yyyy = maxDate.getFullYear();
+            const max_mm = String(maxDate.getMonth() + 1).padStart(2, '0');
+            const max_dd = String(maxDate.getDate()).padStart(2, '0');
+            const maxDateString = `${max_yyyy}-${max_mm}-${max_dd}`;
+            
+            dateInput.max = maxDateString;
+          }
+        </script>
       </div>
 
       <!-- Contact Info -->
