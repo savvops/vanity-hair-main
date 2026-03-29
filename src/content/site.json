@@ -1,10 +1,10 @@
 {
   "seo": {
-    "title": "Vanity Hair & Esthetics | Winnipeg Barber Shop",
+    "title": "Vanity Hair Wpg | Winnipeg Barber Shop",
     "description": "Winnipeg's premier barbershop. Precision fades, classic cuts, hot towel shaves. Book your appointment today."
   },
   "navbar": {
-    "brand_name": "VANITY HAIR & ESTHETICS",
+    "brand_name": "Vanity Hair Wpg",
     "nav_links": [
       { "href": "#home", "label": "Home" },
       { "href": "#about", "label": "About" },
@@ -18,7 +18,7 @@
     "badge": "💈 Est. 2016 💈",
     "headline_line1": "Sharp Cuts.",
     "headline_accent": "Timeless Style.",
-    "subheadline": "Vanity Hair & Esthetics - Winnipeg's premier destination for precision fades, classic cuts, and hot towel shaves. Where craftsmanship meets confidence.",
+    "subheadline": "Vanity Hair Wpg - Winnipeg's premier destination for precision fades, classic cuts, and hot towel shaves. Where craftsmanship meets confidence.",
     "cta_primary": "Book Appointment",
     "cta_secondary": "View Services",
     "background_image": "/images/vanity-hair-exterior.webp"
@@ -33,12 +33,12 @@
       {
         "icon": "clock",
         "title": "Hours",
-        "content": "Tue - Sat: 9am - 8:30pm"
+        "content": "Mon - Sat: 9am - 8:30pm"
       },
       {
         "icon": "phone",
         "title": "Contact",
-        "content": "(204) 956-5797"
+        "content": "(204) 998-1115"
       }
     ]
   },
@@ -47,7 +47,7 @@
     "headline_part1": "More Than Just A",
     "headline_accent": "Haircut.",
     "paragraphs": [
-      "At Vanity Hair & Aesthetics, we believe that a haircut is a ritual. Founded in 2016, we've become Winnipeg's trusted destination for precision barbering services that blend old-school techniques with modern trends.",
+      "At Vanity Hair Wpg, we believe that a haircut is a ritual. Founded in 2016, we've become Winnipeg's trusted destination for precision barbering services that blend old-school techniques with modern trends.",
       "We specialize in all hair types - from tight fades and tapers to curly cuts and classic styles. Our master barbers take pride in creating looks that are uniquely yours. Whether you need a sharp fade, a hot towel shave, or beard sculpting, you'll leave looking sharper and feeling better."
     ],
     "features": [
@@ -56,7 +56,7 @@
       "Hot Towel Shaves",
       "Beard Sculpting"
     ],
-    "signature": "Vanity Hair Team",
+    "signature": "Vanity Hair Wpg Team",
     "image": "/images/2026-01-23_20-39-36_UTC.jpg"
   },
   "services": {
@@ -64,37 +64,32 @@
     "icon": "scissors",
     "items": [
       {
-        "title": "The Signature Cut",
-        "price": "$35",
-        "description": "Includes consultation, precision cut, and style with premium products."
+        "title": "Haircut",
+        "price": "$20",
+        "description": "Professional haircut and style."
       },
       {
-        "title": "Hot Towel Shave",
-        "price": "$40",
-        "description": "Straight razor shave with pre-shave oil, hot towels, and post-shave balm."
+        "title": "Lineup",
+        "price": "$10",
+        "description": "Clean up the edges."
       },
       {
-        "title": "Beard Sculpt & Trim",
-        "price": "$25",
-        "description": "Detailed shaping, trimming, and conditioning for your beard."
+        "title": "Kids Haircut",
+        "price": "$15",
+        "description": "Fresh cuts for the little ones."
       },
       {
-        "title": "The Full Service",
-        "price": "$65",
-        "description": "Haircut + Beard Trim + Hot Towel treatment. The ultimate relaxer."
-      },
-      {
-        "title": "Precision Fade",
-        "price": "$30",
-        "description": "Skin fade, taper fade, or any variation. Clean, sharp edges guaranteed."
+        "title": "Hair Coloring",
+        "price": "$20+",
+        "description": "Professional hair color services."
       },
       {
         "title": "Father & Son",
-        "price": "$55",
-        "description": "Classic cuts for both. A tradition worth keeping."
+        "price": "$35",
+        "description": "Classic cuts for both."
       }
     ],
-    "note": "* Complimentary beverage with every service.",
+    "note": "* Professional services at affordable prices.",
     "cta_button": "Book an Appointment"
   },
   "testimonials": {
@@ -102,10 +97,10 @@
     "rating_score": "4.7",
     "rating_label": "Based on 53 Google Reviews",
     "reviews_button": "Read All Google Reviews",
-    "reviews_button_link": "https://www.google.com/maps/search/Vanity+Hair+%26+Esthetics,+432+Graham+Ave,+Winnipeg,+MB+R3C+0L8",
+    "reviews_button_link": "https://www.google.com/maps/search/Vanity+Hair+Wpg,+432+Graham+Ave,+Winnipeg,+MB+R3C+0L8",
     "items": [
       {
-        "text": "Loved my experience at Vanity Hair & Esthetics! Dereje was fantastic—took time to understand my hair type and gave expert advice on styling. The salon is super clean and friendly. My new cut frames my face perfectly!",
+        "text": "Loved my experience at Vanity Hair Wpg! Dereje was fantastic—took time to understand my hair type and gave expert advice on styling. The salon is super clean and friendly. My new cut frames my face perfectly!",
         "author": "Kibrom Berhe",
         "rating": 5,
         "time": "1 month ago"
@@ -139,15 +134,14 @@
       "name_label": "Name",
       "name_placeholder": "Your name",
       "phone_label": "Phone",
-      "phone_placeholder": "(204) 956-5797",
+      "phone_placeholder": "(204) 998-1115",
       "service_label": "Service",
       "service_options": [
-        "The Signature Cut",
-        "Precision Fade",
-        "Hot Towel Shave",
-        "Beard Sculpt & Trim",
-        "The Full Service",
-        "Father & Son"
+        "Haircut - $20",
+        "Lineup - $10",
+        "Kids Haircut - $15",
+        "Hair Coloring - $20+",
+        "Father and Son Haircut - $35"
       ],
       "date_label": "Preferred Date",
       "time_label": "Preferred Time",
@@ -169,7 +163,7 @@
     },
     "contact_info": {
       "find_us_title": "Find Us",
-      "business_name": "Vanity Hair & Esthetics",
+      "business_name": "Vanity Hair Wpg",
       "address_line1": "432 Graham Avenue",
       "address_line2": "Winnipeg, MB R3C 0L8",
       "directions_link": "https://maps.google.com/?q=432+Graham+Ave+Winnipeg+MB+R3C+0L8",
@@ -186,10 +180,10 @@
       ],
       "hours_note": "* Holiday hours may vary",
       "contact_title": "Contact",
-      "phone": "(204) 956-5797",
-      "phone_href": "tel:2049565797",
-      "instagram_handle": "@vanity.hair.204",
-      "instagram_link": "https://www.instagram.com/vanity.hair.204/"
+      "phone": "(204) 998-1115",
+      "phone_href": "tel:2049981115",
+      "instagram_handle": "@derejeessayas_101",
+      "instagram_link": "https://www.instagram.com/derejeessayas_101/"
     }
   },
   "gallery": {
@@ -206,11 +200,10 @@
       "/images/2025-12-24_02-44-55_UTC.jpg"
     ],
     "instagram_button": "View More on Instagram",
-    "instagram_link": "https://www.instagram.com/vanity.hair.204/"
+    "instagram_link": "https://www.instagram.com/derejeessayas_101/"
   },
-
   "footer": {
-    "brand_name": "VANITY HAIR & ESTHETICS",
+    "brand_name": "Vanity Hair Wpg",
     "address": "432 Graham Ave, Winnipeg, MB R3C 0L8",
     "copyright": "All rights reserved.",
     "social_links": [
@@ -221,7 +214,7 @@
       },
       {
         "platform": "instagram",
-        "url": "https://www.instagram.com/vanity.hair.204/",
+        "url": "https://www.instagram.com/derejeessayas_101/",
         "label": "Instagram"
       }
     ],

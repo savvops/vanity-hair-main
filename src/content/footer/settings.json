@@ -1,6 +1,6 @@
 {
   "id": "settings",
-  "brandName": "VANITY HAIR & ESTHETICS",
+  "brandName": "Vanity Hair Wpg",
   "address": "432 Graham Ave, Winnipeg, MB R3C 0L8",
   "copyright": "All rights reserved.",
   "socialLinks": [
@@ -11,15 +11,35 @@
     },
     {
       "platform": "instagram",
-      "url": "https://www.instagram.com/vanity.hair.204/",
+      "url": "https://www.instagram.com/derejeessayas_101/",
       "label": "Instagram"
+    },
+    {
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@dereje_essayas10",
+      "label": "TikTok"
     }
   ],
   "quickLinks": [
-    { "href": "#home", "label": "Home" },
-    { "href": "#about", "label": "About" },
-    { "href": "#services", "label": "Services" },
-    { "href": "#gallery", "label": "Gallery" },
-    { "href": "#book", "label": "Book Now" }
+    {
+      "href": "#home",
+      "label": "Home"
+    },
+    {
+      "href": "#about",
+      "label": "About"
+    },
+    {
+      "href": "#services",
+      "label": "Services"
+    },
+    {
+      "href": "#gallery",
+      "label": "Gallery"
+    },
+    {
+      "href": "#book",
+      "label": "Book Now"
+    }
   ]
 }

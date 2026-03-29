@@ -1,7 +1,7 @@
 {
   "id": "info",
   "findUsTitle": "Find Us",
-  "businessName": "Vanity Hair & Esthetics",
+  "businessName": "Vanity Hair Wpg",
   "addressLine1": "432 Graham Avenue",
   "addressLine2": "Winnipeg, MB R3C 0L8",
   "directionsLink": "https://maps.google.com/?q=432+Graham+Ave+Winnipeg+MB+R3C+0L8",
@@ -18,8 +18,17 @@
   ],
   "hoursNote": "* Holiday hours may vary",
   "contactTitle": "Contact",
-  "phone": "(204) 956-5797",
-  "phoneHref": "tel:2049565797",
-  "instagramHandle": "@vanity.hair.204",
-  "instagramLink": "https://www.instagram.com/vanity.hair.204/"
+  "phoneLabel": "Mobile",
+  "phone": "(204) 998-1115",
+  "phoneHref": "tel:2049981115",
+  "phone2Label": "Landline",
+  "phone2": "(204) 956-5797",
+  "phone2Href": "tel:2049565797",
+  "emailLabel": "Email",
+  "email": "nardosfiker@yahoo.com",
+  "followUsTitle": "Follow Us",
+  "instagramHandle": "@derejeessayas_101",
+  "instagramLink": "https://www.instagram.com/derejeessayas_101/",
+  "tiktokHandle": "@dereje_essayas10",
+  "tiktokLink": "https://www.tiktok.com/@dereje_essayas10"
 }

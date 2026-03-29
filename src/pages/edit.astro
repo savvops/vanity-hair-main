@@ -83,124 +83,96 @@ const sections = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Edit Website Content | Vanity Hair & Esthetics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'rich-black': '#0a0a0a',
-              'charcoal': '#141414',
-              'gold': '#d4af37',
-              'gold-light': '#e5c158',
-            },
-            fontFamily: {
-              serif: ['Playfair Display', 'serif'],
-              sans: ['Inter', 'sans-serif'],
-            }
-          }
-        }
+    <style is:global>
+      :root {
+        --gold: #d4af37;
+        --gold-light: #e5c158;
+        --rich-black: #0a0a0a;
+        --charcoal: #141414;
       }
-    </script>
-    <style>
       body {
-        font-family: 'Inter', sans-serif;
-        background: #0a0a0a;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: var(--rich-black);
         color: white;
+        margin: 0;
+        min-height: 100vh;
       }
       .gold-gradient {
-        background: linear-gradient(135deg, #d4af37 0%, #e5c158 50%, #d4af37 100%);
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+      .bg-charcoal { background-color: var(--charcoal); }
+      .border-gold-20 { border-color: rgba(212, 175, 55, 0.2); }
+      .text-gold { color: var(--gold); }
     </style>
   </head>
   <body class="min-h-screen">
     <!-- Header -->
-    <header class="bg-charcoal border-b border-gold/20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="flex items-center justify-between">
+    <header class="bg-charcoal border-b border-gold-20">
+      <div style="max-width: 80rem; margin: 0 auto; padding: 1.5rem 2rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
           <div>
-            <h1 class="text-3xl font-serif font-bold gold-gradient">Vanity Hair & Esthetics</h1>
-            <p class="text-gray-400 mt-1">Website Content Management</p>
+            <h1 style="font-size: 1.875rem; font-weight: bold; margin: 0;" class="gold-gradient">Vanity Hair Wpg</h1>
+            <p style="color: #9ca3af; margin-top: 0.25rem;">Website Content Management</p>
           </div>
           <a 
             href="/" 
-            class="text-gold hover:text-white transition-colors flex items-center gap-2"
+            style="color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 0.5rem;"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             View Website
           </a>
         </div>
       </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main style="max-width: 80rem; margin: 0 auto; padding: 3rem 2rem;">
       <!-- Quick Actions -->
-      <div class="bg-charcoal rounded-lg border border-gold/20 p-8 mb-12">
-        <h2 class="text-2xl font-serif font-bold text-gold mb-6">Quick Actions</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-charcoal border-gold-20" style="border-radius: 0.5rem; border: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem; margin-bottom: 3rem;">
+        <h2 style="font-size: 1.5rem; font-weight: bold; color: var(--gold); margin-top: 0; margin-bottom: 1.5rem;">Quick Actions</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
           <a 
             href={pagesCmsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-gold hover:bg-gold-light text-rich-black font-semibold py-4 px-6 rounded-lg transition-all flex items-center justify-center gap-3"
+            style="background-color: var(--gold); color: var(--rich-black); text-decoration: none; font-weight: 600; padding: 1rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; transition: background 0.2s;"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
             Open PagesCMS Editor
           </a>
           <a 
             href={contentFolder}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-4 px-6 rounded-lg transition-all flex items-center justify-center gap-3 border border-gray-600"
+            style="background-color: #1f2937; color: white; text-decoration: none; font-weight: 600; padding: 1rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; border: 1px solid #4b5563; transition: background 0.2s;"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
             Browse Content Files
-          </a>
-          <a 
-            href={githubRepo}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-4 px-6 rounded-lg transition-all flex items-center justify-center gap-3 border border-gray-600"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-            View Repository
           </a>
         </div>
       </div>
 
       <!-- Content Sections -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-serif font-bold text-white mb-6">Content Sections</h2>
-        <p class="text-gray-400 mb-8">Click on any section to edit its content. Changes are saved to GitHub and will be live within minutes.</p>
+      <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.5rem; font-weight: bold; color: white; margin-bottom: 1rem;">Content Sections</h2>
+        <p style="color: #9ca3af; margin-bottom: 2rem;">Click on any section to edit its content. Changes are saved to GitHub and will be live within minutes.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
         {sections.map((section) => (
-          <div class="bg-charcoal rounded-lg border border-gray-800 hover:border-gold/50 transition-all p-6 group">
-            <h3 class="text-lg font-semibold text-white group-hover:text-gold transition-colors mb-2">
+          <div class="bg-charcoal" style="border-radius: 0.5rem; border: 1px solid #1f2937; padding: 1.5rem; transition: border-color 0.2s;">
+            <h3 style="font-size: 1.125rem; font-weight: 600; color: white; margin-top: 0; margin-bottom: 0.5rem;" class="group-hover-text-gold">
               {section.title}
             </h3>
-            <p class="text-gray-400 text-sm mb-4">{section.description}</p>
-            <div class="flex gap-2">
+            <p style="color: #9ca3af; font-size: 0.875rem; margin-bottom: 1.5rem;">{section.description}</p>
+            <div style="display: flex; gap: 0.5rem;">
               <a 
                 href={section.cmsLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex-1 bg-gold/10 hover:bg-gold hover:text-rich-black text-gold text-sm font-medium py-2 px-4 rounded transition-all text-center"
+                style="flex: 1; background-color: rgba(212, 175, 55, 0.1); color: var(--gold); border: 1px solid var(--gold); text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.5rem 1rem; border-radius: 0.25rem; text-align: center; transition: all 0.2s;"
               >
                 Edit in CMS
               </a>
@@ -208,12 +180,10 @@ const sections = [
                 href={section.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm font-medium py-2 px-3 rounded transition-all"
+                style="background-color: #1f2937; color: #d1d5db; text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 0.5rem 0.75rem; border-radius: 0.25rem; transition: background 0.2s;"
                 title="Edit on GitHub"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
               </a>
             </div>
           </div>
@@ -221,51 +191,36 @@ const sections = [
       </div>
 
       <!-- Instructions -->
-      <div class="mt-12 bg-gray-900/50 rounded-lg border border-gray-800 p-8">
-        <h3 class="text-xl font-serif font-bold text-gold mb-4">How to Edit Content</h3>
-        <div class="space-y-4 text-gray-300">
-          <div class="flex gap-4">
-            <span class="flex-shrink-0 w-8 h-8 bg-gold text-rich-black rounded-full flex items-center justify-center font-bold">1</span>
+      <div style="margin-top: 3rem; background-color: rgba(31, 41, 55, 0.5); border-radius: 0.5rem; border: 1px solid #1f2937; padding: 2rem;">
+        <h3 style="font-size: 1.25rem; font-weight: bold; color: var(--gold); margin-top: 0; margin-bottom: 1.5rem;">How to Edit Content</h3>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div style="display: flex; gap: 1rem;">
+            <span style="flex-shrink: 0; width: 2rem; height: 2rem; background-color: var(--gold); color: var(--rich-black); border-radius: 9999px; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</span>
             <div>
-              <p class="font-medium text-white">Using PagesCMS (Recommended)</p>
-              <p class="text-sm text-gray-400">Click "Open PagesCMS Editor" above. This provides a visual interface to edit all content without touching any code. Changes are saved directly to GitHub.</p>
+              <p style="font-weight: 500; color: white; margin: 0;">Using PagesCMS (Recommended)</p>
+              <p style="font-size: 0.875rem; color: #9ca3af; margin-top: 0.25rem;">Open the CMS Editor to edit all site content through a simple visual interface. No code required.</p>
             </div>
           </div>
-          <div class="flex gap-4">
-            <span class="flex-shrink-0 w-8 h-8 bg-gold text-rich-black rounded-full flex items-center justify-center font-bold">2</span>
+          <div style="display: flex; gap: 1rem;">
+            <span style="flex-shrink: 0; width: 2rem; height: 2rem; background-color: var(--gold); color: var(--rich-black); border-radius: 9999px; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</span>
             <div>
-              <p class="font-medium text-white">Direct GitHub Editing</p>
-              <p class="text-sm text-gray-400">Click any "Edit on GitHub" link to directly edit JSON files. This is useful for quick text changes or when PagesCMS is unavailable.</p>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <span class="flex-shrink-0 w-8 h-8 bg-gold text-rich-black rounded-full flex items-center justify-center font-bold">3</span>
-            <div>
-              <p class="font-medium text-white">Auto Deployment</p>
-              <p class="text-sm text-gray-400">All changes are automatically deployed to the live website within 1-2 minutes. No manual build or deploy steps needed!</p>
+              <p style="font-weight: 500; color: white; margin: 0;">Direct GitHub Editing</p>
+              <p style="font-size: 0.875rem; color: #9ca3af; margin-top: 0.25rem;">Click the pencil icon to edit JSON data files directly on GitHub.</p>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Need Help -->
-      <div class="mt-8 text-center">
-        <p class="text-gray-500">
-          Need help? Contact your web developer or 
-          <a href="https://pagescms.org/docs/" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">
-            read the PagesCMS documentation
-          </a>
-        </p>
-      </div>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 mt-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <p class="text-center text-gray-500 text-sm">
-          Vanity Hair & Esthetics Content Management System
+    <footer style="border-t: 1px solid #1f2937; margin-top: 4rem; padding: 2rem 0;">
+      <div style="max-width: 80rem; margin: 0 auto; padding: 0 2rem;">
+        <p style="text-align: center; color: #6b7280; font-size: 0.875rem;">
+          Vanity Hair & Esthetics Content Management
         </p>
       </div>
     </footer>
+  </body>
+</html>
   </body>
 </html>

@@ -9,7 +9,7 @@ interface Props {
 const seoData = await getEntry('seo', 'settings');
 const siteSettings = await getEntry('siteSettings', 'settings');
 
-const defaultTitle = seoData?.data?.title || 'Vanity Hair & Esthetics | Winnipeg Barber Shop';
+const defaultTitle = seoData?.data?.title || 'Vanity Hair Wpg | Winnipeg Barber Shop';
 const defaultDescription = seoData?.data?.description || 'Winnipeg\'s premier barbershop. Precision fades, classic cuts, hot towel shaves.';
 const ogImage = seoData?.data?.ogImage || '/images/vanity hair exterior.webp';
 
@@ -18,12 +18,12 @@ const {
   description = defaultDescription
 } = Astro.props;
 
-const siteUrl = 'https://vanityhair.pages.dev';
+const siteUrl = 'https://vanityhairwpg.ca';
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "HairSalon",
-  "name": siteSettings?.data?.siteName || "Vanity Hair & Esthetics",
+  "name": siteSettings?.data?.siteName || "Vanity Hair Wpg",
   "image": `${siteUrl}${ogImage}`,
   "address": {
     "@type": "PostalAddress",
@@ -33,7 +33,7 @@ const schema = {
     "postalCode": "R3C 0L8",
     "addressCountry": "CA"
   },
-  "telephone": "+12049565797",
+  "telephone": "+12049981115",
   "priceRange": "$$",
   "openingHours": [
     "Mo 09:00-20:30",
@@ -72,6 +72,7 @@ const schema = {
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />

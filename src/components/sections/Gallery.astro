@@ -20,7 +20,7 @@ const { subtitle, heading, instagramButton, instagramLink, images } = galleryDat
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       {images?.map((img: any, index: number) => (
-        <div class={`relative overflow-hidden group ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}>
+        <div class={`relative overflow-hidden group aspect-[4/5] sm:aspect-square ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}>
           <img 
             src={img.image} 
             alt={img.alt || `Vanity Hair Cut ${index + 1}`}
@@ -39,7 +39,7 @@ const { subtitle, heading, instagramButton, instagramLink, images } = galleryDat
         rel="noopener noreferrer"
         class="inline-flex items-center space-x-2 px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-rich-black transition-all duration-300 uppercase tracking-widest text-sm font-bold"
       >
-        <i data-lucide="instagram" class="w-5 h-5"></i>
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         <span>{instagramButton}</span>
       </a>
     </div>

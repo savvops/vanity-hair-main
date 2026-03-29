@@ -6,31 +6,64 @@
   "nameLabel": "Name",
   "namePlaceholder": "Your name",
   "phoneLabel": "Phone",
-  "phonePlaceholder": "(204) 956-5797",
+  "phonePlaceholder": "(204) 998-1115",
   "serviceLabel": "Service",
   "serviceOptions": [
-    { "option": "The Signature Cut" },
-    { "option": "Precision Fade" },
-    { "option": "Hot Towel Shave" },
-    { "option": "Beard Sculpt & Trim" },
-    { "option": "The Full Service" },
-    { "option": "Father & Son" }
+    {
+      "option": "Haircut - $20"
+    },
+    {
+      "option": "Lineup - $10"
+    },
+    {
+      "option": "Kids Haircut - $15"
+    },
+    {
+      "option": "Hair Coloring - $20+"
+    },
+    {
+      "option": "Father and Son Haircut - $35"
+    }
   ],
   "dateLabel": "Preferred Date",
   "timeLabel": "Preferred Time",
   "timeOptions": [
-    { "time": "9:00 AM" },
-    { "time": "10:00 AM" },
-    { "time": "11:00 AM" },
-    { "time": "12:00 PM" },
-    { "time": "1:00 PM" },
-    { "time": "2:00 PM" },
-    { "time": "3:00 PM" },
-    { "time": "4:00 PM" },
-    { "time": "5:00 PM" },
-    { "time": "6:00 PM" },
-    { "time": "7:00 PM" },
-    { "time": "8:00 PM" }
+    {
+      "time": "9:00 AM"
+    },
+    {
+      "time": "10:00 AM"
+    },
+    {
+      "time": "11:00 AM"
+    },
+    {
+      "time": "12:00 PM"
+    },
+    {
+      "time": "1:00 PM"
+    },
+    {
+      "time": "2:00 PM"
+    },
+    {
+      "time": "3:00 PM"
+    },
+    {
+      "time": "4:00 PM"
+    },
+    {
+      "time": "5:00 PM"
+    },
+    {
+      "time": "6:00 PM"
+    },
+    {
+      "time": "7:00 PM"
+    },
+    {
+      "time": "8:00 PM"
+    }
   ],
   "submitButton": "Confirm Booking"
 }

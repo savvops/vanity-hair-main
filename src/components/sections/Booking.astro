@@ -21,7 +21,7 @@ const booking = bookingData?.data || {
 
 const contact = contactInfo?.data || {
   findUsTitle: 'Find Us',
-  businessName: 'Vanity Hair & Esthetics',
+  businessName: 'Vanity Hair Wpg',
   addressLine1: '432 Graham Avenue',
   addressLine2: 'Winnipeg, MB R3C 0L8',
   directionsLink: '#',
@@ -41,7 +41,7 @@ const contact = contactInfo?.data || {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
       <!-- Booking Form -->
-      <div id="contact" class="bg-charcoal p-8 md:p-12 border-t-4 border-gold">
+      <div id="contact" class="bg-charcoal p-8 md:p-12 border-t-4 border-gold scroll-mt-24">
         <h3 class="text-3xl font-serif font-bold text-white mb-2">{booking.formTitle}</h3>
         <p class="text-gray-400 mb-8">{booking.formSubtitle}</p>
 
@@ -152,17 +152,50 @@ const contact = contactInfo?.data || {
             class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3"
           >
             <i data-lucide="phone" class="w-5 h-5"></i>
-            <span>{contact.phone}</span>
+            <span><strong class="text-gray-300 mr-2">{contact.phoneLabel || 'Phone'}:</strong>{contact.phone}</span>
           </a>
+          {contact.phone2 && (
+            <a 
+              href={contact.phone2Href}
+              class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-3"
+            >
+              <i data-lucide="phone" class="w-5 h-5"></i>
+              <span><strong class="text-gray-300 mr-2">{contact.phone2Label || 'Phone'}:</strong>{contact.phone2}</span>
+            </a>
+          )}
+          {contact.email && (
+            <a 
+              href={`mailto:${contact.email}`}
+              class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-3"
+            >
+              <i data-lucide="mail" class="w-5 h-5"></i>
+              <span><strong class="text-gray-300 mr-2">{contact.emailLabel || 'Email'}:</strong>{contact.email}</span>
+            </a>
+          )}
+        </div>
+
+        <div>
+          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.followUsTitle || 'Follow Us'}</h3>
           <a 
             href={contact.instagramLink}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-4"
+            class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3"
           >
-            <i data-lucide="instagram" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             <span>{contact.instagramHandle}</span>
           </a>
+          {contact.tiktokLink && (
+            <a 
+              href={contact.tiktokLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-3"
+            >
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.87a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.3z"/></svg>
+              <span>{contact.tiktokHandle}</span>
+            </a>
+          )}
         </div>
       </div>
     </div>
