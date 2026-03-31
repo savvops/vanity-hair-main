@@ -205,6 +205,7 @@ const contactInfoCollection = defineCollection({
     instagramLink: z.string(),
     tiktokHandle: z.string().optional(),
     tiktokLink: z.string().optional(),
+    facebookLink: z.string().optional(),
   }),
 });
 

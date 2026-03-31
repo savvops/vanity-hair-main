@@ -5,226 +5,139 @@ const contactInfo = await getEntry('contactInfo', 'info');
 
 const booking = bookingData?.data || {
   formTitle: 'Book Your Visit',
-  formSubtitle: 'Walk-ins welcome, but appointments are prioritized.',
-  formspreeId: 'YOUR_FORM_ID',
-  nameLabel: 'Name',
-  namePlaceholder: 'Your name',
-  phoneLabel: 'Phone',
-  phonePlaceholder: '(204) 956-5797',
-  serviceLabel: 'Service',
-  serviceOptions: [],
-  dateLabel: 'Preferred Date',
-  timeLabel: 'Preferred Time',
-  timeOptions: [],
-  submitButton: 'Confirm Booking'
+  formSubtitle: 'Contact us directly to schedule an appointment.'
 };
 
-const contact = contactInfo?.data || {
-  findUsTitle: 'Find Us',
-  businessName: 'Vanity Hair Wpg',
-  addressLine1: '432 Graham Avenue',
-  addressLine2: 'Winnipeg, MB R3C 0L8',
-  directionsLink: '#',
-  directionsLabel: 'Get Directions',
-  hoursTitle: 'Opening Hours',
-  hours: [],
-  hoursNote: '',
-  contactTitle: 'Contact',
-  phone: '(204) 956-5797',
-  phoneHref: 'tel:2049565797',
-  instagramHandle: '@vanity.hair.204',
-  instagramLink: 'https://www.instagram.com/vanity.hair.204/'
-};
+const contact = contactInfo?.data;
 ---
 
-<section id="book" class="py-24 bg-rich-black">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-      <!-- Booking Form -->
-      <div id="contact" class="bg-charcoal p-8 md:p-12 border-t-4 border-gold">
-        <h3 class="text-3xl font-serif font-bold text-white mb-2">{booking.formTitle}</h3>
-        <p class="text-gray-400 mb-8">{booking.formSubtitle}</p>
+<section id="book" class="py-24 bg-rich-black relative overflow-hidden">
+  <!-- Subtle Background Decorations -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-        <form class="space-y-6" action={`https://formsubmit.co/${booking.contactEmail || 'savvops.ai@gmail.com'}`} method="POST">
-          <!-- Disable captcha for better UX -->
-          <input type="hidden" name="_captcha" value="false">
-          <!-- Custom thank you page -->
-          <input type="hidden" name="_next" value="https://vanityhairwpg.ca/success">
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.nameLabel}</label>
-              <input 
-                type="text" 
-                name="name"
-                required
-                class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
-                placeholder={booking.namePlaceholder}
-              />
-            </div>
-            <div>
-              <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.phoneLabel}</label>
-              <input 
-                type="tel" 
-                name="phone"
-                required
-                class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
-                placeholder={booking.phonePlaceholder}
-              />
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.serviceLabel}</label>
-            <select 
-              name="service"
-              class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors"
-            >
-              {booking.serviceOptions?.map((opt: any) => (
-                <option>{opt.option}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.dateLabel}</label>
-            <input 
-              type="date" 
-              name="date"
-              id="booking-date"
-              required
-              class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors calendar-dark"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-400 text-sm uppercase tracking-wider mb-2">{booking.timeLabel}</label>
-            <select 
-              name="time"
-              required
-              class="w-full bg-rich-black border border-gray-700 text-white p-3 focus:border-gold focus:outline-none transition-colors"
-            >
-              <option value="" disabled selected>Select a time</option>
-              {booking.timeOptions?.map((opt: any) => (
-                <option>{opt.time}</option>
-              ))}
-            </select>
-          </div>
-          <button 
-            type="submit" 
-            class="w-full bg-gold text-rich-black font-bold py-4 uppercase tracking-widest hover:bg-white transition-colors duration-300"
-          >
-            {booking.submitButton}
-          </button>
-        </form>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 animate-fade-in">
+        {booking.formTitle}
+      </h2>
+      <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+        {booking.formSubtitle}
+      </p>
+    </div>
 
-        <script>
-          // Set min and max dates for the booking form
-          const dateInput = document.getElementById('booking-date') as HTMLInputElement;
-          if (dateInput) {
-            const today = new Date();
-            const yyyy = today.getFullYear();
-            const mm = String(today.getMonth() + 1).padStart(2, '0');
-            const dd = String(today.getDate()).padStart(2, '0');
-            const minDate = `${yyyy}-${mm}-${dd}`;
+    <!-- Main Contact Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      
+      <!-- Primary Booking Actions -->
+      <div class="bg-charcoal/50 p-8 md:p-10 border-t-4 border-gold backdrop-blur-sm">
+        <h3 class="text-gold uppercase tracking-widest text-sm font-bold mb-8">{contact?.contactTitle || 'Contact'}</h3>
+        
+        <div class="space-y-8">
+          <!-- Mobile Support -->
+          <div class="group">
+            <p class="text-gray-400 text-xs uppercase tracking-widest mb-2 font-medium">Direct Booking (Mobile)</p>
+            <a 
+              href={contact?.phoneHref}
+              class="text-3xl md:text-4xl font-serif text-white hover:text-gold transition-colors duration-300 block mb-4"
+            >
+              {contact?.phone}
+            </a>
+            <a 
+              href={contact?.phoneHref}
+              class="inline-flex items-center space-x-2 bg-gold text-rich-black px-6 py-3 font-bold uppercase tracking-wider hover:bg-white transition-all transform hover:scale-105"
+            >
+              <i data-lucide="phone" class="w-4 h-4"></i>
+              <span>Call Now</span>
+            </a>
+          </div>
+
+          <hr class="border-gray-800" />
+
+          <!-- Landline and Email -->
+          <div class="grid grid-cols-1 gap-6">
+            {contact?.phone2 && (
+              <a href={contact.phone2Href} class="flex items-center group">
+                <div class="w-10 h-10 border border-gold/30 rounded-full flex items-center justify-center mr-4 group-hover:border-gold transition-colors">
+                  <i data-lucide="phone-forwarded" class="w-4 h-4 text-gold"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 uppercase tracking-tighter">Landline</p>
+                  <p class="text-white group-hover:text-gold transition-colors">{contact.phone2}</p>
+                </div>
+              </a>
+            )}
             
-            // Set min to today
-            dateInput.min = minDate;
-            
-            // Set max to 3 months from now
-            const maxDate = new Date();
-            maxDate.setMonth(maxDate.getMonth() + 3);
-            const max_yyyy = maxDate.getFullYear();
-            const max_mm = String(maxDate.getMonth() + 1).padStart(2, '0');
-            const max_dd = String(maxDate.getDate()).padStart(2, '0');
-            const maxDateString = `${max_yyyy}-${max_mm}-${max_dd}`;
-            
-            dateInput.max = maxDateString;
-          }
-        </script>
+            {contact?.email && (
+              <a href={`mailto:${contact.email}`} class="flex items-center group">
+                <div class="w-10 h-10 border border-gold/30 rounded-full flex items-center justify-center mr-4 group-hover:border-gold transition-colors">
+                  <i data-lucide="mail" class="w-4 h-4 text-gold"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 uppercase tracking-tighter">Email</p>
+                  <p class="text-white group-hover:text-gold transition-colors">{contact.email}</p>
+                </div>
+              </a>
+            )}
+          </div>
+        </div>
       </div>
 
-      <!-- Contact Info -->
-      <div class="flex flex-col justify-center space-y-8">
+      <!-- Location & Hours -->
+      <div class="space-y-10 py-4">
+        <!-- Address -->
         <div>
-          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.findUsTitle}</h3>
-          <p class="text-2xl text-white font-serif mb-2">{contact.businessName}</p>
-          <p class="text-gray-400">
-            {contact.addressLine1}<br />
-            {contact.addressLine2}
+          <h3 class="text-gold uppercase tracking-widest text-sm font-bold mb-4">{contact?.findUsTitle || 'Location'}</h3>
+          <p class="text-2xl text-white font-serif mb-2">{contact?.businessName}</p>
+          <p class="text-gray-400 leading-relaxed">
+            {contact?.addressLine1}<br />
+            {contact?.addressLine2}
           </p>
           <a 
-            href={contact.directionsLink}
+            href={contact?.directionsLink}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center space-x-2 text-gold hover:text-white transition-colors mt-4"
+            class="inline-flex items-center space-x-2 text-gold hover:text-white transition-colors mt-6 border-b border-gold/30 pb-1"
           >
             <i data-lucide="map-pin" class="w-4 h-4"></i>
-            <span>{contact.directionsLabel}</span>
+            <span>{contact?.directionsLabel}</span>
           </a>
         </div>
 
+        <!-- Hours -->
         <div>
-          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.hoursTitle}</h3>
-          <div class="grid grid-cols-2 gap-4 text-gray-400 max-w-sm">
-            {contact.hours?.map((item: any) => (
-              <>
-                <span>{item.day}</span> 
-                <span class={item.highlight ? "text-gold" : ""}>{item.hours}</span>
-              </>
+          <h3 class="text-gold uppercase tracking-widest text-sm font-bold mb-4">{contact?.hoursTitle || 'Hours'}</h3>
+          <div class="space-y-2">
+            {contact?.hours?.map((item: any) => (
+              <div class="flex justify-between items-center max-w-xs text-gray-400 border-b border-white/5 pb-2">
+                <span class="text-sm">{item.day}</span> 
+                <span class={`text-sm font-medium ${item.highlight ? "text-gold" : "text-white"}`}>
+                  {item.hours}
+                </span>
+              </div>
             ))}
           </div>
-          <p class="text-gray-500 text-sm mt-3 italic">{contact.hoursNote}</p>
+          <p class="text-gray-500 text-xs mt-4 italic">{contact?.hoursNote}</p>
         </div>
 
+        <!-- Socials -->
         <div>
-          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.contactTitle}</h3>
-          <a 
-            href={contact.phoneHref}
-            class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3"
-          >
-            <i data-lucide="phone" class="w-5 h-5"></i>
-            <span><strong class="text-gray-300 mr-2">{contact.phoneLabel || 'Phone'}:</strong>{contact.phone}</span>
-          </a>
-          {contact.phone2 && (
-            <a 
-              href={contact.phone2Href}
-              class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-3"
-            >
-              <i data-lucide="phone" class="w-5 h-5"></i>
-              <span><strong class="text-gray-300 mr-2">{contact.phone2Label || 'Phone'}:</strong>{contact.phone2}</span>
+          <h3 class="text-gold uppercase tracking-widest text-sm font-bold mb-4">Follow Us</h3>
+          <div class="flex space-x-6">
+            <a href={contact?.instagramLink} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gold transition-colors transform hover:scale-110">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </a>
-          )}
-          {contact.email && (
-            <a 
-              href={`mailto:${contact.email}`}
-              class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-3"
-            >
-              <i data-lucide="mail" class="w-5 h-5"></i>
-              <span><strong class="text-gray-300 mr-2">{contact.emailLabel || 'Email'}:</strong>{contact.email}</span>
-            </a>
-          )}
-        </div>
-
-        <div>
-          <h3 class="text-gold uppercase tracking-widest font-bold mb-4">{contact.followUsTitle || 'Follow Us'}</h3>
-          <a 
-            href={contact.instagramLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3"
-          >
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-            <span>{contact.instagramHandle}</span>
-          </a>
-          {contact.tiktokLink && (
-            <a 
-              href={contact.tiktokLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-gray-400 text-lg hover:text-gold transition-colors cursor-pointer flex items-center space-x-3 mt-3"
-            >
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.87a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.3z"/></svg>
-              <span>{contact.tiktokHandle}</span>
-            </a>
-          )}
+            {contact?.facebookLink && (
+              <a href={contact.facebookLink} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gold transition-colors transform hover:scale-110">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
+            )}
+            {contact?.tiktokLink && (
+              <a href={contact.tiktokLink} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gold transition-colors transform hover:scale-110">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.87a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.3z"/></svg>
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
