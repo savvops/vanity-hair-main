@@ -84,6 +84,16 @@ const schema = {
   </head>
   <body class="bg-rich-black text-white">
     <slot />
+
+    <!-- Cloudflare Web Analytics -->
+    <script
+      is:inline
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token":"1738887706d745b5aa8deac2ed2f8f90"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+
     <script>
       // Initialize Lucide icons
       document.addEventListener('DOMContentLoaded', function() {
