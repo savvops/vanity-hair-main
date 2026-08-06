@@ -1,11 +1,12 @@
 ---
 import { getEntry } from 'astro:content';
 const galleryData = await getEntry('gallery', 'settings');
-const { subtitle, heading, instagramButton, instagramLink, images } = galleryData?.data || {
+const { subtitle, heading, instagramButton, instagramLink, videos = [], images } = galleryData?.data || {
   subtitle: 'Our Work',
   heading: 'Fresh Cuts Gallery',
   instagramButton: 'View More on Instagram',
   instagramLink: 'https://www.instagram.com/vanity.hair.204/',
+  videos: [],
   images: []
 };
 ---
@@ -18,9 +19,51 @@ const { subtitle, heading, instagramButton, instagramLink, images } = galleryDat
       <div class="h-1 w-20 bg-gold mx-auto"></div>
     </div>
 
+    {videos.length > 0 && (
+      <div class="mb-10">
+        <div class="flex items-center justify-between gap-4 mb-4">
+          <h3 class="font-serif text-2xl text-white">In the chair</h3>
+          <span class="text-gold text-xs uppercase tracking-[0.2em]">Watch the craft</span>
+        </div>
+        <div class="grid md:grid-cols-2 gap-5">
+          {videos.map((video: any, index: number) => (
+            <button
+              class="gallery-item group relative overflow-hidden aspect-video bg-charcoal text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black"
+              type="button"
+              data-gallery-item
+              data-gallery-type="video"
+              data-gallery-src={video.video}
+              data-gallery-poster={video.poster || ''}
+              data-gallery-alt={video.title || `Vanity Hair video ${index + 1}`}
+              aria-label={`Play ${video.title || `Vanity Hair video ${index + 1}`}`}
+            >
+              <video class="w-full h-full object-cover" muted playsinline preload="metadata" poster={video.poster || undefined}>
+                <source src={video.video} />
+              </video>
+              <span class="absolute inset-0 bg-rich-black/25 group-hover:bg-rich-black/10 transition-colors"></span>
+              <span class="absolute inset-0 flex items-center justify-center">
+                <span class="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-rich-black shadow-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+                  <svg class="ml-0.5 h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+              </span>
+              {video.title && <span class="absolute bottom-0 left-0 right-0 p-4 text-white font-semibold bg-gradient-to-t from-rich-black/90 to-transparent">{video.title}</span>}
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
+
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       {images?.map((img: any, index: number) => (
-        <div class={`relative overflow-hidden group aspect-[4/5] sm:aspect-square ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}>
+        <button
+          class={`gallery-item relative overflow-hidden group aspect-[4/5] sm:aspect-square text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}
+          type="button"
+          data-gallery-item
+          data-gallery-type="image"
+          data-gallery-src={img.image}
+          data-gallery-alt={img.alt || `Vanity Hair cut ${index + 1}`}
+          aria-label={`View ${img.alt || `Vanity Hair cut ${index + 1}`}`}
+        >
           <img 
             src={img.image} 
             alt={img.alt || `Vanity Hair Cut ${index + 1}`}
@@ -28,7 +71,10 @@ const { subtitle, heading, instagramButton, instagramLink, images } = galleryDat
             loading="lazy"
           />
           <div class="absolute inset-0 bg-gold/0 group-hover:bg-gold/20 transition-colors duration-300"></div>
-        </div>
+          <span class="absolute right-3 top-3 rounded-full bg-rich-black/70 p-2 text-white opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"></circle><path d="m20 20-4.35-4.35"></path></svg>
+          </span>
+        </button>
       ))}
     </div>
 
@@ -45,3 +91,53 @@ const { subtitle, heading, instagramButton, instagramLink, images } = galleryDat
     </div>
   </div>
 </section>
+
+<dialog id="gallery-lightbox" class="m-auto w-[min(96vw,1100px)] max-w-none border-0 bg-transparent p-0 backdrop:bg-rich-black/90">
+  <div class="relative flex min-h-[40vh] items-center justify-center">
+    <button id="gallery-lightbox-close" type="button" class="absolute right-2 top-2 z-10 rounded-full bg-rich-black/80 p-3 text-white transition-colors hover:bg-gold hover:text-rich-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold" aria-label="Close gallery viewer">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+    </button>
+    <div id="gallery-lightbox-media" class="max-h-[88vh] max-w-full"></div>
+  </div>
+</dialog>
+
+<script>
+  const lightbox = document.querySelector<HTMLDialogElement>('#gallery-lightbox');
+  const media = document.querySelector<HTMLDivElement>('#gallery-lightbox-media');
+  const closeButton = document.querySelector<HTMLButtonElement>('#gallery-lightbox-close');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-gallery-item]').forEach((item) => {
+    item.addEventListener('click', () => {
+      if (!lightbox || !media) return;
+      const { galleryType, gallerySrc, galleryAlt, galleryPoster } = item.dataset;
+      if (!gallerySrc) return;
+
+      media.replaceChildren();
+      const element = document.createElement(galleryType === 'video' ? 'video' : 'img');
+      element.className = 'max-h-[88vh] max-w-full object-contain shadow-2xl';
+      if (element instanceof HTMLVideoElement) {
+        element.controls = true;
+        element.autoplay = true;
+        element.playsInline = true;
+        element.src = gallerySrc;
+        element.poster = galleryPoster || '';
+      } else {
+        element.src = gallerySrc;
+        element.alt = galleryAlt || '';
+      }
+      media.append(element);
+      lightbox.showModal();
+    });
+  });
+
+  const closeLightbox = () => {
+    if (!lightbox || !media) return;
+    lightbox.close();
+    media.replaceChildren();
+  };
+
+  closeButton?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+</script>

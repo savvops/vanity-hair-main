@@ -197,6 +197,14 @@ collections:
           - { label: "Heading", name: "heading", widget: "string" }
           - { label: "Instagram Button Name", name: "instagramButton", widget: "string" }
           - { label: "Instagram Link", name: "instagramLink", widget: "string" }
+          - label: "Gallery Videos"
+            name: "videos"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Video File", name: "video", widget: "file" }
+              - { label: "Cover Image", name: "poster", widget: "image", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
           - label: "Gallery Images"
             name: "images"
             widget: "list"

@@ -151,6 +151,13 @@ content:
       - { name: heading, label: Heading, type: string }
       - { name: instagramButton, label: Instagram Button, type: string }
       - { name: instagramLink, label: Instagram Link, type: string }
+      - name: videos
+        label: Gallery Videos
+        type: list
+        fields:
+          - { name: video, label: Video URL, type: string }
+          - { name: poster, label: Cover Image, type: image }
+          - { name: title, label: Title, type: string }
       - name: images
         label: Images
         type: list

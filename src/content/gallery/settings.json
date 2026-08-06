@@ -4,6 +4,7 @@
   "heading": "Fresh Cuts Gallery",
   "instagramButton": "View More on Instagram",
   "instagramLink": "https://www.instagram.com/derejeessayas_101/",
+  "videos": [],
   "images": [
     { "image": "/images/2026-01-23_21-27-27_UTC.jpg", "alt": "Fresh haircut style 1", "featured": true },
     { "image": "/images/2026-01-23_21-23-15_UTC.jpg", "alt": "Fresh haircut style 2", "featured": false },
