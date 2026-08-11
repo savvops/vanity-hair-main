@@ -1,62 +1,107 @@
 ---
 import { getEntry } from 'astro:content';
+
 const galleryData = await getEntry('gallery', 'settings');
-const { subtitle, heading, instagramButton, instagramLink, videos = [], images } = galleryData?.data || {
+const { subtitle, heading, instagramButton, instagramLink, videos = [], images = [] } = galleryData?.data || {
   subtitle: 'Our Work',
   heading: 'Fresh Cuts Gallery',
   instagramButton: 'View More on Instagram',
   instagramLink: 'https://www.instagram.com/vanity.hair.204/',
   videos: [],
-  images: []
+  images: [],
 };
+
+const getTikTokId = (url: string) => url.match(/\/video\/(\d+)/)?.[1];
 ---
 
-<section id="gallery" class="py-24 bg-rich-black">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h4 class="text-gold uppercase tracking-widest font-bold mb-2">{subtitle}</h4>
-      <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">{heading}</h2>
-      <div class="h-1 w-20 bg-gold mx-auto"></div>
+<section id="gallery" class="bg-rich-black py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-16 text-center">
+      <h4 class="mb-2 font-bold uppercase tracking-widest text-gold">{subtitle}</h4>
+      <h2 class="mb-4 font-serif text-4xl font-bold text-white md:text-5xl">{heading}</h2>
+      <div class="mx-auto h-1 w-20 bg-gold"></div>
     </div>
 
     {videos.length > 0 && (
-      <div class="mb-10">
-        <div class="flex items-center justify-between gap-4 mb-4">
-          <h3 class="font-serif text-2xl text-white">In the chair</h3>
-          <span class="text-gold text-xs uppercase tracking-[0.2em]">Watch the craft</span>
-        </div>
-        <div class="grid md:grid-cols-2 gap-5">
-          {videos.map((video: any, index: number) => (
+      <div class="mb-12">
+        <div class="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <h3 class="font-serif text-2xl text-white">In the chair</h3>
+            <p class="mt-1 text-sm text-gray-400">Swipe or use the arrows to see more</p>
+          </div>
+          <div class="flex gap-2">
             <button
-              class="gallery-item group relative overflow-hidden aspect-video bg-charcoal text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black"
               type="button"
-              data-gallery-item
-              data-gallery-type="video"
-              data-gallery-src={video.video}
-              data-gallery-poster={video.poster || ''}
-              data-gallery-alt={video.title || `Vanity Hair video ${index + 1}`}
-              aria-label={`Play ${video.title || `Vanity Hair video ${index + 1}`}`}
+              data-video-scroll="-1"
+              class="flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 text-gold transition-colors hover:bg-gold hover:text-rich-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              aria-label="Scroll videos back"
             >
-              <video class="w-full h-full object-cover" muted playsinline preload="metadata" poster={video.poster || undefined}>
-                <source src={video.video} />
-              </video>
-              <span class="absolute inset-0 bg-rich-black/25 group-hover:bg-rich-black/10 transition-colors"></span>
-              <span class="absolute inset-0 flex items-center justify-center">
-                <span class="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-rich-black shadow-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
-                  <svg class="ml-0.5 h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                </span>
-              </span>
-              {video.title && <span class="absolute bottom-0 left-0 right-0 p-4 text-white font-semibold bg-gradient-to-t from-rich-black/90 to-transparent">{video.title}</span>}
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
             </button>
-          ))}
+            <button
+              type="button"
+              data-video-scroll="1"
+              class="flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 text-gold transition-colors hover:bg-gold hover:text-rich-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              aria-label="Scroll videos forward"
+            >
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div
+          data-video-rail
+          class="gallery-scrollbar grid snap-x snap-mandatory grid-flow-col auto-cols-[72%] gap-4 overflow-x-auto overscroll-x-contain pb-3 sm:auto-cols-[44%] lg:auto-cols-[30%] xl:auto-cols-[23%]"
+        >
+          {videos.map((video: any, index: number) => {
+            const tiktokId = getTikTokId(video.video);
+            const title = video.title || `Vanity Hair video ${index + 1}`;
+
+            return (
+              <button
+                class="gallery-item group relative aspect-[9/16] snap-start overflow-hidden bg-charcoal text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black"
+                type="button"
+                data-gallery-item
+                data-gallery-type={tiktokId ? 'tiktok' : 'video'}
+                data-gallery-src={video.video}
+                data-gallery-embed-id={tiktokId || ''}
+                data-gallery-poster={video.poster || ''}
+                data-gallery-alt={title}
+                aria-label={`Play ${title}`}
+              >
+                {video.poster ? (
+                  <img
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    src={video.poster}
+                    alt=""
+                    loading="lazy"
+                  />
+                ) : (
+                  <video class="h-full w-full object-cover" muted playsinline preload="metadata">
+                    <source src={video.video} />
+                  </video>
+                )}
+                <span class="absolute inset-0 bg-gradient-to-t from-rich-black/75 via-rich-black/5 to-rich-black/10 transition-colors group-hover:from-rich-black/60"></span>
+                <span class="absolute inset-0 flex items-center justify-center">
+                  <span class="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-rich-black shadow-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+                    <svg class="ml-0.5 h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                  </span>
+                </span>
+                <span class="absolute bottom-0 left-0 right-0 p-4 font-semibold text-white">{title}</span>
+                {tiktokId && (
+                  <span class="absolute left-3 top-3 rounded-full bg-rich-black/75 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-white">TikTok</span>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
     )}
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      {images?.map((img: any, index: number) => (
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+      {images.map((img: any, index: number) => (
         <button
-          class={`gallery-item relative overflow-hidden group aspect-[4/5] sm:aspect-square text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}
+          class={`gallery-item group relative aspect-[4/5] overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black sm:aspect-square ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}
           type="button"
           data-gallery-item
           data-gallery-type="image"
@@ -64,13 +109,13 @@ const { subtitle, heading, instagramButton, instagramLink, videos = [], images }
           data-gallery-alt={img.alt || `Vanity Hair cut ${index + 1}`}
           aria-label={`View ${img.alt || `Vanity Hair cut ${index + 1}`}`}
         >
-          <img 
-            src={img.image} 
+          <img
+            src={img.image}
             alt={img.alt || `Vanity Hair Cut ${index + 1}`}
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-gold/0 group-hover:bg-gold/20 transition-colors duration-300"></div>
+          <div class="absolute inset-0 bg-gold/0 transition-colors duration-300 group-hover:bg-gold/20"></div>
           <span class="absolute right-3 top-3 rounded-full bg-rich-black/70 p-2 text-white opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"></circle><path d="m20 20-4.35-4.35"></path></svg>
           </span>
@@ -78,66 +123,184 @@ const { subtitle, heading, instagramButton, instagramLink, videos = [], images }
       ))}
     </div>
 
-    <div class="text-center mt-12">
-      <a 
+    <div class="mt-12 text-center">
+      <a
         href={instagramLink}
-        target="_blank" 
+        target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center space-x-2 px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-rich-black transition-all duration-300 uppercase tracking-widest text-sm font-bold"
+        class="inline-flex items-center space-x-2 border border-gold px-8 py-3 text-sm font-bold uppercase tracking-widest text-gold transition-all duration-300 hover:bg-gold hover:text-rich-black"
       >
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         <span>{instagramButton}</span>
       </a>
     </div>
   </div>
 </section>
 
-<dialog id="gallery-lightbox" class="m-auto w-[min(96vw,1100px)] max-w-none border-0 bg-transparent p-0 backdrop:bg-rich-black/90">
-  <div class="relative flex min-h-[40vh] items-center justify-center">
-    <button id="gallery-lightbox-close" type="button" class="absolute right-2 top-2 z-10 rounded-full bg-rich-black/80 p-3 text-white transition-colors hover:bg-gold hover:text-rich-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold" aria-label="Close gallery viewer">
-      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+<dialog id="gallery-lightbox" class="m-auto h-[100dvh] w-screen max-w-none border-0 bg-transparent p-0 backdrop:bg-rich-black/95">
+  <div class="relative flex h-full w-full items-center justify-center px-14 py-16 sm:px-20">
+    <button
+      id="gallery-lightbox-close"
+      type="button"
+      class="absolute right-3 top-3 z-20 rounded-full bg-rich-black/80 p-3 text-white transition-colors hover:bg-gold hover:text-rich-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:right-6 sm:top-6"
+      aria-label="Close gallery viewer"
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
     </button>
-    <div id="gallery-lightbox-media" class="max-h-[88vh] max-w-full"></div>
+
+    <button
+      id="gallery-lightbox-previous"
+      type="button"
+      class="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-rich-black/80 text-white transition-colors hover:bg-gold hover:text-rich-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:left-6 sm:h-12 sm:w-12"
+      aria-label="Previous gallery item"
+    >
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+    </button>
+
+    <div id="gallery-lightbox-media" class="flex max-h-full max-w-full items-center justify-center"></div>
+
+    <button
+      id="gallery-lightbox-next"
+      type="button"
+      class="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-rich-black/80 text-white transition-colors hover:bg-gold hover:text-rich-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:right-6 sm:h-12 sm:w-12"
+      aria-label="Next gallery item"
+    >
+      <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </button>
+
+    <div class="pointer-events-none absolute bottom-4 left-1/2 z-20 w-[min(80vw,42rem)] -translate-x-1/2 text-center text-white">
+      <p id="gallery-lightbox-caption" class="truncate text-sm font-semibold sm:text-base"></p>
+      <p id="gallery-lightbox-counter" class="mt-1 text-xs uppercase tracking-[0.2em] text-gold" aria-live="polite"></p>
+    </div>
   </div>
 </dialog>
 
 <script>
   const lightbox = document.querySelector<HTMLDialogElement>('#gallery-lightbox');
   const media = document.querySelector<HTMLDivElement>('#gallery-lightbox-media');
+  const caption = document.querySelector<HTMLParagraphElement>('#gallery-lightbox-caption');
+  const counter = document.querySelector<HTMLParagraphElement>('#gallery-lightbox-counter');
   const closeButton = document.querySelector<HTMLButtonElement>('#gallery-lightbox-close');
+  const previousButton = document.querySelector<HTMLButtonElement>('#gallery-lightbox-previous');
+  const nextButton = document.querySelector<HTMLButtonElement>('#gallery-lightbox-next');
+  const galleryItems = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-gallery-item]'));
+  let currentIndex = 0;
+  let touchStartX = 0;
+  let lastWheelNavigation = 0;
 
-  document.querySelectorAll<HTMLButtonElement>('[data-gallery-item]').forEach((item) => {
-    item.addEventListener('click', () => {
-      if (!lightbox || !media) return;
-      const { galleryType, gallerySrc, galleryAlt, galleryPoster } = item.dataset;
-      if (!gallerySrc) return;
+  const showItem = (index: number) => {
+    if (!lightbox || !media || galleryItems.length === 0) return;
 
-      media.replaceChildren();
-      const element = document.createElement(galleryType === 'video' ? 'video' : 'img');
-      element.className = 'max-h-[88vh] max-w-full object-contain shadow-2xl';
-      if (element instanceof HTMLVideoElement) {
-        element.controls = true;
-        element.autoplay = true;
-        element.playsInline = true;
-        element.src = gallerySrc;
-        element.poster = galleryPoster || '';
-      } else {
-        element.src = gallerySrc;
-        element.alt = galleryAlt || '';
-      }
-      media.append(element);
-      lightbox.showModal();
-    });
-  });
+    currentIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentIndex];
+    const { galleryType, gallerySrc, galleryAlt, galleryPoster, galleryEmbedId } = item.dataset;
+    if (!gallerySrc) return;
 
-  const closeLightbox = () => {
-    if (!lightbox || !media) return;
-    lightbox.close();
     media.replaceChildren();
+
+    if (galleryType === 'tiktok' && galleryEmbedId) {
+      const iframe = document.createElement('iframe');
+      iframe.className = 'h-[min(78dvh,780px)] w-[min(44dvh,440px)] max-w-[72vw] bg-black shadow-2xl';
+      iframe.src = `https://www.tiktok.com/player/v1/${galleryEmbedId}?autoplay=1&rel=0`;
+      iframe.title = galleryAlt || 'Vanity Hair TikTok video';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      media.append(iframe);
+    } else if (galleryType === 'video') {
+      const video = document.createElement('video');
+      video.className = 'max-h-[78dvh] max-w-[80vw] object-contain shadow-2xl';
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.src = gallerySrc;
+      video.poster = galleryPoster || '';
+      media.append(video);
+    } else {
+      const image = document.createElement('img');
+      image.className = 'max-h-[78dvh] max-w-[80vw] object-contain shadow-2xl';
+      image.src = gallerySrc;
+      image.alt = galleryAlt || '';
+      media.append(image);
+    }
+
+    if (caption) caption.textContent = galleryAlt || '';
+    if (counter) counter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
+    if (!lightbox.open) lightbox.showModal();
   };
 
+  const closeLightbox = () => {
+    if (!lightbox?.open) return;
+    lightbox.close();
+  };
+
+  galleryItems.forEach((item, index) => {
+    item.addEventListener('click', () => showItem(index));
+  });
+
   closeButton?.addEventListener('click', closeLightbox);
+  previousButton?.addEventListener('click', () => showItem(currentIndex - 1));
+  nextButton?.addEventListener('click', () => showItem(currentIndex + 1));
+
   lightbox?.addEventListener('click', (event) => {
     if (event.target === lightbox) closeLightbox();
   });
+
+  lightbox?.addEventListener('close', () => {
+    media?.replaceChildren();
+    galleryItems[currentIndex]?.focus();
+  });
+
+  lightbox?.addEventListener('touchstart', (event) => {
+    touchStartX = event.changedTouches[0]?.screenX || 0;
+  }, { passive: true });
+
+  lightbox?.addEventListener('touchend', (event) => {
+    const distance = (event.changedTouches[0]?.screenX || 0) - touchStartX;
+    if (Math.abs(distance) < 50) return;
+    showItem(currentIndex + (distance < 0 ? 1 : -1));
+  }, { passive: true });
+
+  lightbox?.addEventListener('wheel', (event) => {
+    if (Math.abs(event.deltaX) < 35 && Math.abs(event.deltaY) < 35) return;
+    const now = Date.now();
+    if (now - lastWheelNavigation < 450) return;
+    lastWheelNavigation = now;
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    showItem(currentIndex + (delta > 0 ? 1 : -1));
+  }, { passive: true });
+
+  document.addEventListener('keydown', (event) => {
+    if (!lightbox?.open) return;
+    if (event.key === 'ArrowLeft') showItem(currentIndex - 1);
+    if (event.key === 'ArrowRight') showItem(currentIndex + 1);
+  });
+
+  const videoRail = document.querySelector<HTMLElement>('[data-video-rail]');
+  document.querySelectorAll<HTMLButtonElement>('[data-video-scroll]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const direction = Number(button.dataset.videoScroll || 1);
+      videoRail?.scrollBy({ left: direction * videoRail.clientWidth * 0.85, behavior: 'smooth' });
+    });
+  });
 </script>
+
+<style>
+  .gallery-scrollbar {
+    scrollbar-color: rgba(198, 162, 79, 0.65) rgba(255, 255, 255, 0.08);
+    scrollbar-width: thin;
+  }
+
+  .gallery-scrollbar::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .gallery-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .gallery-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background: rgba(198, 162, 79, 0.65);
+  }
+</style>
