@@ -44,8 +44,20 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
 
       <!-- Mobile menu button -->
       <div class="md:hidden">
-        <button id="mobile-menu-btn" class="text-gold hover:text-white focus:outline-none p-2">
-          <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          class="p-2 text-gold hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <svg id="menu-open-icon" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg id="menu-close-icon" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18"></path>
+          </svg>
         </button>
       </div>
     </div>
@@ -78,34 +90,33 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
 <script>
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
-  const menuIcon = document.getElementById('menu-icon');
-  let isMenuOpen = false;
+  const menuOpenIcon = document.getElementById('menu-open-icon');
+  const menuCloseIcon = document.getElementById('menu-close-icon');
+
+  const setMenuOpen = (isOpen: boolean) => {
+    mobileMenu?.classList.toggle('hidden', !isOpen);
+    menuOpenIcon?.classList.toggle('hidden', isOpen);
+    menuCloseIcon?.classList.toggle('hidden', !isOpen);
+    mobileMenuBtn?.setAttribute('aria-expanded', String(isOpen));
+    mobileMenuBtn?.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+  };
 
   mobileMenuBtn?.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
-    mobileMenu?.classList.toggle('hidden');
-    
-    // Toggle icon between menu and X
-    if (menuIcon) {
-      if (isMenuOpen) {
-        menuIcon.setAttribute('data-lucide', 'x');
-      } else {
-        menuIcon.setAttribute('data-lucide', 'menu');
-      }
-      window.lucide?.createIcons();
-    }
+    setMenuOpen(mobileMenuBtn.getAttribute('aria-expanded') !== 'true');
   });
 
   // Close mobile menu when clicking a link
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      isMenuOpen = false;
-      if (menuIcon) {
-        menuIcon.setAttribute('data-lucide', 'menu');
-        window.lucide?.createIcons();
-      }
+      setMenuOpen(false);
     });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileMenuBtn?.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      mobileMenuBtn.focus();
+    }
   });
 
   // Navbar scroll effect
