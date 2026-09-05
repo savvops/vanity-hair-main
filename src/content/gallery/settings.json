@@ -4,6 +4,29 @@
   "heading": "Fresh Cuts Gallery",
   "instagramButton": "View More on Instagram",
   "instagramLink": "https://www.instagram.com/derejeessayas_101/",
+  "instagramVideos": [
+    {
+      "url": "https://www.instagram.com/reel/DbWge_yxJPk/",
+      "video": "/videos/instagram-reel-01.mp4",
+      "poster": "/images/instagram-reel-01.jpg",
+      "title": "Curly haircut transformation",
+      "views": "469 views"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DbE__9wxLly/",
+      "video": "/videos/instagram-reel-02.mp4",
+      "poster": "/images/instagram-reel-02.jpg",
+      "title": "Precision haircut in the chair",
+      "views": "190 views"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DbWdzqhRu6_/",
+      "video": "/videos/instagram-reel-03.mp4",
+      "poster": "/images/instagram-reel-03.jpg",
+      "title": "Clean taper fade finish",
+      "views": "189 views"
+    }
+  ],
   "videos": [
     { "video": "https://www.tiktok.com/@dereje_essayas10/video/7670224662470642951", "poster": "/images/tiktok-01.jpg", "title": "Fresh cut video 1" },
     { "video": "https://www.tiktok.com/@dereje_essayas10/video/7670222872832494855", "poster": "/images/tiktok-02.jpg", "title": "Fresh cut video 2" },

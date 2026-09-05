@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://vanityhair.pages.dev',
   output: 'static',
+  server: {
+    allowedHosts: ['nucbox-m7-1.taila7272b.ts.net'],
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,

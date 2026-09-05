@@ -140,6 +140,13 @@ const galleryCollection = defineCollection({
     heading: z.string(),
     instagramButton: z.string(),
     instagramLink: z.string(),
+    instagramVideos: z.array(z.object({
+      url: z.string().url(),
+      video: z.string(),
+      poster: z.string().optional(),
+      title: z.string().optional(),
+      views: z.string().optional(),
+    })).default([]),
     videos: z.array(z.object({
       video: z.string(),
       poster: z.string().optional(),
