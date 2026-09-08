@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import { getEntry } from 'astro:content';
 
 interface Props {
@@ -11,19 +12,23 @@ const siteSettings = await getEntry('siteSettings', 'settings');
 
 const defaultTitle = seoData?.data?.title || 'Vanity Hair Wpg | Winnipeg Barber Shop';
 const defaultDescription = seoData?.data?.description || 'Winnipeg\'s premier barbershop. Precision fades, classic cuts, hot towel shaves.';
-const ogImage = seoData?.data?.ogImage || '/images/vanity hair exterior.webp';
+const ogImage = seoData?.data?.ogImage || '/images/vanity-hair-exterior.webp';
 
-const { 
+const {
   title = defaultTitle,
   description = defaultDescription
 } = Astro.props;
 
-const siteUrl = 'https://vanityhairwpg.ca';
+const siteUrl = Astro.site!.origin;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const noindex = Astro.url.pathname !== '/';
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "HairSalon",
   "name": siteSettings?.data?.siteName || "Vanity Hair Wpg",
+  "logo": new URL(siteSettings?.data?.logo || '/images/vanity-logo.png', siteUrl).href,
+  "url": siteUrl,
   "image": `${siteUrl}${ogImage}`,
   "address": {
     "@type": "PostalAddress",
@@ -53,54 +58,49 @@ const schema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0a0a" />
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="business.business" />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={`${siteUrl}${ogImage}`} />
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
-    
-    <!-- Canonical -->
-    <link rel="canonical" href={siteUrl} />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" href={siteSettings?.data?.favicon || '/favicon.svg'} />
+
+
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    
+
     <title>{title}</title>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
   </head>
   <body class="bg-rich-black text-white">
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <slot />
 
     <!-- Cloudflare Web Analytics -->
-    <script
-      is:inline
-      type="module"
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token":"1738887706d745b5aa8deac2ed2f8f90"}'
-    ></script>
+    <script is:inline>
+      if (['vanityhairwpg.ca', 'www.vanityhairwpg.ca', 'vanityhair.pages.dev'].includes(location.hostname)) {
+        const beacon = document.createElement('script');
+        beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+        beacon.defer = true;
+        beacon.dataset.cfBeacon = '{"token":"1738887706d745b5aa8deac2ed2f8f90"}';
+        document.head.append(beacon);
+      }
+    </script>
     <!-- End Cloudflare Web Analytics -->
 
-    <script>
-      // Initialize Lucide icons
-      document.addEventListener('DOMContentLoaded', function() {
-        if (window.lucide) {
-          window.lucide.createIcons();
-        }
-      });
-    </script>
   </body>
 </html>

@@ -29,3 +29,10 @@ pnpm-debug.log*
 
 # Cloudflare
 .wrangler/
+
+# Local previews and generated responsive images
+.preview/
+public/images/optimized/
+src/generated/
+test-results/
+playwright-report/

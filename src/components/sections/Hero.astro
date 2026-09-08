@@ -1,4 +1,6 @@
 ---
+import Icon from '../ui/Icon.astro';
+import ResponsiveImage from '../ui/ResponsiveImage.astro';
 import { getEntry } from 'astro:content';
 const heroData = await getEntry('hero', 'hero');
 const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecondary, backgroundImage } = heroData?.data || {
@@ -8,15 +10,16 @@ const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecond
   subheadline: 'Vanity Hair Wpg - Winnipeg\'s premier destination for precision fades, classic cuts, and hot towel shaves.',
   ctaPrimary: 'Book Appointment',
   ctaSecondary: 'View Services',
-  backgroundImage: '/images/vanity hair exterior.webp'
+  backgroundImage: '/images/vanity-hair-exterior.webp'
 };
 ---
 
-<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<section id="home" class="relative min-h-[max(48rem,100svh)] flex items-center justify-center overflow-hidden">
   <!-- Background Image -->
   <div class="absolute inset-0 z-0">
-    <img 
-      src={backgroundImage} 
+    <ResponsiveImage
+      src={backgroundImage}
+      eager
       alt="Vanity Hair & Esthetics Exterior"
       class="w-full h-full object-cover"
     />
@@ -26,30 +29,30 @@ const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecond
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-    <div class="inline-block mb-4 animate-fade-in">
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-28 pb-32">
+    <div class="inline-block mb-4">
       <div class="h-1 w-24 bg-gold mx-auto mb-6"></div>
       <p class="text-gold uppercase tracking-[0.3em] text-sm md:text-base font-bold mb-2">{badge}</p>
     </div>
-    
-    <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 text-shadow leading-tight animate-slide-up">
+
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 text-shadow leading-tight">
       {headlineLine1}<br />
       <span class="text-gold italic">{headlineAccent}</span>
     </h1>
-    
-    <p class="text-gray-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light animate-fade-in drop-shadow-lg">
+
+    <p class="text-gray-100 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light drop-shadow-lg">
       {subheadline}
     </p>
-    
-    <div class="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up">
-      <a 
-        href="#book" 
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a
+        href="#book"
         class="px-8 py-4 bg-gold text-rich-black font-bold text-lg uppercase tracking-wider hover:bg-gold-light transition-colors rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.5)]"
       >
         {ctaPrimary}
       </a>
-      <a 
-        href="#services" 
+      <a
+        href="#services"
         class="px-8 py-4 border-2 border-gold text-gold font-bold text-lg uppercase tracking-wider hover:bg-gold hover:text-rich-black transition-colors rounded-sm backdrop-blur-sm bg-black/20"
       >
         {ctaSecondary}
@@ -59,8 +62,8 @@ const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecond
 
   <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-    <a href="#info" class="text-gold hover:text-white transition-colors drop-shadow-lg">
-      <i data-lucide="chevron-down" class="w-8 h-8"></i>
+    <a href="#info" aria-label="View location, hours and contact details" class="text-gold hover:text-white transition-colors drop-shadow-lg">
+      <Icon name="chevron-down" class="w-8 h-8" />
     </a>
   </div>
 </section>

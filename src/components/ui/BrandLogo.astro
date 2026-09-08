@@ -1,0 +1,14 @@
+---
+import { getEntry } from 'astro:content';
+import ResponsiveImage from './ResponsiveImage.astro';
+interface Props { class?: string }
+const { class: className = 'h-14 w-14' } = Astro.props;
+const settings = await getEntry('siteSettings', 'settings');
+---
+<ResponsiveImage
+  src={settings?.data.logo || '/images/vanity-logo.png'}
+  alt="Vanity Hair — woman with flowing hair"
+  sizes="80px"
+  eager
+  class={`shrink-0 object-contain mix-blend-screen ${className}`}
+/>

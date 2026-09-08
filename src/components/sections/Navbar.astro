@@ -1,4 +1,5 @@
 ---
+import BrandLogo from '../ui/BrandLogo.astro';
 import { getEntry } from 'astro:content';
 const navData = await getEntry('navigation', 'main');
 const { brandName, navLinks, ctaButton } = navData?.data || {
@@ -13,28 +14,28 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <a href="#home" class="flex-shrink-0 flex items-center space-x-2 group">
-        <i data-lucide="scissors" class="w-6 h-6 text-gold group-hover:rotate-12 transition-transform"></i>
+        <BrandLogo />
         <span class="font-serif text-base md:text-lg font-bold tracking-wider text-white">
           {brandName}
         </span>
       </a>
 
       <!-- Desktop Menu -->
-      <div class="hidden md:block">
+      <div class="hidden lg:block">
         <div class="ml-10 flex items-baseline space-x-8">
           {navLinks
             ?.filter((link: any) => link.enabled !== false)
             ?.sort((a: any, b: any) => (a.order || 0) - (b.order || 0))
             ?.map((link: any) => (
-            <a 
-              href={link.href} 
+            <a
+              href={link.href}
               class="text-gray-300 hover:text-gold transition-colors duration-300 text-sm uppercase tracking-widest"
             >
               {link.label}
             </a>
           ))}
-          <a 
-            href="#book" 
+          <a
+            href="#book"
             class="bg-gold hover:bg-gold-light text-rich-black px-5 py-2 rounded-sm font-bold uppercase tracking-wider transition-all transform hover:scale-105"
           >
             {ctaButton}
@@ -43,7 +44,7 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
       </div>
 
       <!-- Mobile menu button -->
-      <div class="md:hidden">
+      <div class="lg:hidden">
         <button
           id="mobile-menu-btn"
           type="button"
@@ -64,21 +65,21 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
   </div>
 
   <!-- Mobile Menu Panel -->
-  <div id="mobile-menu" class="hidden md:hidden bg-charcoal border-b border-gold/20">
+  <div id="mobile-menu" class="hidden lg:hidden bg-charcoal border-b border-gold/20">
     <div class="px-4 pt-2 pb-4 space-y-1 text-center">
       {navLinks
         ?.filter((link: any) => link.enabled !== false)
         ?.sort((a: any, b: any) => (a.order || 0) - (b.order || 0))
         ?.map((link: any) => (
-        <a 
-          href={link.href} 
+        <a
+          href={link.href}
           class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold transition-colors"
         >
           {link.label}
         </a>
       ))}
-      <a 
-        href="#book" 
+      <a
+        href="#book"
         class="block px-3 py-3 bg-gold text-rich-black font-bold mt-4 uppercase tracking-wider"
       >
         {ctaButton}
@@ -119,6 +120,8 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
     }
   });
 
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', () => setMenuOpen(false));
+
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -127,5 +130,5 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
     } else {
       navbar?.classList.remove('shadow-lg', 'shadow-gold/5');
     }
-  });
+  }, { passive: true });
 </script>

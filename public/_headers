@@ -4,11 +4,14 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
 
-/*.js
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.css
+/_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
 /images/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/images/optimized/*
   Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=2592000

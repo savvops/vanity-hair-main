@@ -1,0 +1,25 @@
+---
+import manifest from '../../generated/images.json';
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  sizes?: string;
+  eager?: boolean;
+}
+const { src, alt, class: className, sizes = '100vw', eager = false } = Astro.props;
+const asset = (manifest as Record<string, { width: number; height: number; variants: { src: string; width: number }[] }>)[src];
+const variants = asset?.variants;
+---
+<img
+  src={variants?.[Math.min(1, variants.length - 1)]?.src || src}
+  srcset={variants?.map(v => `${v.src} ${v.width}w`).join(', ')}
+  sizes={asset ? sizes : undefined}
+  width={asset?.width}
+  height={asset?.height}
+  alt={alt}
+  class={className}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : 'auto'}
+  decoding="async"
+/>

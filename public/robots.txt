@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /edit/
+Disallow: /admin/
+Disallow: /success/
 
-Sitemap: https://windowguys.pages.dev/sitemap-index.xml
+Sitemap: https://vanityhairwpg.ca/sitemap-index.xml

@@ -1,4 +1,5 @@
 ---
+import ResponsiveImage from '../ui/ResponsiveImage.astro';
 import { getEntry } from 'astro:content';
 
 const galleryData = await getEntry('gallery', 'settings');
@@ -29,7 +30,7 @@ const carouselVideos = [
 <section id="gallery" class="bg-rich-black py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mb-16 text-center">
-      <h4 class="mb-2 font-bold uppercase tracking-widest text-gold">{subtitle}</h4>
+      <p class="mb-2 font-bold uppercase tracking-widest text-gold">{subtitle}</p>
       <h2 class="mb-4 font-serif text-4xl font-bold text-white md:text-5xl">{heading}</h2>
       <div class="mx-auto h-1 w-20 bg-gold"></div>
     </div>
@@ -80,17 +81,17 @@ const carouselVideos = [
                 data-gallery-embed-id={tiktokId || ''}
                 data-gallery-poster={video.poster || ''}
                 data-gallery-alt={title}
-                aria-label={`Play ${title}`}
+                aria-label={`Play ${title}${isInstagram ? ' on Instagram' : tiktokId ? ' on TikTok' : ''}`}
               >
                 {video.poster ? (
-                  <img
+                  <ResponsiveImage
                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     src={video.poster}
+                    sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 640px) 44vw, 72vw"
                     alt=""
-                    loading="lazy"
                   />
                 ) : (
-                  <video class="h-full w-full object-cover" muted playsinline preload="metadata">
+                  <video class="h-full w-full object-cover" muted playsinline preload="none">
                     <source src={video.video} />
                   </video>
                 )}
@@ -120,14 +121,14 @@ const carouselVideos = [
           data-gallery-item
           data-gallery-type="image"
           data-gallery-src={img.image}
+            sizes={img.featured ? '(min-width: 1280px) 608px, 50vw' : '(min-width: 1280px) 296px, (min-width: 768px) 25vw, 50vw'}
           data-gallery-alt={img.alt || `Vanity Hair cut ${index + 1}`}
           aria-label={`View ${img.alt || `Vanity Hair cut ${index + 1}`}`}
         >
-          <img
+          <ResponsiveImage
             src={img.image}
             alt={img.alt || `Vanity Hair Cut ${index + 1}`}
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy"
           />
           <div class="absolute inset-0 bg-gold/0 transition-colors duration-300 group-hover:bg-gold/20"></div>
           <span class="absolute right-3 top-3 rounded-full bg-rich-black/70 p-2 text-white opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
@@ -151,8 +152,8 @@ const carouselVideos = [
   </div>
 </section>
 
-<dialog id="gallery-lightbox" class="m-auto h-[100dvh] w-screen max-w-none border-0 bg-transparent p-0 backdrop:bg-rich-black/95">
-  <div class="relative flex h-full w-full items-center justify-center px-14 py-16 sm:px-20">
+<dialog id="gallery-lightbox" aria-label="Gallery viewer" aria-describedby="gallery-lightbox-caption" class="m-auto h-[100dvh] max-h-none w-screen max-w-none border-0 bg-transparent p-0 backdrop:bg-rich-black/95">
+  <div data-gallery-backdrop class="relative flex h-full w-full items-center justify-center px-14 py-16 sm:px-20">
     <button
       id="gallery-lightbox-close"
       type="button"
@@ -199,6 +200,7 @@ const carouselVideos = [
   const nextButton = document.querySelector<HTMLButtonElement>('#gallery-lightbox-next');
   const galleryItems = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-gallery-item]'));
   let currentIndex = 0;
+  let opener: HTMLButtonElement | undefined;
   let touchStartX = 0;
   let lastWheelNavigation = 0;
 
@@ -242,7 +244,10 @@ const carouselVideos = [
 
     if (caption) caption.textContent = galleryAlt || '';
     if (counter) counter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
-    if (!lightbox.open) lightbox.showModal();
+    if (!lightbox.open) {
+      opener = item;
+      lightbox.showModal();
+    }
   };
 
   const closeLightbox = () => {
@@ -259,25 +264,28 @@ const carouselVideos = [
   nextButton?.addEventListener('click', () => showItem(currentIndex + 1));
 
   lightbox?.addEventListener('click', (event) => {
-    if (event.target === lightbox) closeLightbox();
+    if (event.target === lightbox || (event.target instanceof HTMLElement && event.target.hasAttribute('data-gallery-backdrop'))) closeLightbox();
   });
 
   lightbox?.addEventListener('close', () => {
     media?.replaceChildren();
-    galleryItems[currentIndex]?.focus();
+    opener?.focus({ preventScroll: true });
   });
 
   lightbox?.addEventListener('touchstart', (event) => {
+    if (event.target instanceof Element && event.target.closest('video, iframe, button')) return;
     touchStartX = event.changedTouches[0]?.screenX || 0;
   }, { passive: true });
 
   lightbox?.addEventListener('touchend', (event) => {
+    if (event.target instanceof Element && event.target.closest('video, iframe, button')) return;
     const distance = (event.changedTouches[0]?.screenX || 0) - touchStartX;
     if (Math.abs(distance) < 50) return;
     showItem(currentIndex + (distance < 0 ? 1 : -1));
   }, { passive: true });
 
   lightbox?.addEventListener('wheel', (event) => {
+    if (event.target instanceof Element && event.target.closest('video, iframe')) return;
     if (Math.abs(event.deltaX) < 35 && Math.abs(event.deltaY) < 35) return;
     const now = Date.now();
     if (now - lastWheelNavigation < 450) return;
@@ -288,6 +296,8 @@ const carouselVideos = [
 
   document.addEventListener('keydown', (event) => {
     if (!lightbox?.open) return;
+    if (event.target instanceof Element && event.target.closest('video, iframe')) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') event.preventDefault();
     if (event.key === 'ArrowLeft') showItem(currentIndex - 1);
     if (event.key === 'ArrowRight') showItem(currentIndex + 1);
   });
@@ -296,7 +306,7 @@ const carouselVideos = [
   document.querySelectorAll<HTMLButtonElement>('[data-video-scroll]').forEach((button) => {
     button.addEventListener('click', () => {
       const direction = Number(button.dataset.videoScroll || 1);
-      videoRail?.scrollBy({ left: direction * videoRail.clientWidth * 0.85, behavior: 'smooth' });
+      videoRail?.scrollBy({ left: direction * videoRail.clientWidth * 0.85, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
     });
   });
 </script>

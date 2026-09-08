@@ -1,4 +1,6 @@
 ---
+import Icon from '../ui/Icon.astro';
+import ResponsiveImage from '../ui/ResponsiveImage.astro';
 import { getEntry } from 'astro:content';
 const aboutData = await getEntry('about', 'about');
 const { subtitle, headlinePart1, headlineAccent, paragraphs, features, signature, image } = aboutData?.data || {
@@ -19,34 +21,35 @@ const { subtitle, headlinePart1, headlineAccent, paragraphs, features, signature
       <div class="relative">
         <div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-gold"></div>
         <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-gold"></div>
-        <img 
-          src={image} 
-          alt="Vanity Hair Barbershop" 
+        <ResponsiveImage
+          src={image}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          alt="Vanity Hair Barbershop"
           class="relative z-10 w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl"
         />
       </div>
 
       <!-- Content -->
       <div>
-        <h4 class="text-gold uppercase tracking-widest font-bold mb-2">{subtitle}</h4>
+        <p class="text-gold uppercase tracking-widest font-bold mb-2">{subtitle}</p>
         <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-          {headlinePart1} <span class="italic text-gray-500">{headlineAccent}</span>
+          {headlinePart1} <span class="italic text-gray-400">{headlineAccent}</span>
         </h2>
-        
+
         {paragraphs?.map((p: any) => (
           <p class="text-gray-400 mb-6 text-lg leading-relaxed">{p.text}</p>
         ))}
-        
+
         <!-- Features -->
         <div class="grid grid-cols-2 gap-4 mb-8">
           {features?.map((f: any) => (
             <div class="flex items-center space-x-3">
-              <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
+              <Icon name="check-circle" class="w-5 h-5 text-gold" />
               <span class="text-gray-300">{f.feature}</span>
             </div>
           ))}
         </div>
-        
+
         <p class="text-gold font-serif italic text-xl">{signature}</p>
       </div>
     </div>

@@ -1,4 +1,5 @@
 ---
+import Icon from '../ui/Icon.astro';
 import { getEntry } from 'astro:content';
 const infoData = await getEntry('infoBanner', 'items');
 const items = infoData?.data?.items || [];
@@ -8,8 +9,8 @@ const items = infoData?.data?.items || [];
   <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
     {items.map((item: any) => (
       <div class="p-2">
-        <i data-lucide={item.icon} class="w-8 h-8 text-gold mx-auto mb-3"></i>
-        <h3 class="text-white font-serif text-xl mb-1">{item.title}</h3>
+        <Icon name={item.icon} class="w-8 h-8 text-gold mx-auto mb-3" />
+        <h2 class="text-white font-serif text-xl mb-1">{item.title}</h2>
         <p class="text-gray-400 text-sm">{item.content}</p>
       </div>
     ))}
