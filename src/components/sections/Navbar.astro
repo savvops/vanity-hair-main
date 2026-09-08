@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import BrandLogo from '../ui/BrandLogo.astro';
 const navData = await getEntry('navigation', 'main');
 const { brandName, navLinks, ctaButton } = navData?.data || {
   brandName: 'Vanity Hair Wpg',
@@ -8,34 +9,31 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
 };
 ---
 
-<nav class="fixed w-full z-50 bg-rich-black/95 border-b border-gold/30 backdrop-blur-sm transition-all duration-300" id="navbar">
+<nav class="fixed w-full z-50 border-b border-white/10 bg-rich-black/80 backdrop-blur-xl transition-all duration-300" id="navbar">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
+    <div class="flex h-[5.5rem] items-center justify-between">
       <!-- Logo -->
-      <a href="#home" class="flex-shrink-0 flex items-center space-x-2 group">
-        <i data-lucide="scissors" class="w-6 h-6 text-gold group-hover:rotate-12 transition-transform"></i>
-        <span class="font-serif text-base md:text-lg font-bold tracking-wider text-white">
-          {brandName}
-        </span>
+      <a href="#home" class="group flex flex-shrink-0 items-center" aria-label={`${brandName} home`}>
+        <BrandLogo brandName={brandName} />
       </a>
 
       <!-- Desktop Menu -->
       <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-8">
+        <div class="ml-10 flex items-center space-x-7">
           {navLinks
             ?.filter((link: any) => link.enabled !== false)
             ?.sort((a: any, b: any) => (a.order || 0) - (b.order || 0))
             ?.map((link: any) => (
             <a 
               href={link.href} 
-              class="text-gray-300 hover:text-gold transition-colors duration-300 text-sm uppercase tracking-widest"
+              class="relative py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-stone-300 transition-colors duration-300 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-gold after:transition-transform hover:text-white hover:after:scale-x-100"
             >
               {link.label}
             </a>
           ))}
           <a 
             href="#book" 
-            class="bg-gold hover:bg-gold-light text-rich-black px-5 py-2 rounded-sm font-bold uppercase tracking-wider transition-all transform hover:scale-105"
+            class="rounded-full bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-rich-black transition-all hover:bg-gold-light hover:shadow-[0_0_28px_rgba(208,173,104,0.2)]"
           >
             {ctaButton}
           </a>
@@ -64,22 +62,22 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
   </div>
 
   <!-- Mobile Menu Panel -->
-  <div id="mobile-menu" class="hidden md:hidden bg-charcoal border-b border-gold/20">
-    <div class="px-4 pt-2 pb-4 space-y-1 text-center">
+  <div id="mobile-menu" class="hidden border-b border-gold/20 bg-rich-black/95 backdrop-blur-xl md:hidden">
+    <div class="space-y-1 px-4 pb-6 pt-2 text-center">
       {navLinks
         ?.filter((link: any) => link.enabled !== false)
         ?.sort((a: any, b: any) => (a.order || 0) - (b.order || 0))
         ?.map((link: any) => (
         <a 
           href={link.href} 
-          class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-gold transition-colors"
+          class="block px-3 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-stone-300 transition-colors hover:text-gold"
         >
           {link.label}
         </a>
       ))}
       <a 
         href="#book" 
-        class="block px-3 py-3 bg-gold text-rich-black font-bold mt-4 uppercase tracking-wider"
+        class="mt-4 block rounded-full bg-gold px-3 py-3 font-bold uppercase tracking-wider text-rich-black"
       >
         {ctaButton}
       </a>

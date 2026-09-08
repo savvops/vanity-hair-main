@@ -1,0 +1,109 @@
+---
+interface Props {
+  brandName?: string;
+  compact?: boolean;
+  class?: string;
+}
+
+const {
+  brandName = 'Vanity Hair Wpg',
+  compact = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<span class={`brand-lockup ${compact ? 'brand-lockup--compact' : ''} ${className}`}>
+  <svg
+    class="brand-lockup__mark"
+    viewBox="0 0 64 72"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M32 3.5c15.5 0 27.5 13.6 27.5 32.5S47.5 68.5 32 68.5 4.5 54.9 4.5 36 16.5 3.5 32 3.5Z"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+    <path
+      d="M16.5 19.5 29.9 52l4.2-9.8L45.8 16"
+      stroke="currentColor"
+      stroke-width="3.2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M24 18.5c8.5 5.2 16.4 3.3 22.3-2.5M27.1 25.6c7.1 3.7 13.4 2.4 17.5-1.4M30.3 33.1c4.7 2.3 8.7 1.5 11.5-.8"
+      stroke="currentColor"
+      stroke-width="1.55"
+      stroke-linecap="round"
+      opacity=".82"
+    />
+  </svg>
+
+  {!compact && (
+    <span class="brand-lockup__type">
+      <span class="brand-lockup__name">{brandName.replace(/\s+(Wpg|Winnipeg)$/i, '')}</span>
+      <span class="brand-lockup__descriptor">Hair <span aria-hidden="true">·</span> Winnipeg</span>
+    </span>
+  )}
+</span>
+
+<style>
+  .brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--brand-gold, #d0ad68);
+    line-height: 1;
+  }
+
+  .brand-lockup__mark {
+    width: 2.35rem;
+    height: 2.65rem;
+    flex: none;
+    filter: drop-shadow(0 0 0.55rem rgba(208, 173, 104, 0.16));
+  }
+
+  .brand-lockup__type {
+    display: grid;
+    gap: 0.26rem;
+    color: #fffaf0;
+  }
+
+  .brand-lockup__name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.12rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .brand-lockup__descriptor {
+    color: var(--brand-gold, #d0ad68);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.31em;
+    text-transform: uppercase;
+  }
+
+  .brand-lockup--compact .brand-lockup__mark {
+    width: 2rem;
+    height: 2.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .brand-lockup__mark {
+      width: 2.6rem;
+      height: 2.95rem;
+    }
+
+    .brand-lockup__name {
+      font-size: 1.28rem;
+    }
+
+    .brand-lockup__descriptor {
+      font-size: 0.59rem;
+    }
+  }
+</style>

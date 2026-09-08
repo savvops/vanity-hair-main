@@ -12,42 +12,50 @@ const { subtitle, headlinePart1, headlineAccent, paragraphs, features, signature
 };
 ---
 
-<section id="about" class="py-24 bg-rich-black relative">
+<section id="about" class="relative overflow-hidden bg-rich-black py-20 md:py-28">
+  <div class="pointer-events-none absolute -right-40 top-24 h-96 w-96 rounded-full bg-gold/[0.035] blur-3xl"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
       <!-- Image Grid -->
-      <div class="relative">
-        <div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-gold"></div>
-        <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-gold"></div>
+      <div class="relative mx-auto w-full max-w-xl lg:mx-0">
+        <div class="absolute -left-3 -top-3 h-24 w-24 border-l border-t border-gold"></div>
+        <div class="absolute -bottom-3 -right-3 h-24 w-24 border-b border-r border-gold"></div>
         <img 
           src={image} 
-          alt="Vanity Hair Barbershop" 
-          class="relative z-10 w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl"
+          alt="A precision haircut at Vanity Hair in Winnipeg"
+          class="relative z-10 aspect-[4/5] w-full object-cover shadow-2xl md:aspect-[5/4] lg:aspect-[4/5]"
+          loading="lazy"
         />
+        <div class="absolute -bottom-6 left-6 z-20 max-w-[15rem] border border-white/10 bg-charcoal/95 px-5 py-4 shadow-2xl backdrop-blur">
+          <p class="font-serif text-2xl text-gold">10 years</p>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-[0.17em] text-stone-300">Serving Winnipeg</p>
+        </div>
       </div>
 
       <!-- Content -->
       <div>
-        <h4 class="text-gold uppercase tracking-widest font-bold mb-2">{subtitle}</h4>
-        <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-          {headlinePart1} <span class="italic text-gray-500">{headlineAccent}</span>
+        <h4 class="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.26em] text-gold"><span class="h-px w-8 bg-gold"></span>{subtitle}</h4>
+        <h2 class="mb-7 font-serif text-4xl font-semibold leading-tight text-white md:text-5xl lg:text-6xl">
+          {headlinePart1} <span class="font-normal italic text-gold">{headlineAccent}</span>
         </h2>
         
         {paragraphs?.map((p: any) => (
-          <p class="text-gray-400 mb-6 text-lg leading-relaxed">{p.text}</p>
+          <p class="mb-5 text-base leading-relaxed text-stone-400 md:text-lg">{p.text}</p>
         ))}
         
         <!-- Features -->
-        <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="mb-9 mt-8 grid grid-cols-1 gap-3 border-y border-white/10 py-6 sm:grid-cols-2">
           {features?.map((f: any) => (
             <div class="flex items-center space-x-3">
-              <i data-lucide="check-circle" class="w-5 h-5 text-gold"></i>
-              <span class="text-gray-300">{f.feature}</span>
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-gold/10 text-gold">
+                <i data-lucide="check" class="h-3.5 w-3.5"></i>
+              </span>
+              <span class="text-sm font-medium text-stone-300">{f.feature}</span>
             </div>
           ))}
         </div>
         
-        <p class="text-gold font-serif italic text-xl">{signature}</p>
+        <p class="font-serif text-xl italic text-gold">{signature}</p>
       </div>
     </div>
   </div>

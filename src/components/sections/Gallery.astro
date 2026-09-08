@@ -26,12 +26,12 @@ const carouselVideos = [
 ];
 ---
 
-<section id="gallery" class="bg-rich-black py-24">
+<section id="gallery" class="bg-rich-black py-20 md:py-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mb-16 text-center">
-      <h4 class="mb-2 font-bold uppercase tracking-widest text-gold">{subtitle}</h4>
-      <h2 class="mb-4 font-serif text-4xl font-bold text-white md:text-5xl">{heading}</h2>
-      <div class="mx-auto h-1 w-20 bg-gold"></div>
+    <div class="mb-14 text-center">
+      <h4 class="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-gold">{subtitle}</h4>
+      <h2 class="font-serif text-4xl font-semibold text-white md:text-5xl">{heading}</h2>
+      <p class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-stone-500 md:text-base">Real clients, real craft. Explore recent transformations from the chair.</p>
     </div>
 
     {carouselVideos.length > 0 && (
@@ -39,7 +39,7 @@ const carouselVideos = [
         <div class="mb-4 flex items-end justify-between gap-4">
           <div>
             <h3 class="font-serif text-2xl text-white">In the chair</h3>
-            <p class="mt-1 text-sm text-gray-400">Swipe or use the arrows to see more</p>
+            <p class="mt-1 text-sm text-stone-500">Swipe or use the arrows to see more</p>
           </div>
           <div class="flex gap-2">
             <button
@@ -63,7 +63,7 @@ const carouselVideos = [
 
         <div
           data-video-rail
-          class="gallery-scrollbar grid snap-x snap-mandatory grid-flow-col auto-cols-[72%] gap-4 overflow-x-auto overscroll-x-contain pb-3 sm:auto-cols-[44%] lg:auto-cols-[30%] xl:auto-cols-[23%]"
+          class="gallery-scrollbar grid snap-x snap-mandatory grid-flow-col auto-cols-[72%] gap-4 overflow-x-auto overscroll-x-contain pb-4 sm:auto-cols-[44%] lg:auto-cols-[30%] xl:auto-cols-[23%]"
         >
           {carouselVideos.map((video: any, index: number) => {
             const tiktokId = getTikTokId(video.video);
@@ -72,7 +72,7 @@ const carouselVideos = [
 
             return (
               <button
-                class="gallery-item group relative aspect-[9/16] snap-start overflow-hidden bg-charcoal text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black"
+                class="gallery-item group relative aspect-[9/16] snap-start overflow-hidden rounded-sm border border-white/[0.08] bg-charcoal text-left shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black"
                 type="button"
                 data-gallery-item
                 data-gallery-type={tiktokId ? 'tiktok' : 'video'}
@@ -94,7 +94,7 @@ const carouselVideos = [
                     <source src={video.video} />
                   </video>
                 )}
-                <span class="absolute inset-0 bg-rich-black/10 transition-colors group-hover:bg-rich-black/20"></span>
+                <span class="absolute inset-0 bg-gradient-to-t from-rich-black/90 via-transparent to-rich-black/15"></span>
                 <span class="absolute inset-0 flex items-center justify-center">
                   <span class="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-rich-black shadow-lg transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
                     <svg class="ml-0.5 h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
@@ -105,6 +105,7 @@ const carouselVideos = [
                     {isInstagram ? 'Instagram' : 'TikTok'}
                   </span>
                 )}
+                <span class="absolute inset-x-4 bottom-4 text-sm font-semibold text-white">{title}</span>
               </button>
             );
           })}
@@ -112,10 +113,10 @@ const carouselVideos = [
       </div>
     )}
 
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+    <div class="grid grid-flow-dense grid-cols-2 gap-3 sm:gap-4 md:auto-rows-[14rem] md:grid-cols-12 lg:auto-rows-[16rem]">
       {images.map((img: any, index: number) => (
         <button
-          class={`gallery-item group relative aspect-[4/5] overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black sm:aspect-square ${img.featured ? 'md:col-span-2 md:row-span-2' : ''}`}
+          class={`gallery-item group relative aspect-[4/5] overflow-hidden rounded-sm border border-white/[0.08] text-left shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-rich-black sm:aspect-square md:aspect-auto ${img.featured ? 'md:col-span-6 md:row-span-2' : 'md:col-span-3 md:row-span-1'}`}
           type="button"
           data-gallery-item
           data-gallery-type="image"
@@ -129,7 +130,7 @@ const carouselVideos = [
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-gold/0 transition-colors duration-300 group-hover:bg-gold/20"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-rich-black/45 via-transparent to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-20"></div>
           <span class="absolute right-3 top-3 rounded-full bg-rich-black/70 p-2 text-white opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="6"></circle><path d="m20 20-4.35-4.35"></path></svg>
           </span>
@@ -142,7 +143,7 @@ const carouselVideos = [
         href={instagramLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center space-x-2 border border-gold px-8 py-3 text-sm font-bold uppercase tracking-widest text-gold transition-all duration-300 hover:bg-gold hover:text-rich-black"
+        class="inline-flex min-h-12 items-center space-x-2 rounded-full border border-gold px-8 py-3 text-xs font-bold uppercase tracking-[0.16em] text-gold transition-all duration-300 hover:bg-gold hover:text-rich-black"
       >
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         <span>{instagramButton}</span>

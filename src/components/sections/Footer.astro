@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import BrandLogo from '../ui/BrandLogo.astro';
 const footerData = await getEntry('footer', 'settings');
 const { brandName, address, copyright, socialLinks, quickLinks } = footerData?.data || {
   brandName: 'Vanity Hair Wpg',
@@ -11,28 +12,26 @@ const { brandName, address, copyright, socialLinks, quickLinks } = footerData?.d
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-black py-12 border-t border-gray-900">
+<footer class="border-t border-white/10 bg-black py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row justify-between items-center">
       <!-- Logo -->
-      <div class="mb-6 md:mb-0 text-center md:text-left">
-        <span class="font-serif text-lg font-bold tracking-wider text-white">
-          {brandName}
-        </span>
-        <p class="text-gray-600 text-sm mt-2">
+      <div class="mb-8 text-center md:mb-0 md:text-left">
+        <a href="#home" aria-label={`${brandName} home`}><BrandLogo brandName={brandName} /></a>
+        <p class="mt-4 text-sm leading-relaxed text-stone-600">
           {address}<br />
           © {currentYear} {brandName}. {copyright}
         </p>
       </div>
 
       <!-- Social Links -->
-      <div class="flex space-x-6">
+      <div class="flex space-x-3">
         {socialLinks?.map((link: any) => (
           <a 
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-gray-500 hover:text-gold transition-colors"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-stone-500 transition-colors hover:border-gold/50 hover:text-gold"
             aria-label={link.label}
           >
             {link.platform === 'facebook' && (
@@ -53,10 +52,10 @@ const currentYear = new Date().getFullYear();
     </div>
     
     <!-- Quick Links -->
-    <div class="mt-8 pt-8 border-t border-gray-900">
+    <div class="mt-10 border-t border-white/10 pt-8">
       <div class="flex flex-wrap justify-center gap-6 text-sm">
         {quickLinks?.map((link: any) => (
-          <a href={link.href} class="text-gray-500 hover:text-gold transition-colors">{link.label}</a>
+          <a href={link.href} class="text-xs font-semibold uppercase tracking-[0.15em] text-stone-600 transition-colors hover:text-gold">{link.label}</a>
         ))}
       </div>
     </div>

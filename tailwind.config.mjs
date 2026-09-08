@@ -5,19 +5,19 @@ export default {
     extend: {
       colors: {
         gold: {
-          DEFAULT: '#d4af37',
-          light: '#e5c158',
-          dark: '#b8962e',
+          DEFAULT: '#d0ad68',
+          light: '#efd9a2',
+          dark: '#a67c32',
         },
-        'rich-black': '#0a0a0a',
-        charcoal: '#1a1a1a',
+        'rich-black': '#0b0b0c',
+        charcoal: '#161617',
         primary: {
-          DEFAULT: '#d4af37',
-          dark: '#b8962e',
-          light: '#e5c158',
+          DEFAULT: '#d0ad68',
+          dark: '#a67c32',
+          light: '#efd9a2',
         },
-        accent: '#d4af37',
-        dark: '#0a0a0a',
+        accent: '#d0ad68',
+        dark: '#0b0b0c',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

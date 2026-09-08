@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --brand-gold: #d0ad68;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem; /* Matches navbar height (h-20) */
@@ -13,10 +17,22 @@
   body {
     @apply bg-rich-black text-white antialiased;
     font-family: 'Inter', system-ui, sans-serif;
+    background-image:
+      radial-gradient(circle at 85% 10%, rgba(208, 173, 104, 0.06), transparent 28rem),
+      linear-gradient(#0b0b0c, #0b0b0c);
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid #d0ad68;
+    outline-offset: 4px;
   }
 }
 
@@ -28,19 +44,19 @@
   .barber-pole {
     background: repeating-linear-gradient(
       45deg,
-      #d4af37,
-      #d4af37 10px,
-      #0a0a0a 10px,
-      #0a0a0a 20px,
+      #d0ad68,
+      #d0ad68 10px,
+      #0b0b0c 10px,
+      #0b0b0c 20px,
       #ffffff 20px,
       #ffffff 30px,
-      #0a0a0a 30px,
-      #0a0a0a 40px
+      #0b0b0c 30px,
+      #0b0b0c 40px
     );
   }
   
   .gold-gradient {
-    background: linear-gradient(135deg, #d4af37 0%, #e5c158 50%, #b8962e 100%);
+    background: linear-gradient(135deg, #d0ad68 0%, #efd9a2 50%, #a67c32 100%);
   }
   
   .calendar-dark::-webkit-calendar-picker-indicator {
@@ -65,20 +81,33 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #0b0b0c;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4af37;
+  background: #d0ad68;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e5c158;
+  background: #efd9a2;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(212, 175, 55, 0.3);
+  background: rgba(208, 173, 104, 0.3);
   color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
