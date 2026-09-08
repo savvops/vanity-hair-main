@@ -1,269 +1,514 @@
 media:
-  source: public/images
-  publicPath: /images
-
+  - name: images
+    label: Images
+    input: public/images
+    output: /images
+    categories:
+      - image
+  - name: videos
+    label: Videos
+    input: public/videos
+    output: /videos
+    categories:
+      - video
 content:
   - name: siteSettings
     label: Site Settings
-    path: src/content/siteSettings
-    type: collection
-    filename: settings.json
+    path: src/content/siteSettings/settings.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: settings }
-      - { name: siteName, label: Site Name, type: string }
-      - { name: description, label: Description, type: string }
-      - { name: logo, label: Logo, type: image }
-      - { name: favicon, label: Favicon, type: image }
-      - { name: phone, label: Phone, type: string }
-      - { name: email, label: Email, type: string }
-      - { name: address, label: Address, type: string }
-
+      - name: id
+        type: string
+        hidden: true
+        default: settings
+      - name: siteName
+        label: Site Name
+        type: string
+      - name: description
+        label: Description
+        type: string
+      - name: logo
+        label: Logo
+        type: image
+        options:
+          media: images
+      - name: favicon
+        label: Favicon
+        type: image
+        options:
+          media: images
+      - name: phone
+        label: Phone
+        type: string
+      - name: email
+        label: Email
+        type: string
+      - name: address
+        label: Address
+        type: string
+    format: json
   - name: navigation
     label: Navigation
-    path: src/content/navigation
-    type: collection
-    filename: main.json
+    path: src/content/navigation/main.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: main }
-      - { name: brandName, label: Brand Name, type: string }
-      - { name: ctaButton, label: CTA Button, type: string }
+      - name: id
+        type: string
+        hidden: true
+        default: main
+      - name: brandName
+        label: Brand Name
+        type: string
+      - name: ctaButton
+        label: CTA Button
+        type: string
       - name: navLinks
         label: Nav Links
-        type: list
+        type: object
         fields:
-          - { name: href, label: URL, type: string }
-          - { name: label, label: Label, type: string }
-          - { name: order, label: Order, type: number }
-          - { name: enabled, label: Enabled, type: boolean }
-
+          - name: href
+            label: URL
+            type: string
+          - name: label
+            label: Label
+            type: string
+          - name: order
+            label: Order
+            type: number
+          - name: enabled
+            label: Enabled
+            type: boolean
+        list: true
+    format: json
   - name: infoBanner
     label: Info Banner
-    path: src/content/infoBanner
-    type: collection
-    filename: items.json
+    path: src/content/infoBanner/items.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: items }
+      - name: id
+        type: string
+        hidden: true
+        default: items
       - name: items
         label: Items
-        type: list
+        type: object
         fields:
-          - { name: icon, label: Icon, type: string }
-          - { name: title, label: Title, type: string }
-          - { name: content, label: Content, type: string }
-
+          - name: icon
+            label: Icon
+            type: string
+          - name: title
+            label: Title
+            type: string
+          - name: content
+            label: Content
+            type: string
+        list: true
+    format: json
   - name: hero
     label: Hero Section
-    path: src/content/hero
-    type: collection
-    filename: hero.json
+    path: src/content/hero/hero.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: hero }
-      - { name: badge, label: Badge, type: string }
-      - { name: headlineLine1, label: Headline Line 1, type: string }
-      - { name: headlineAccent, label: Headline Accent, type: string }
-      - { name: subheadline, label: Subheadline, type: string }
-      - { name: ctaPrimary, label: Primary CTA, type: string }
-      - { name: ctaSecondary, label: Secondary CTA, type: string }
-      - { name: backgroundImage, label: Background Image, type: image }
-
+      - name: id
+        type: string
+        hidden: true
+        default: hero
+      - name: badge
+        label: Badge
+        type: string
+      - name: headlineLine1
+        label: Headline Line 1
+        type: string
+      - name: headlineAccent
+        label: Headline Accent
+        type: string
+      - name: subheadline
+        label: Subheadline
+        type: string
+      - name: ctaPrimary
+        label: Primary CTA
+        type: string
+      - name: ctaSecondary
+        label: Secondary CTA
+        type: string
+      - name: backgroundImage
+        label: Background Image
+        type: image
+        options:
+          media: images
+    format: json
   - name: about
     label: About Section
-    path: src/content/about
-    type: collection
-    filename: about.json
+    path: src/content/about/about.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: about }
-      - { name: subtitle, label: Subtitle, type: string }
-      - { name: headlinePart1, label: Headline Part 1, type: string }
-      - { name: headlineAccent, label: Headline Accent, type: string }
+      - name: id
+        type: string
+        hidden: true
+        default: about
+      - name: subtitle
+        label: Subtitle
+        type: string
+      - name: headlinePart1
+        label: Headline Part 1
+        type: string
+      - name: headlineAccent
+        label: Headline Accent
+        type: string
       - name: paragraphs
         label: Paragraphs
-        type: list
+        type: object
         fields:
-          - { name: text, label: Text, type: string }
+          - name: text
+            label: Text
+            type: string
+        list: true
       - name: features
         label: Features
-        type: list
+        type: object
         fields:
-          - { name: feature, label: Feature, type: string }
-      - { name: signature, label: Signature, type: string }
-      - { name: image, label: Image, type: image }
-
+          - name: feature
+            label: Feature
+            type: string
+        list: true
+      - name: signature
+        label: Signature
+        type: string
+      - name: image
+        label: Image
+        type: image
+        options:
+          media: images
+    format: json
   - name: services
     label: Services
     path: src/content/services
     type: collection
     fields:
-      - { name: id, type: string, hidden: true }
-      - { name: title, label: Title, type: string }
-      - { name: price, label: Price, type: string }
-      - { name: description, label: Description, type: string }
-      - { name: icon, label: Icon, type: string }
-      - { name: order, label: Order, type: number }
-      - { name: featured, label: Featured, type: boolean }
-
+      - name: id
+        type: string
+        hidden: true
+        required: false
+      - name: title
+        label: Title
+        type: string
+      - name: price
+        label: Price
+        type: string
+      - name: description
+        label: Description
+        type: string
+      - name: icon
+        label: Icon
+        type: string
+      - name: order
+        label: Order
+        type: number
+      - name: featured
+        label: Featured
+        type: boolean
+    format: json
+    filename: "{fields.title}.json"
   - name: servicesSettings
     label: Services Settings
-    path: src/content/servicesSettings
-    type: collection
-    filename: settings.json
+    path: src/content/servicesSettings/settings.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: settings }
-      - { name: heading, label: Heading, type: string }
-      - { name: icon, label: Icon, type: string }
-      - { name: note, label: Note, type: string }
-      - { name: ctaButton, label: CTA Button, type: string }
-
+      - name: id
+        type: string
+        hidden: true
+        default: settings
+      - name: heading
+        label: Heading
+        type: string
+      - name: icon
+        label: Icon
+        type: string
+      - name: note
+        label: Note
+        type: string
+      - name: ctaButton
+        label: CTA Button
+        type: string
+    format: json
   - name: testimonials
     label: Testimonials
     path: src/content/testimonials
     type: collection
     fields:
-      - { name: id, type: string, hidden: true }
-      - { name: author, label: Author, type: string }
-      - { name: rating, label: Rating, type: number }
-      - { name: time, label: Time, type: string }
-      - { name: text, label: Text, type: string }
-      - { name: order, label: Order, type: number }
-
+      - name: id
+        type: string
+        hidden: true
+        required: false
+      - name: author
+        label: Author
+        type: string
+      - name: rating
+        label: Rating
+        type: number
+      - name: time
+        label: Time
+        type: string
+      - name: text
+        label: Text
+        type: string
+      - name: order
+        label: Order
+        type: number
+    format: json
+    filename: "{fields.author}.json"
   - name: testimonialsSettings
     label: Testimonials Settings
-    path: src/content/testimonialsSettings
-    type: collection
-    filename: settings.json
+    path: src/content/testimonialsSettings/settings.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: settings }
-      - { name: heading, label: Heading, type: string }
-      - { name: ratingScore, label: Rating Score, type: string }
-      - { name: ratingLabel, label: Rating Label, type: string }
-      - { name: reviewsButton, label: Reviews Button, type: string }
-      - { name: reviewsButtonLink, label: Reviews Link, type: string }
-      - { name: backgroundImage, label: Background Image, type: image }
-
+      - name: id
+        type: string
+        hidden: true
+        default: settings
+      - name: heading
+        label: Heading
+        type: string
+      - name: ratingScore
+        label: Rating Score
+        type: string
+      - name: ratingLabel
+        label: Rating Label
+        type: string
+      - name: reviewsButton
+        label: Reviews Button
+        type: string
+      - name: reviewsButtonLink
+        label: Reviews Link
+        type: string
+      - name: backgroundImage
+        label: Background Image
+        type: image
+        options:
+          media: images
+    format: json
   - name: gallery
     label: Gallery
-    path: src/content/gallery
-    type: collection
-    filename: settings.json
+    path: src/content/gallery/settings.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: settings }
-      - { name: subtitle, label: Subtitle, type: string }
-      - { name: heading, label: Heading, type: string }
-      - { name: instagramButton, label: Instagram Button, type: string }
-      - { name: instagramLink, label: Instagram Link, type: string }
+      - name: id
+        type: string
+        hidden: true
+        default: settings
+      - name: subtitle
+        label: Subtitle
+        type: string
+      - name: heading
+        label: Heading
+        type: string
+      - name: instagramButton
+        label: Instagram Button
+        type: string
+      - name: instagramLink
+        label: Instagram Link
+        type: string
       - name: instagramVideos
         label: Featured Instagram Reels
-        type: list
+        type: object
         fields:
-          - { name: url, label: Instagram Reel URL, type: string }
-          - { name: video, label: Local Video, type: file }
-          - { name: poster, label: Cover Image, type: image }
-          - { name: title, label: Title, type: string }
-          - { name: views, label: View Count, type: string }
+          - name: url
+            label: Instagram Reel URL
+            type: string
+          - name: video
+            label: Local Video
+            type: file
+            options:
+              media: videos
+          - name: poster
+            label: Cover Image
+            type: image
+            options:
+              media: images
+          - name: title
+            label: Title
+            type: string
+          - name: views
+            label: View Count
+            type: string
+        list: true
       - name: videos
         label: Gallery Videos
-        type: list
+        type: object
         fields:
-          - { name: video, label: Video URL, type: string }
-          - { name: poster, label: Cover Image, type: image }
-          - { name: title, label: Title, type: string }
+          - name: video
+            label: Video URL
+            type: string
+          - name: poster
+            label: Cover Image
+            type: image
+            options:
+              media: images
+          - name: title
+            label: Title
+            type: string
+        list: true
       - name: images
         label: Images
-        type: list
+        type: object
         fields:
-          - { name: image, label: Image, type: image }
-          - { name: alt, label: Alt Text, type: string }
-          - { name: featured, label: Featured, type: boolean }
-
+          - name: image
+            label: Image
+            type: image
+            options:
+              media: images
+          - name: alt
+            label: Alt Text
+            type: string
+          - name: featured
+            label: Featured
+            type: boolean
+        list: true
+    format: json
   - name: booking
     label: Booking
-    path: src/content/booking
-    type: collection
-    filename: settings.json
+    path: src/content/booking/settings.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: settings }
-      - { name: formTitle, label: Form Title, type: string }
-      - { name: formSubtitle, label: Form Subtitle, type: string }
-      - { name: formspreeId, label: Formspree ID, type: string }
-      - { name: nameLabel, label: Name Label, type: string }
-      - { name: namePlaceholder, label: Name Placeholder, type: string }
-      - { name: phoneLabel, label: Phone Label, type: string }
-      - { name: phonePlaceholder, label: Phone Placeholder, type: string }
-      - { name: serviceLabel, label: Service Label, type: string }
-      - name: serviceOptions
-        label: Service Options
-        type: list
-        fields:
-          - { name: option, label: Option, type: string }
-      - { name: dateLabel, label: Date Label, type: string }
-      - { name: timeLabel, label: Time Label, type: string }
-      - name: timeOptions
-        label: Time Options
-        type: list
-        fields:
-          - { name: time, label: Time, type: string }
-      - { name: submitButton, label: Submit Button, type: string }
-
+      - name: id
+        type: string
+        hidden: true
+        default: settings
+      - name: formTitle
+        label: Form Title
+        type: string
+      - name: formSubtitle
+        label: Form Subtitle
+        type: string
+    format: json
   - name: contactInfo
     label: Contact Info
-    path: src/content/contactInfo
-    type: collection
-    filename: info.json
+    path: src/content/contactInfo/info.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: info }
-      - { name: findUsTitle, label: Find Us Title, type: string }
-      - { name: businessName, label: Business Name, type: string }
-      - { name: addressLine1, label: Address Line 1, type: string }
-      - { name: addressLine2, label: Address Line 2, type: string }
-      - { name: directionsLink, label: Directions Link, type: string }
-      - { name: directionsLabel, label: Directions Label, type: string }
-      - { name: hoursTitle, label: Hours Title, type: string }
+      - name: id
+        type: string
+        hidden: true
+        default: info
+      - name: findUsTitle
+        label: Find Us Title
+        type: string
+      - name: businessName
+        label: Business Name
+        type: string
+      - name: addressLine1
+        label: Address Line 1
+        type: string
+      - name: addressLine2
+        label: Address Line 2
+        type: string
+      - name: directionsLink
+        label: Directions Link
+        type: string
+      - name: directionsLabel
+        label: Directions Label
+        type: string
+      - name: hoursTitle
+        label: Hours Title
+        type: string
       - name: hours
         label: Hours
-        type: list
+        type: object
         fields:
-          - { name: day, label: Day, type: string }
-          - { name: hours, label: Hours, type: string }
-          - { name: highlight, label: Highlight, type: boolean }
-      - { name: hoursNote, label: Hours Note, type: string }
-      - { name: contactTitle, label: Contact Title, type: string }
-      - { name: phone, label: Phone, type: string }
-      - { name: phoneHref, label: Phone Href, type: string }
-      - { name: instagramHandle, label: Instagram Handle, type: string }
-      - { name: instagramLink, label: Instagram Link, type: string }
-
+          - name: day
+            label: Day
+            type: string
+          - name: hours
+            label: Hours
+            type: string
+          - name: highlight
+            label: Highlight
+            type: boolean
+        list: true
+      - name: hoursNote
+        label: Hours Note
+        type: string
+      - name: contactTitle
+        label: Contact Title
+        type: string
+      - name: phone
+        label: Phone
+        type: string
+      - name: phoneHref
+        label: Phone Href
+        type: string
+      - name: instagramHandle
+        label: Instagram Handle
+        type: string
+      - name: instagramLink
+        label: Instagram Link
+        type: string
+    format: json
   - name: footer
     label: Footer
-    path: src/content/footer
-    type: collection
-    filename: settings.json
+    path: src/content/footer/settings.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: settings }
-      - { name: brandName, label: Brand Name, type: string }
-      - { name: address, label: Address, type: string }
-      - { name: copyright, label: Copyright, type: string }
+      - name: id
+        type: string
+        hidden: true
+        default: settings
+      - name: brandName
+        label: Brand Name
+        type: string
+      - name: address
+        label: Address
+        type: string
+      - name: copyright
+        label: Copyright
+        type: string
       - name: socialLinks
         label: Social Links
-        type: list
+        type: object
         fields:
-          - { name: platform, label: Platform, type: string }
-          - { name: url, label: URL, type: string }
-          - { name: label, label: Label, type: string }
+          - name: platform
+            label: Platform
+            type: string
+          - name: url
+            label: URL
+            type: string
+          - name: label
+            label: Label
+            type: string
+        list: true
       - name: quickLinks
         label: Quick Links
-        type: list
+        type: object
         fields:
-          - { name: href, label: URL, type: string }
-          - { name: label, label: Label, type: string }
-
+          - name: href
+            label: URL
+            type: string
+          - name: label
+            label: Label
+            type: string
+        list: true
+    format: json
   - name: seo
     label: SEO
-    path: src/content/seo
-    type: collection
-    filename: settings.json
+    path: src/content/seo/settings.json
+    type: file
     fields:
-      - { name: id, type: string, hidden: true, default: settings }
-      - { name: title, label: Title, type: string }
-      - { name: description, label: Description, type: string }
-      - { name: keywords, label: Keywords, type: string }
-      - { name: ogImage, label: OG Image, type: image }
+      - name: id
+        type: string
+        hidden: true
+        default: settings
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Description
+        type: string
+      - name: keywords
+        label: Keywords
+        type: string
+      - name: ogImage
+        label: OG Image
+        type: image
+        options:
+          media: images
+    format: json

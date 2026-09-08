@@ -80,7 +80,7 @@ const schema = {
 
 
     <!-- Schema.org -->
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
 
     <title>{title}</title>
 

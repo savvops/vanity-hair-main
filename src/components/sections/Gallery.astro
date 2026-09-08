@@ -121,12 +121,12 @@ const carouselVideos = [
           data-gallery-item
           data-gallery-type="image"
           data-gallery-src={img.image}
-            sizes={img.featured ? '(min-width: 1280px) 608px, 50vw' : '(min-width: 1280px) 296px, (min-width: 768px) 25vw, 50vw'}
           data-gallery-alt={img.alt || `Vanity Hair cut ${index + 1}`}
           aria-label={`View ${img.alt || `Vanity Hair cut ${index + 1}`}`}
         >
           <ResponsiveImage
             src={img.image}
+            sizes={img.featured ? '(min-width: 1280px) 608px, 50vw' : '(min-width: 1280px) 296px, (min-width: 768px) 25vw, 50vw'}
             alt={img.alt || `Vanity Hair Cut ${index + 1}`}
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />

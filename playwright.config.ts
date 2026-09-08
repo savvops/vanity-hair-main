@@ -8,6 +8,8 @@ export default defineConfig({
   webServer: {
     command: 'npm run preview -- --host 127.0.0.1 --port 4341',
     url: 'http://127.0.0.1:4341',
+    // Playwright owns this child; prevent Astro's automatic agent-mode detachment.
+    env: { ASTRO_PREVIEW_BACKGROUND: '1' },
     reuseExistingServer: !process.env.CI,
   },
 });

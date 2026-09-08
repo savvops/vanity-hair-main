@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync, readdirSync } from 'node:fs';
+import YAML from 'yaml';
 
 for (const width of [320, 375, 768, 1024, 1440]) {
   test(`page, links, images and navigation at ${width}px`, async ({ page, request }) => {
@@ -76,4 +78,51 @@ test('secondary routes and search metadata are consistent', async ({ page, reque
   await page.goto('/');
   const resources = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(nodes => nodes.map(node => node.getAttribute('src') || node.getAttribute('href')));
   expect(resources.join(' ')).not.toMatch(/unpkg|fonts.googleapis/);
+});
+
+test('all migrated services, reviews and gallery entries render', async ({ page }) => {
+  await page.goto('/');
+  const services = readdirSync('src/content/services').filter(file => file.endsWith('.json'));
+  for (const file of services) {
+    const service = JSON.parse(readFileSync(`src/content/services/${file}`, 'utf8'));
+    await expect(page.locator('#services').getByRole('heading', { name: service.title, exact: true })).toHaveCount(1);
+  }
+  const testimonials = readdirSync('src/content/testimonials').filter(file => file.endsWith('.json'));
+  for (const file of testimonials) {
+    const review = JSON.parse(readFileSync(`src/content/testimonials/${file}`, 'utf8'));
+    await expect(page.locator('#testimonials').getByText(review.author, { exact: true })).toHaveCount(1);
+  }
+  const gallery = JSON.parse(readFileSync('src/content/gallery/settings.json', 'utf8'));
+  await expect(page.locator('[data-gallery-type="image"]')).toHaveCount(gallery.images.length);
+  await expect(page.locator('[data-gallery-item]')).toHaveCount(gallery.images.length + gallery.videos.length + gallery.instagramVideos.length);
+  await expect(page.locator('#navbar img')).toHaveAttribute('alt', /flowing hair/);
+});
+
+test('legacy admin reaches the current editor on mobile without old login scripts', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/admin/');
+  await expect(page).toHaveURL(/\/edit\//);
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await expect(page.locator('script[src*="netlify"], script[src*="decap"]')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Open PagesCMS Editor' })).toHaveAttribute('href', 'https://app.pagescms.org/savvops/vanity-hair-main');
+});
+
+test('CMS fields match existing JSON data and upload directories', () => {
+  const cms = YAML.parse(readFileSync('.pages.yml', 'utf8'));
+  expect(cms.media.map((media: { input: string }) => media.input)).toEqual(['public/images', 'public/videos']);
+  const validate = (fields: any[], data: Record<string, unknown>) => {
+    for (const field of fields) {
+      expect(field.type).not.toBe('list');
+      if (field.list && data[field.name] !== undefined) {
+        expect(Array.isArray(data[field.name]), field.name).toBe(true);
+        for (const item of data[field.name] as Record<string, unknown>[]) validate(field.fields || [], item);
+      }
+    }
+  };
+  for (const entry of cms.content) {
+    const files = entry.type === 'file' ? [entry.path] : readdirSync(entry.path).filter(file => file.endsWith('.json')).map(file => `${entry.path}/${file}`);
+    expect(files.length, entry.name).toBeGreaterThan(0);
+    for (const file of files) validate(entry.fields, JSON.parse(readFileSync(file, 'utf8')));
+  }
 });

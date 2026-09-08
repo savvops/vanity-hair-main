@@ -2,6 +2,14 @@
 
 A stunning, editable website for Vanity Hair & Esthetics barbershop in Winnipeg. Built with Astro, Tailwind CSS, and PagesCMS for easy content management.
 
+## Runtime and validation
+
+Use Node.js 24 LTS (the configured Cloudflare build version; Astro requires at least 22.12). This site uses Astro 7.3.2 and Tailwind 3 through PostCSS. The retired Astro Tailwind integration is no longer installed.
+
+Run `npm ci`, `npm run check`, `npm run build`, `npm test`, and `npm audit`. Browser tests use installed Google Chrome. Generated responsive images are recreated by the build/check/dev scripts. `npm run lint` is an alias for the Astro/TypeScript check.
+
+The content schema is `src/content.config.ts`; loaders preserve the existing JSON filenames as entry IDs. Pages CMS uses the same content paths. The old Netlify/Decap admin and unused Window Guys templates are retained under `archive/`, outside the site and build sources.
+
 ## 🚀 Quick Start
 
 ```bash
@@ -30,8 +38,8 @@ This website is fully editable through **PagesCMS** - a Git-based CMS that allow
 |---------|-------------|---------------|
 | **Site Settings** | Site name, description, logo, contact info | `src/content/siteSettings/settings.json` |
 | **Navigation** | Menu items, brand name, CTA button | `src/content/navigation/main.json` |
-| **Hero Section** | Homepage headline, subtitle, background | `src/content/homepage/hero.json` |
-| **About Section** | About page content, features, image | `src/content/homepage/about.json` |
+| **Hero Section** | Homepage headline, subtitle, background | `src/content/hero/hero.json` |
+| **About Section** | About page content, features, image | `src/content/about/about.json` |
 | **Services** | Service menu items, prices, descriptions | `src/content/services/*.json` |
 | **Testimonials** | Customer reviews and ratings | `src/content/testimonials/*.json` |
 | **Gallery** | Photo gallery images | `src/content/gallery/settings.json` |
@@ -134,7 +142,7 @@ Changes will be live in 1-2 minutes.
 
 ### Method 2: Direct GitHub Editing
 
-1. Navigate to the content file in GitHub (e.g., `src/content/homepage/hero.json`)
+1. Navigate to the content file in GitHub (e.g., `src/content/hero/hero.json`)
 2. Click the pencil icon to edit
 3. Make your changes
 4. Commit with a descriptive message
@@ -153,7 +161,7 @@ Defines all content collections for PagesCMS. Each collection specifies:
 - File locations
 - Media upload settings
 
-### `src/content/config.ts`
+### `src/content.config.ts`
 Astro content collection schemas with Zod validation.
 
 ## 🚀 Deployment

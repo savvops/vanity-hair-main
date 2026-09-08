@@ -10,67 +10,67 @@ const sections = [
   {
     title: 'Site Settings',
     description: 'Site name, description, logo, favicon, contact info',
-    cmsLink: `${pagesCmsUrl}/collection/siteSettings`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/siteSettings/settings.json`
   },
   {
     title: 'Navigation',
     description: 'Menu items, brand name, CTA button',
-    cmsLink: `${pagesCmsUrl}/collection/navigation`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/navigation/main.json`
   },
   {
     title: 'Hero Section',
     description: 'Homepage hero headline, subtitle, background image',
-    cmsLink: `${pagesCmsUrl}/collection/hero`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/homepage/hero.json`
   },
   {
     title: 'About Section',
     description: 'About page content, features, image',
-    cmsLink: `${pagesCmsUrl}/collection/about`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/homepage/about.json`
   },
   {
     title: 'Services',
     description: 'Service menu items, prices, descriptions',
-    cmsLink: `${pagesCmsUrl}/collection/services`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${contentFolder}/services`
   },
   {
     title: 'Testimonials',
     description: 'Customer reviews and ratings',
-    cmsLink: `${pagesCmsUrl}/collection/testimonials`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${contentFolder}/testimonials`
   },
   {
     title: 'Gallery',
     description: 'Photo gallery images and Instagram link',
-    cmsLink: `${pagesCmsUrl}/collection/gallery`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/gallery/settings.json`
   },
   {
     title: 'Booking Form',
-    description: 'Booking form fields and options',
-    cmsLink: `${pagesCmsUrl}/collection/booking`,
+    description: 'Booking heading and contact instructions',
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/booking/settings.json`
   },
   {
     title: 'Contact Info',
     description: 'Address, hours, phone, social links',
-    cmsLink: `${pagesCmsUrl}/collection/contactInfo`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/contactInfo/info.json`
   },
   {
     title: 'Footer',
     description: 'Footer content and social links',
-    cmsLink: `${pagesCmsUrl}/collection/footer`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/footer/settings.json`
   },
   {
     title: 'SEO Settings',
     description: 'Page titles, meta descriptions, keywords',
-    cmsLink: `${pagesCmsUrl}/collection/seo`,
+    cmsLink: `${pagesCmsUrl}`,
     githubLink: `${githubRepo}/edit/main/src/content/seo/settings.json`
   }
 ];
@@ -132,7 +132,7 @@ const sections = [
       <!-- Quick Actions -->
       <div class="bg-charcoal border-gold-20" style="border-radius: 0.5rem; border: 1px solid rgba(212, 175, 55, 0.2); padding: 2rem; margin-bottom: 3rem;">
         <h2 style="font-size: 1.5rem; font-weight: bold; color: var(--gold); margin-top: 0; margin-bottom: 1.5rem;">Quick Actions</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1rem;">
           <a 
             href={pagesCmsUrl}
             target="_blank"
@@ -213,14 +213,12 @@ const sections = [
     </main>
 
     <!-- Footer -->
-    <footer style="border-t: 1px solid #1f2937; margin-top: 4rem; padding: 2rem 0;">
+    <footer style="border-top: 1px solid #1f2937; margin-top: 4rem; padding: 2rem 0;">
       <div style="max-width: 80rem; margin: 0 auto; padding: 0 2rem;">
         <p style="text-align: center; color: #6b7280; font-size: 0.875rem;">
           Vanity Hair & Esthetics Content Management
         </p>
       </div>
     </footer>
-  </body>
-</html>
   </body>
 </html>

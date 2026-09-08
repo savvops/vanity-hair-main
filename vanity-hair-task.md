@@ -16,13 +16,15 @@ The proxy serves the static build at `127.0.0.1:4341`. The computer and preview 
 - [x] Replace the misleading `/success/` booking confirmation with instructions to contact the salon. Share global styles across layout-based pages.
 - [x] Fix the sitemap pointing to Window Guys, align it with the existing `vanityhairwpg.ca` canonical, and exclude editor/success routes from the sitemap.
 - [x] Load analytics only on the production hostnames, preventing preview CORS errors and traffic pollution.
-- [x] Refresh compatible dependencies: npm audit findings fell from 21 to 4. No forced major framework upgrade.
+- [x] Upgrade to Astro 7.3.2, sitemap 3.7.4, Sharp 0.35.4 and esbuild 0.28.2. Replace the retired Astro Tailwind integration with Tailwind 3/PostCSS; remove unused RSS dependency. All 21 originally reported dependency vulnerabilities are now resolved (`npm audit`: zero).
+- [x] Migrate all 14 content collections to the Content Layer with filename-based IDs and `astro/zod`. Fix Pages CMS media paths, singleton files and object lists. Archive the retired Netlify/Decap admin and unused Window Guys code, including the dummy quote endpoint.
+- [x] Add an Astro/TypeScript check and Node 24 build configuration. Update the preview launcher for Astro 7's managed background server.
 
 ## Validation
 
-`npm run build` passes. `npm test` passes all 7 Playwright tests using installed Google Chrome: 320, 375, 768, 1024 and 1440px layouts; navigation/anchors; image URLs; phone/email destinations; gallery photo navigation, dismissal and focus; local reel readiness and media cleanup; TikTok iframe destination; secondary routes and sitemap.
+`npm run build` passes on Node 26.2.0; the same static build also passes on Node 24.19.0 LTS. `npm run check` reports zero errors, warnings or hints. `npm audit` reports zero vulnerabilities. `npm test` passes all 10 Playwright tests using installed Google Chrome: 320, 375, 768, 1024 and 1440px layouts; navigation/anchors; image URLs; phone/email destinations; gallery photo navigation, dismissal and focus; local reel readiness and media cleanup; TikTok iframe destination; secondary routes and sitemap; all migrated content; mobile admin redirection; CMS configuration against existing JSON data. Authenticated edits inside hosted Pages CMS were not exercised.
 
-Lighthouse against the local production build (one mobile and one desktop run; lab results, not field measurements):
+Post-upgrade Lighthouse against the Astro 7 local production build (one mobile and one desktop run; lab results, not field measurements):
 
 | Category | Mobile | Desktop |
 | --- | ---: | ---: |
@@ -40,16 +42,18 @@ Review assessment: design 9/10, UX 9.5, performance 9.8, mobile 9.5, SEO 9.5, ac
 
 ## Follow-ups, in priority order
 
-- [ ] High: plan and validate an Astro major-version migration. Four npm audit findings remain (Astro critical, nested Sharp high, esbuild low and the Tailwind integration low). The installed Astro 5 line still carries advisories; this static site does not use server islands or expose an image optimizer in its production output. That limits applicability but is not a claim that the dependency warnings are resolved. Direct image generation uses Sharp 0.35.4.
-- [ ] Medium: independently verify the production custom domain and Google Business Profile. A request to `vanityhairwpg.ca` timed out from this machine during review; the existing canonical was retained and no DNS or production hosting was changed.
+- [ ] Medium: independently verify the production custom domain and Google Business Profile. `vanityhairwpg.ca` resolves to `18.204.152.241`, but the HTTPS request timed out from this machine during review; the existing canonical was retained and no DNS or production hosting was changed.
 - [ ] Medium: confirm current hours, prices and review counts with Dereje. Existing business data was preserved. Phone/email targets were verified without placing calls, sending messages or making bookings. TikTok destination was checked; playback availability depends on TikTok/network policy.
 - [ ] Low: replace the restored bitmap with the original transparent/vector logo if it becomes available.
 
 ## Reproduce
 
-1. `npm ci`
-2. `npm run build` (regenerates responsive images)
+1. Use Node 24 LTS and run `npm ci`.
+2. Run `npm run check` and `npm run build` (regenerates responsive images).
 3. `powershell -File scripts/start-preview.ps1`
-4. `npm test` (uses installed Chrome; the Playwright configuration can also start the preview)
+4. Run `npm test` (uses installed Chrome) and `npm audit`.
+5. Inspect with `npm run preview -- status`; stop with `npm run preview -- stop`.
 
 Tailscale Serve is already configured on HTTPS port 9461. After a machine restart, start the preview again. Stop only this proxy with `tailscale serve --https=9461 off` when finished. Changes to CMS media during a running development session require `npm run images` or restarting `npm run dev`.
+
+Migration references: [Astro 6](https://docs.astro.build/en/guides/upgrade-to/v6/), [Astro 7](https://docs.astro.build/en/guides/upgrade-to/v7/), [Content Loader API](https://docs.astro.build/en/reference/content-loader-reference/), [Pages CMS configuration](https://pagescms.org/docs/configuration/).

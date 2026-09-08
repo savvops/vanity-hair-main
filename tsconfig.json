@@ -14,5 +14,6 @@
     "jsx": "preserve",
     "jsxImportSource": "astro"
   },
-  "include": ["src/**/*"]
+  "include": [".astro/types.d.ts", "src/**/*", "tests/**/*.ts", "playwright.config.ts"],
+  "exclude": ["dist", "archive"]
 }
