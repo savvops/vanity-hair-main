@@ -18,7 +18,7 @@ const { subtitle, headlinePart1, headlineAccent, paragraphs, features, signature
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <!-- Image Grid -->
-      <div class="relative">
+      <div data-reveal class="relative">
         <div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-gold"></div>
         <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-gold"></div>
         <ResponsiveImage
@@ -32,7 +32,7 @@ const { subtitle, headlinePart1, headlineAccent, paragraphs, features, signature
       <!-- Content -->
       <div>
         <p class="text-gold uppercase tracking-widest font-bold mb-2">{subtitle}</p>
-        <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+        <h2 data-reveal class="text-4xl md:text-5xl font-serif font-medium text-white mb-6">
           {headlinePart1} <span class="italic text-gray-400">{headlineAccent}</span>
         </h2>
 

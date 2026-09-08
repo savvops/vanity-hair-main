@@ -5,14 +5,30 @@ const infoData = await getEntry('infoBanner', 'items');
 const items = infoData?.data?.items || [];
 ---
 
-<div id="info" class="bg-charcoal border-y border-gold/20 py-8 relative z-20 scroll-mt-24">
-  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
-    {items.map((item: any) => (
-      <div class="p-2">
-        <Icon name={item.icon} class="w-8 h-8 text-gold mx-auto mb-3" />
-        <h2 class="text-white font-serif text-xl mb-1">{item.title}</h2>
-        <p class="text-gray-400 text-sm">{item.content}</p>
+<div id="info" class="bg-charcoal border-y border-gold/20 relative z-20 scroll-mt-24">
+  <div class="info-strip max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {items.map((item) => (
+      <div class="info-item">
+        <Icon name={item.icon} class="w-5 h-5 text-gold shrink-0" />
+        <div class="min-w-0">
+          <h2 class="info-label">{item.title}</h2>
+          <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">{item.content}</p>
+        </div>
       </div>
     ))}
   </div>
 </div>
+
+<style>
+  .info-strip { display: grid; grid-template-columns: 1fr 1fr; padding-block: 0.5rem; }
+  .info-item { display: flex; align-items: center; gap: 0.625rem; padding: 0.75rem 0; }
+  .info-item:first-child { grid-column: 1 / -1; border-bottom: 1px solid rgb(212 175 55 / 0.12); }
+  .info-item:nth-child(3) { border-left: 1px solid rgb(212 175 55 / 0.12); padding-left: 1rem; margin-left: 0.75rem; }
+  .info-label { font: 500 0.625rem / 1.5 'Inter', system-ui, sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: #d4af37; margin-bottom: 0.125rem; }
+  @media (min-width: 768px) {
+    .info-strip { grid-template-columns: repeat(3, 1fr); padding-block: 1rem; }
+    .info-item { justify-content: center; padding: 0.5rem 1rem; }
+    .info-item:first-child { grid-column: auto; border-bottom: 0; }
+    .info-item + .info-item { border-left: 1px solid rgb(212 175 55 / 0.18); margin-left: 0; }
+  }
+</style>

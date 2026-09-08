@@ -10,6 +10,8 @@ for (const width of [320, 375, 768, 1024, 1440]) {
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const info = await page.locator('#info').boundingBox();
+    expect(info!.height).toBeLessThanOrEqual(width < 768 ? 175 : 110);
     const anchors = await page.locator('a[href^="#"]').evaluateAll(links => links.map(link => link.getAttribute('href')!));
     for (const anchor of new Set(anchors)) await expect(page.locator(anchor)).toHaveCount(1);
     if (width < 1024) {
@@ -61,6 +63,53 @@ test('gallery navigation, backdrop close, focus return and local video', async (
   await expect(page.locator('#gallery-lightbox-media iframe')).toHaveAttribute('src', /tiktok.com\/player\/v1\/7670224662470642951/);
   await page.getByRole('button', { name: 'Close gallery viewer' }).click();
   await expect(page.locator('#gallery-lightbox-media iframe')).toHaveCount(0);
+});
+
+for (const width of [375, 1440]) {
+  test(`navbar hides during scrolling and returns when scrolling stops at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 812 });
+    await page.goto('/');
+    const navbar = page.locator('#navbar');
+    const duringScroll = await page.evaluate(async () => {
+      const timer = setInterval(() => window.scrollBy({ top: 35, behavior: 'instant' }), 40);
+      await new Promise(resolve => setTimeout(resolve, 600));
+      const bottom = document.querySelector('#navbar')!.getBoundingClientRect().bottom;
+      clearInterval(timer);
+      return bottom;
+    });
+    expect(duringScroll).toBeLessThanOrEqual(0);
+    await expect(navbar).not.toHaveAttribute('data-scrolling');
+    await expect.poll(() => navbar.evaluate(element => element.getBoundingClientRect().top)).toBe(0);
+
+    if (width < 1024) {
+      await page.getByRole('button', { name: 'Open navigation menu' }).click();
+      await page.mouse.wheel(0, 200);
+      await expect(page.locator('#mobile-menu')).toBeVisible();
+      await expect(navbar).not.toHaveAttribute('data-scrolling');
+      await page.keyboard.press('Escape');
+    }
+    await navbar.locator('a').first().focus();
+    await page.mouse.wheel(0, 200);
+    await expect(navbar).not.toHaveAttribute('data-scrolling');
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await expect.poll(() => navbar.evaluate(element => element.getBoundingClientRect().top)).toBe(0);
+  });
+}
+
+test('motion is optional and content remains visible without JavaScript', async ({ page, browser }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await page.locator('#services').scrollIntoViewIfNeeded();
+  const heading = page.locator('#services h2');
+  await expect(heading).toBeVisible();
+  expect(await heading.evaluate(element => getComputedStyle(element).animationName)).toBe('none');
+  expect(await page.locator('#navbar').evaluate(element => getComputedStyle(element).transitionDuration)).toBe('0s');
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const noJsPage = await context.newPage();
+  await noJsPage.goto('http://127.0.0.1:4341/');
+  await expect(noJsPage.locator('#services h2')).toBeVisible();
+  expect(await noJsPage.locator('#services h2').evaluate(element => getComputedStyle(element).opacity)).toBe('1');
+  await context.close();
 });
 
 test('secondary routes and search metadata are consistent', async ({ page, request }) => {

@@ -31,11 +31,11 @@ const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecond
   <!-- Content -->
   <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-28 pb-32">
     <div class="inline-block mb-4">
-      <div class="h-1 w-24 bg-gold mx-auto mb-6"></div>
+      <div class="hero-rule h-px w-16 bg-gold mx-auto mb-6"></div>
       <p class="text-gold uppercase tracking-[0.3em] text-sm md:text-base font-bold mb-2">{badge}</p>
     </div>
 
-    <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 text-shadow leading-tight">
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white mb-6 text-shadow leading-tight">
       {headlineLine1}<br />
       <span class="text-gold italic">{headlineAccent}</span>
     </h1>
@@ -47,13 +47,13 @@ const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecond
     <div class="flex flex-col sm:flex-row justify-center gap-4">
       <a
         href="#book"
-        class="px-8 py-4 bg-gold text-rich-black font-bold text-lg uppercase tracking-wider hover:bg-gold-light transition-colors rounded-sm shadow-[0_0_20px_rgba(212,175,55,0.5)]"
+        class="hero-button px-8 py-4 bg-gold text-rich-black font-semibold text-sm uppercase tracking-[0.14em] hover:bg-gold-light rounded-sm"
       >
         {ctaPrimary}
       </a>
       <a
         href="#services"
-        class="px-8 py-4 border-2 border-gold text-gold font-bold text-lg uppercase tracking-wider hover:bg-gold hover:text-rich-black transition-colors rounded-sm backdrop-blur-sm bg-black/20"
+        class="hero-button px-8 py-4 border border-gold text-gold font-semibold text-sm uppercase tracking-[0.14em] hover:bg-gold hover:text-rich-black rounded-sm backdrop-blur-sm bg-black/20"
       >
         {ctaSecondary}
       </a>
@@ -61,7 +61,7 @@ const { badge, headlineLine1, headlineAccent, subheadline, ctaPrimary, ctaSecond
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+  <div class="scroll-cue absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
     <a href="#info" aria-label="View location, hours and contact details" class="text-gold hover:text-white transition-colors drop-shadow-lg">
       <Icon name="chevron-down" class="w-8 h-8" />
     </a>

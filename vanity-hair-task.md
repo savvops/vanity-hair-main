@@ -22,6 +22,15 @@ The proxy serves the static build at `127.0.0.1:4341`. The computer and preview 
 
 ## Validation
 
+### Mobile layout and motion refinement — September 8
+
+- Replaced oversized information cards with a compact strip: location across the first mobile row, hours and contact below, and three columns on desktop. Measured 159.5px tall at 375px viewport width.
+- Navbar hides during scrolling in either direction and returns 220ms after the final scroll event. It stays visible at the top, while the mobile menu is open, and during keyboard focus.
+- Replaced Playfair Display with locally hosted Cormorant Garamond (normal and italic variable Latin WOFF2, OFL included), keeping Inter for body copy. Refined heading weights, button sizing and decorative lines.
+- Added lightweight IntersectionObserver section reveals, subtle button lift and a finite scroll cue. No animation library; content remains visible without JavaScript, and reduced-motion preferences disable animation.
+- `npm run check`: zero errors/warnings/hints. `npm run build`: passed. All 13 Playwright tests pass, including compact layout at five widths, scroll/pause navigation on mobile and desktop, open-menu and keyboard behavior, reduced motion and content visibility without JavaScript.
+- Verified the actual Tailscale URL with agent-browser, checked mobile and desktop screenshots, and found no browser errors. Latest mobile Lighthouse report: performance 97, accessibility 100, best practices 100, SEO 100; LCP 2.5s, CLS 0.035, TBT 0ms. The audit report completed successfully; Lighthouse's subsequent temporary Chrome profile cleanup reported Windows EPERM. Raw report: ignored `.preview/polish-mobile.json`. Earlier scores below belong to the previous upgrade run.
+
 `npm run build` passes on Node 26.2.0; the same static build also passes on Node 24.19.0 LTS. `npm run check` reports zero errors, warnings or hints. `npm audit` reports zero vulnerabilities. `npm test` passes all 10 Playwright tests using installed Google Chrome: 320, 375, 768, 1024 and 1440px layouts; navigation/anchors; image URLs; phone/email destinations; gallery photo navigation, dismissal and focus; local reel readiness and media cleanup; TikTok iframe destination; secondary routes and sitemap; all migrated content; mobile admin redirection; CMS configuration against existing JSON data. Authenticated edits inside hosted Pages CMS were not exercised.
 
 Post-upgrade Lighthouse against the Astro 7 local production build (one mobile and one desktop run; lab results, not field measurements):

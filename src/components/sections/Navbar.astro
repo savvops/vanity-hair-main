@@ -9,13 +9,13 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
 };
 ---
 
-<nav class="fixed w-full z-50 bg-rich-black/95 border-b border-gold/30 backdrop-blur-sm transition-all duration-300" id="navbar">
+<nav class="fixed top-0 w-full z-50 bg-rich-black/95 border-b border-gold/30 backdrop-blur-sm" id="navbar" aria-label="Main navigation">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <a href="#home" class="flex-shrink-0 flex items-center space-x-2 group">
         <BrandLogo />
-        <span class="font-serif text-base md:text-lg font-bold tracking-wider text-white">
+        <span class="font-serif text-xl md:text-2xl font-semibold tracking-wide text-white">
           {brandName}
         </span>
       </a>
@@ -93,8 +93,15 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
   const mobileMenu = document.getElementById('mobile-menu');
   const menuOpenIcon = document.getElementById('menu-open-icon');
   const menuCloseIcon = document.getElementById('menu-close-icon');
+  const navbar = document.getElementById('navbar');
+  let scrollTimer: ReturnType<typeof setTimeout>;
+  const showNavbar = () => {
+    clearTimeout(scrollTimer);
+    navbar?.removeAttribute('data-scrolling');
+  };
 
   const setMenuOpen = (isOpen: boolean) => {
+    showNavbar();
     mobileMenu?.classList.toggle('hidden', !isOpen);
     menuOpenIcon?.classList.toggle('hidden', isOpen);
     menuCloseIcon?.classList.toggle('hidden', !isOpen);
@@ -122,13 +129,22 @@ const { brandName, navLinks, ctaButton } = navData?.data || {
 
   window.matchMedia('(min-width: 1024px)').addEventListener('change', () => setMenuOpen(false));
 
-  // Navbar scroll effect
-  const navbar = document.getElementById('navbar');
+  // Stay out of the way during scrolling, then return after a short pause.
+  // Open menus and keyboard navigation always remain accessible.
+  navbar?.addEventListener('focusin', showNavbar);
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar?.classList.add('shadow-lg', 'shadow-gold/5');
-    } else {
-      navbar?.classList.remove('shadow-lg', 'shadow-gold/5');
+    clearTimeout(scrollTimer);
+    navbar?.classList.toggle('shadow-lg', window.scrollY > 50);
+    if (window.scrollY <= 80 || mobileMenuBtn?.getAttribute('aria-expanded') === 'true' || navbar?.querySelector(':focus-visible')) {
+      showNavbar();
+      return;
     }
+    navbar?.setAttribute('data-scrolling', '');
+    scrollTimer = setTimeout(showNavbar, 220);
   }, { passive: true });
 </script>
+
+<style>
+  nav { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+  nav[data-scrolling] { transform: translateY(-110%); }
+</style>

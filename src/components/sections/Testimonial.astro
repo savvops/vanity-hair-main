@@ -26,11 +26,11 @@ const { heading, ratingScore, ratingLabel, reviewsButton, reviewsButtonLink, bac
   </div>
 
   <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-center font-serif text-4xl md:text-5xl font-bold mb-12">{heading}</h2>
+    <h2 data-reveal class="text-center font-serif text-4xl md:text-5xl font-medium mb-12">{heading}</h2>
     <!-- Individual Reviews -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
       {sortedTestimonials.map((testimonial: any) => (
-        <div class="bg-charcoal/80 backdrop-blur-sm p-6 border border-gold/20">
+        <div data-reveal class="bg-charcoal/80 backdrop-blur-sm p-6 border border-gold/20">
           <div class="flex items-center space-x-1 text-gold mb-3">
             {Array.from({ length: testimonial.data.rating }).map(() => (
               <Icon name="star" class="w-4 h-4 fill-current" />
