@@ -1,6 +1,6 @@
 # Vanity Hair review — 2026-09-08
 
-Branch: `dev/logo-performance`. Production has not been deployed.
+Full local update published to Cloudflare Pages on September 22, 2026 (UTC), from commit `38797e6`. See deployment verification below.
 
 Preview: https://nucbox-m7-1.taila7272b.ts.net:9461/ (Tailscale connection required).
 The proxy serves the static build at `127.0.0.1:4341`. The computer and preview process must remain running.
@@ -72,4 +72,11 @@ Migration references: [Astro 6](https://docs.astro.build/en/guides/upgrade-to/v6
 - Prepared locally: homepage title, description and introduction identify Vanity Hair & Esthetics as a barber shop at 432 Graham Avenue in downtown Winnipeg. Business schema now includes a stable identity and links to the exact Google Maps listing and existing Facebook page. Schema retains the valid HairSalon type; this does not change the Google Business Profile category.
 - Verified: Astro check reports zero errors/warnings/hints; production build passes; revised copy scores 5/5 in the governed copy checker.
 - Public Google listing verified as Hair replacement service, 4.7 stars, 62 reviews. The signed-in SavvOps account lacks management access; Google reports a different existing owner. Owner-account credential location is pending from Nelson. No access request or category edit was submitted.
-- Not deployed: this branch also contains the earlier unpublished redesign/runtime upgrade. Website SEO changes remain local; production and Google category are unchanged.
+- Published with Nelson's explicit approval: SEO changes plus the earlier redesign/runtime upgrade. Google category remains unchanged pending owner access.
+
+## Deployment verification
+
+- Cloudflare deployment for commit `38797e6` succeeded.
+- https://vanity-hair-main.pages.dev/ and https://fcc8ade2.vanity-hair-main.pages.dev/ return HTTP 200 with the revised title, introduction, logo and Google business identity.
+- Live browser inspection confirms the updated homepage renders. All 13 local Playwright tests passed before deployment; Astro check/build passed.
+- Custom domain https://vanityhairwpg.ca/ timed out from this host and resolves to 18.204.152.241. Custom-domain routing remains unresolved; use the verified Pages URL above.
