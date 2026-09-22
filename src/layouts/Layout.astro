@@ -26,6 +26,10 @@ const noindex = Astro.url.pathname !== '/';
 const schema = {
   "@context": "https://schema.org",
   "@type": "HairSalon",
+  "@id": `${siteUrl}/#business`,
+  "description": defaultDescription,
+  "hasMap": "https://www.google.com/maps?cid=5584982689571420956",
+  "sameAs": ["https://www.facebook.com/vanityhairwpg/", "https://www.google.com/maps?cid=5584982689571420956"],
   "name": siteSettings?.data?.siteName || "Vanity Hair Wpg",
   "logo": new URL(siteSettings?.data?.logo || '/images/vanity-logo.png', siteUrl).href,
   "url": siteUrl,

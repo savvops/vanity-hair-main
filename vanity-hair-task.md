@@ -66,3 +66,10 @@ Review assessment: design 9/10, UX 9.5, performance 9.8, mobile 9.5, SEO 9.5, ac
 Tailscale Serve is already configured on HTTPS port 9461. After a machine restart, start the preview again. Stop only this proxy with `tailscale serve --https=9461 off` when finished. Changes to CMS media during a running development session require `npm run images` or restarting `npm run dev`.
 
 Migration references: [Astro 6](https://docs.astro.build/en/guides/upgrade-to/v6/), [Astro 7](https://docs.astro.build/en/guides/upgrade-to/v7/), [Content Loader API](https://docs.astro.build/en/reference/content-loader-reference/), [Pages CMS configuration](https://pagescms.org/docs/configuration/).
+
+## Local search update — September 21, 2026
+
+- Prepared locally: homepage title, description and introduction identify Vanity Hair & Esthetics as a barber shop at 432 Graham Avenue in downtown Winnipeg. Business schema now includes a stable identity and links to the exact Google Maps listing and existing Facebook page. Schema retains the valid HairSalon type; this does not change the Google Business Profile category.
+- Verified: Astro check reports zero errors/warnings/hints; production build passes; revised copy scores 5/5 in the governed copy checker.
+- Public Google listing verified as Hair replacement service, 4.7 stars, 62 reviews. The signed-in SavvOps account lacks management access; Google reports a different existing owner. Owner-account credential location is pending from Nelson. No access request or category edit was submitted.
+- Not deployed: this branch also contains the earlier unpublished redesign/runtime upgrade. Website SEO changes remain local; production and Google category are unchanged.
